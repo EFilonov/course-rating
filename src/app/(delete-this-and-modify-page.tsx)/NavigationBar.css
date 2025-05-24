@@ -1,0 +1,26 @@
+/* Container styling for the navigation bar */
+.navigation-bar {
+    /* position: fixed;
+    left: 0;
+    top: 0; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    gap: 1.5rem; /* 6 * 0.25rem */
+}
+
+/* Styling for the GitHub link icon */
+.github-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+@media (width >= 640px) {
+    .navigation-bar {
+        justify-content: end;
+
+        padding-top: 2rem;
+    }
+}

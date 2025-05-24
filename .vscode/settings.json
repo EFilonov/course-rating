@@ -1,0 +1,36 @@
+{
+    // JS
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    // TS
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    // JSON
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    // Extension: Git
+    "git.rebaseWhenSync": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    // Extension: Prettier
+    "prettier.requireConfig": true,
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    // Extension: ESLint
+    "eslint.useFlatConfig": true,
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+    ],
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        // "source.fixAll.eslint": 'true',
+        "source.organizeImports": "never"
+    },
+    "eslint.run": "onType",
+    "npm.packageManager": "npm"
+}
