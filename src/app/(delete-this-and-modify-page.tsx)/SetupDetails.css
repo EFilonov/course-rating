@@ -13,7 +13,9 @@
 
 /* Styling for feature names */
 .feature-name {
+    font-family: var(--font-roboto-bold), Arial, sans-serif;
     font-size: 0.875rem; /* text-sm */
+    
 }
 
 @media (width >= 640px) {

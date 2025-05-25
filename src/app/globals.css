@@ -1,6 +1,17 @@
 :root {
-    --background: #fff;
+    --background: #ededed;;
     --foreground: #171717;
+    --black: #3B434E;
+	--gray-light: #EBEBEB;
+	--gray: #A4A4A4;
+	--gray-dark: #6C7077;
+	--white: white;
+	--primary: #7351F5;
+	--primary-hover: #6344DF;
+	--red-light: #FEA291;
+	--red: #FC836D;
+	--green: #007B48;
+	--green-light: #C8F8E4; 
 }
 
 [data-theme='dark'] {
@@ -19,7 +30,7 @@ body {
     color: var(--foreground);
     background-color: var(--background);
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:var(--font-roboto), Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

@@ -1,5 +1,5 @@
-// import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
-"use server";
+import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
+import type { Metadata } from 'next';
 import React from 'react';
 import cn from 'classnames';
 
@@ -8,20 +8,21 @@ import cn from 'classnames';
  *
  * @returns {JSX.Element} The rendered HomePage component.
  */
+
 const Page = () => {
 
-    const aasdasd:number = 5; // Example variable to demonstrate TypeScript usage
+    
 
     // const [hovering, setHovering] = React.useState(false);
 
-    return <div 
+    return <div
         // onMouseOver={() => setHovering(true)}
         // onMouseOut={() => setHovering(false)} 
         // className={cn('container', {'mx-auto': hovering}, 'p-4')}
         >
-        <h1>Welcome to the Home Page !!!{aasdasd}</h1>
+        {/* <h1>Welcome to the Home Page !!!{aasdasd}</h1> */}
         {/* Uncomment the line below to include the HomePage component */}
-        {/* <HomePage /> */}
+        <HomePage />
         <p>This is the main page of the application.</p>    
     </div>;
 };
