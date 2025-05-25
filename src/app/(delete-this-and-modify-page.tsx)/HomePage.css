@@ -66,7 +66,7 @@
     border: 1px solid transparent;
     border-radius: 128px;
 
-    font-family: var(--font-roboto-light), Arial, sans-serif;
+    font-family: var(--font-roboto), Arial, sans-serif;
     font-size: 16px;
     line-height: 20px;
     appearance: none;
