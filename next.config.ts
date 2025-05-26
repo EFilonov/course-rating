@@ -9,7 +9,15 @@ const withBundleAnalyzer = initializeBundleAnalyzer({
 
 // https://nextjs.org/docs/pages/api-reference/next-config-js
 const nextConfig: NextConfig = {
-    output: 'standalone'
+    output: 'standalone',
+    turbopack: {
+        rules: {
+            '*.svg': {
+                loaders: ['@svgr/webpack'],
+                as: '*.js',
+            },
+    },
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);

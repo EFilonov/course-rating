@@ -1,6 +1,11 @@
-import {ReactNode} from "react";
+import {ReactNode, ButtonHTMLAttributes, DetailedHTMLProps, ClassAttributes} from "react";
 
-export interface ButtonProps {
+
+
+export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, ClassAttributes<HTMLButtonElement> {
     appearance: 'blue' | 'gray';
     children: ReactNode;
+    arrow?: 'right' | 'down' | 'none';
+    // className?: string;
+    // onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }

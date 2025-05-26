@@ -1,20 +1,26 @@
 .button {
     display: inline-block;
+
     box-sizing: border-box;
     padding: 10px;
+
     cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    text-align: center;
-    font-size: 14px;
     transition: all 0.2s ease-in-out;
-    font-weight: 200;
+    text-align: center;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 200
 }
 
 .blue {
+    cursor: pointer;
+
     color: var(--white);
     background-color: var(--primary);
-    cursor: pointer;
 }
 
 .blue:hover {
@@ -23,11 +29,28 @@
 
 .gray {
     color: var(--black);
+    border: 1px solid var(--gray-light);
     background: none;
-    border: 2px solid var(--gray-light);
-    font-weight: 300;
+
+    font-weight: 500;
 }
 
 .gray:hover {
     background-color: var(--primary);
+}
+
+.arrow {
+    display: inline-block;
+
+    margin-left: 10px;
+}
+
+.down {
+    transition: all 0.2s;
+    transform: rotate(90deg);
+}
+
+.blue:hover svg path,
+.gray:hover svg path {
+    fill: var(--white);
 }
