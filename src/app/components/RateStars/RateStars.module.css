@@ -1,0 +1,19 @@
+.span {
+    display: inline-block;
+    width: 25px;
+    height: 20px;
+
+}
+
+.star {
+    transition: all 0.2s;
+}
+
+svg:hover {
+    filter: drop-shadow(0 0 5px var(--primary-hover));
+    cursor: pointer;
+}
+
+.rated svg {
+    fill: var(--primary-hover);
+}
