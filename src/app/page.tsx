@@ -1,6 +1,5 @@
 'use client';
-// import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
-// import type { Metadata } from 'next';
+
 import React, { useState } from 'react';
 import NavigationBar from '@/app/(delete-this-and-modify-page.tsx)/NavigationBar';
 import Htag from './components/Htag/Htag';
@@ -9,21 +8,12 @@ import P from './components/P/P';
 import Tag from './components/Tag/Tag';
 import RateStars from './components/RateStars/RateStars';
 
-
-/**
- * The main page component that renders the HomePage component.
- *
- * @returns {JSX.Element} The rendered HomePage component.
- */
-
 const Page = (): React.JSX.Element => {
     const [rating, setRating] = useState<number>(0);
 
     return (
         <>
             <NavigationBar />
-
-            {/* <HomePage /> */}
 
             <Htag tag='h1'>Hello, World!</Htag>
             <Htag tag='h3'>Hello, World!</Htag>
