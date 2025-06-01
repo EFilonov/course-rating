@@ -1,0 +1,46 @@
+.footer {
+    background-color: var(--primary);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #d8cccc;
+
+}
+
+.container {
+    height: 72px;
+    /* padding: 0 16px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas:
+        "text nav";
+}
+
+.text {
+    grid-area: text;
+}
+
+.nav {
+    grid-area: nav;
+}
+
+.link {
+    padding-left: 32px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "text"
+            "nav";
+    }
+
+    .nav {
+        text-align: center;
+    }
+}
