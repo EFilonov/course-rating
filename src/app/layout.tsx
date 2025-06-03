@@ -1,36 +1,18 @@
+
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { Roboto} from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
-import { Header } from './components/Header/Header';
-import { Sidebar } from './components/Sidebar/Sidebar';
-import { Footer } from './components/Footer/Footer';
-import './globals.css';
 
-const roboto = Roboto({
-    subsets: ['cyrillic','latin'],
-    variable: '--font-roboto',
-    weight: ['100', '200', '300', '400', '500', '700', '900']});
 
 export const metadata: Metadata = {
-    title: 'My Next.js App',
+    title: 'Eugene Next.js App',
     description: 'A Next.js application with custom fonts and themes.',
 };
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
+    
     return (
-        
         <html suppressHydrationWarning lang='en'>
-            <body className={`${roboto.variable}`}>
-                <ThemeProvider>
-                    <Header/>
-                    <Sidebar/>
-                        <main>
-                            {children}
-                        </main>
-                    <Footer/>
-                </ThemeProvider>
-            </body>
+            {children}
         </html>
     );
 };

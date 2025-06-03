@@ -31,8 +31,13 @@
     padding-left: 32px;
 }
 
+.link:hover {
+    color: rgb(170, 170, 206);
+}
+
 @media (max-width: 768px) {
     .container {
+        font-size: 14px;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         grid-template-areas:
@@ -40,7 +45,20 @@
             "nav";
     }
 
-    .nav {
+    .text {
         text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav {
+        display: block;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        font-size: 12px;
     }
 }
