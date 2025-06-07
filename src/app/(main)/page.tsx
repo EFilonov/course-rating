@@ -1,43 +1,32 @@
-'use client';
 
-import React, { useEffect, useState } from 'react';
 import NavigationBar from '@/app/(delete-this-and-modify-page.tsx)/NavigationBar';
 import Htag from './../components/Htag/Htag';
 import Button from './../components/Button/Button';
 import P from './../components/P/P';
 import Tag from './../components/Tag/Tag';
 import RateStars from './../components/RateStars/RateStars';
-import{useQueryHook} from './../hooks/useQueryHook';
-import { MenuItem } from './../interfaces/menu.interface';
 
-const Page = ()  => {
-    const { menuState } = useQueryHook();
-    const {isLoading, error, data} = menuState;
-    console.log('data', data);
-    console.log('isLoading', isLoading);
-    console.log('error', error);
-    const menuItems: React.JSX.Element[] = data?.map(({pages, _id}, index) => {
-       
 
-        return (
-            <li key={index}>
-                {_id?.secondCategory} 
-            </li>
-        );
-    });
+import { useHttp } from '../hooks/useHttp';
+import ThemeSwitch from '../(delete-this-and-modify-page.tsx)/ThemeSwitch';
 
+
+const Page = async  ()  => {
+    
     return (
         <>
-           <ul>
-            {menuItems}
-           </ul>
          
+          Main Page
+          <ThemeSwitch />
         </>
     );
 
 };
 
 export default Page; 
+
+
+
 
 //  const [rating, setRating] = useState(0);
             //  <NavigationBar />

@@ -6,36 +6,33 @@ import { ThemeProvider } from 'next-themes';
 import { Header } from './../components/Header/Header';
 import { Sidebar } from './../components/Sidebar/Sidebar';
 import { Footer } from './../components/Footer/Footer';
+
 import './../globals.css';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import NavigationBar from '../(delete-this-and-modify-page.tsx)/NavigationBar';
+import ThemeSwitch from '../(delete-this-and-modify-page.tsx)/ThemeSwitch';
+
 
 const roboto = Roboto({
     subsets: ['cyrillic','latin'],
     variable: '--font-roboto',
     weight: ['100', '200', '300', '400', '500', '700', '900']});
 
-// export const metadata: Metadata = {
-//     title: 'My Next.js App',
-//     description: 'A Next.js application with custom fonts and themes.',
-// };
-
-const queryClient = new QueryClient();
-
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     
+
     return (
-        <QueryClientProvider client={queryClient}>
-            <body className={`${roboto.variable}`}>
-                <ThemeProvider>
-                    <Header/>
-                    <Sidebar/>
-                        <main>
-                            {children}
-                        </main>
-                    <Footer/>
-                </ThemeProvider>
-            </body>
-        </QueryClientProvider>
+        
+        <body className={`${roboto.variable}`}>
+            <ThemeProvider>
+                <Header/>
+                <Sidebar/>
+                    <main>
+                        {children}
+                    </main>
+                <Footer/>
+            </ThemeProvider>
+        </body>
+        
     );
 };
 

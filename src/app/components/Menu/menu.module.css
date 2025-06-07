@@ -1,0 +1,15 @@
+.firstLevel {
+    display: block;
+}
+
+.firstLevelItem {
+    display: block;
+}
+
+.firstLevelItemActive {
+    font-weight: bold;
+}
+
+.firstLevelItemText {
+    color: black;
+}
