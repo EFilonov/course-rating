@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHttp } from '../../hooks/useHttp';
-import {MenuItem,PageItem, FirstLevelMenuItem} from '../../interfaces/menu.interface';
+import {MenuItem, PageItem, FirstLevelMenuItem} from '../../interfaces/menu.interface';
 import CourcesIcon from './icons/Courses.svg';
 import ServicesIcon from './icons/Services.svg';
 import BooksIcon from './icons/Books.svg';
