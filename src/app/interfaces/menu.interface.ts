@@ -3,7 +3,7 @@
  import { JSX } from 'react';
 
 export interface MenuItem {
-    _id?: {
+    _id: {
         secondCategory: string;
     };
     isOpened?: boolean;

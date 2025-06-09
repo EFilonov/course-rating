@@ -32,7 +32,6 @@ const ProductPage = ({params} : { params: Promise<{ type: string }> })  => {
         <>
            <div>
             {JSON.stringify(products)}
-
             </div>
         </>
     );
