@@ -1,5 +1,6 @@
 'use client';
-import { use, type ReactNode } from 'react';
+
+import {type ReactNode } from 'react';
 // import type { Metadata } from 'next';
 import { Roboto} from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
@@ -21,18 +22,18 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     
 
     return (
-        
-        <body className={`${roboto.variable}`}>
-            <ThemeProvider>
-                <Header/>
-                <Sidebar/>
-                    <main>
-                        {children}
-                    </main>
-                <Footer/>
-            </ThemeProvider>
-        </body>
-        
+        <html suppressHydrationWarning lang='ru'>
+            <body className={`${roboto.variable}`}>
+                <ThemeProvider>
+                    <Header/>
+                        <Sidebar/>
+                        <main>
+                            {children}
+                        </main>
+                    <Footer/>
+                </ThemeProvider>
+            </body>
+        </html>
     );
 };
 

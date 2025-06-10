@@ -2,13 +2,19 @@
     margin-top: 30px;
 }
 
-.firstLevelItemText:hover,
+
 .secondLevelItemText:hover,
-.thirdLevelItemText:hover {
+.thirdLevelItemText:hover,
+.firstLevelItem:hover,
+.firstLevelItem:hover svg,
+.firstLevelItem:hover .firstLevelItemText {
+    user-select: none;
     color: var(--primary-hover);
+    fill: var(--primary-hover);
 }
 
 .firstLevel {
+    user-select: none;
     margin-top: 20px;
     display: block;
 }
@@ -40,6 +46,7 @@
 }
 
 .secondLevelItemText {
+    user-select: none;
     text-transform: uppercase;
     font-weight: 400;
     font-size: 12px;
@@ -58,6 +65,7 @@
 }
 
 .thirdLevelItemText {
+    user-select: none;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -67,4 +75,8 @@
 .secondLevelItemActive,
 .thirdLevelItemActive {
     color: var(--primary);
+}
+
+.firstLevelItemActive svg {
+    fill: var(--primary);
 }

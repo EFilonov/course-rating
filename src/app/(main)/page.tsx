@@ -16,7 +16,7 @@ const Page = async  ()  => {
     return (
         <>
          
-          Main Page
+          <h1>MainPage</h1>
           <ThemeSwitch />
         </>
     );

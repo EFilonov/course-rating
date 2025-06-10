@@ -8,12 +8,14 @@ export interface HttpService {
 }
 
 export const httpService = (): HttpService => {
+    
     const request = async <T extends object | object[]>(
         url: string,
         method: string = 'GET',
         body: BodyInit | null = null,
         headers: HeadersInit = { 'Content-Type': 'application/json' }
     ): Promise<T> => {
+        // await new Promise(resolve => setTimeout(() => resolve(''), 2000)); // имитация задержки для отладки
         const response = await fetch(url, { 
             method, 
             body, 

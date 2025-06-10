@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     
     return (
-        <html suppressHydrationWarning lang='en'>
+        <html suppressHydrationWarning lang='ru'>
             {children}
         </html>
     );
