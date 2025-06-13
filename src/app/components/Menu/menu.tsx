@@ -2,22 +2,15 @@
 import React, { useState, useEffect, use } from 'react';
 import { useHttp } from '../../hooks/useHttp';
 import { MenuItem, PageItem, FirstLevelMenuItem } from '../../interfaces/menu.interface';
-import { TopLevelCategory } from '../../interfaces/page.interface';
 import cn from 'classnames';
-
-import CourcesIcon from './icons/Cources-icon.svg';
-import ServicesIcon from './icons/Services-icon.svg';
-import BooksIcon from './icons/Books-icon.svg';
-import ProductsIcon from './icons/Products-icon.svg';
-
 import style from './menu.module.css';
 import Link from 'next/link';
-import {  useRouter } from 'next/navigation';
+import { firstLevelMenu } from './constants/firstLevelMenu';
 
 const Menu = (): React.JSX.Element => {
 
     const [menu, setMenu] = useState<MenuItem[]>([]);
-    const [activeMenuLevel, setActiveMenuLevel] = useState<number | undefined>(undefined);
+    const [activeMenuLevel, setActiveMenuLevel] = useState<number | undefined>(0);
     const [activeSUbMenuLevel, setActiveSubMenuLevel] = useState<MenuItem | undefined>(undefined);
     const [activePageId, setActivePageId] = useState<string | undefined>(undefined);
 
@@ -30,23 +23,17 @@ const Menu = (): React.JSX.Element => {
         };
         getMenu();
     }, []);
-    
-    
-    const firstLevelMenu: FirstLevelMenuItem[] = [
-        { route: 'cources', name: 'Курсы', icon: <CourcesIcon />, id: TopLevelCategory.Courses },
-        { route: 'services', name: 'Сервисы', icon: <ServicesIcon />, id: TopLevelCategory.Services },
-        { route: 'books', name: 'Книги', icon: <BooksIcon />, id: TopLevelCategory.Books },
-        { route: 'products', name: 'Товары', icon: <ProductsIcon />, id: TopLevelCategory.Products }
-    ];
 
     const toggleFirstLevelMenu = (firstLevelItem: FirstLevelMenuItem): void => {
-        if (activeMenuLevel === firstLevelItem.id) {    
-            setActiveMenuLevel(undefined);
-            setActiveSubMenuLevel(undefined);
-            setActivePageId(undefined);
-        } else {
-            setActiveMenuLevel(firstLevelItem.id);
-        }};
+        setActiveMenuLevel(firstLevelItem.id);
+        // if (activeMenuLevel === firstLevelItem.id) {    
+            // setActiveMenuLevel(undefined);
+            // setActiveSubMenuLevel(undefined);
+            // setActivePageId(undefined);
+        // } else {
+        //     setActiveMenuLevel(firstLevelItem.id);
+        // }
+    };
 
     const toggleSubMenu = (secondLevelItem: MenuItem): void => {
         (activeSUbMenuLevel?._id === secondLevelItem._id) ? setActiveSubMenuLevel(undefined) : setActiveSubMenuLevel(secondLevelItem); 
@@ -102,10 +89,14 @@ const Menu = (): React.JSX.Element => {
         return (
             <ul className={style.thirdLevel}>
                 {activeSUbMenuLevel?.map((page: PageItem) => {
+                    
                     return (
                         <li key={page._id} className={style.thirdLevelItem}>
-                            <Link href={`/${route}/${page.alias}`} onClick={() => { setActivePageId(page._id); }}>
-                                <div className={cn({ [style.thirdLevelItemActive]: page._id === activePageId })}>
+                            <Link href={`/${route}/${page.alias}`} onClick={() => { setActivePageId(page._id); }}
+                            >
+                                <div className={cn({ [style.thirdLevelItemActive]: page._id === activePageId 
+
+                                })}>
                                     <span className={style.thirdLevelItemText}>{page.category}</span>
                                 </div>
                             </Link>

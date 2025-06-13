@@ -7,7 +7,7 @@ export interface MenuItem {
         secondCategory: string;
     };
     isOpened?: boolean;
-    pages?: PageItem[];
+    pages: PageItem[];
 }
 
 export interface PageItem {

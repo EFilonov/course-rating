@@ -54,7 +54,7 @@ export default [
       'import/no-named-as-default': 'off',
 
       // Style
-      'newline-before-return': 'error',
+      'newline-before-return': 'off',
     },
   },
 

@@ -2,15 +2,20 @@
     margin-top: 30px;
 }
 
+.firstLevelItem img {
+    width: 24px;
+    height: 24px;
+}
 
 .secondLevelItemText:hover,
 .thirdLevelItemText:hover,
 .firstLevelItem:hover,
-.firstLevelItem:hover svg,
+.firstLevelItem:hover img,
 .firstLevelItem:hover .firstLevelItemText {
     user-select: none;
+    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%) contrast(101%);
     color: var(--primary-hover);
-    fill: var(--primary-hover);
+
 }
 
 .firstLevel {
@@ -23,6 +28,7 @@
     display: grid;
     grid-template-columns: 24px 1fr;
     align-items: center;
+    transition: filter 0.2s;
 }
 
 .firstLevelItemText {
@@ -77,6 +83,6 @@
     color: var(--primary);
 }
 
-.firstLevelItemActive svg {
-    fill: var(--primary);
+.firstLevelItemActive img {
+    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%) contrast(101%);
 }
