@@ -8,7 +8,8 @@ import { Header } from './../components/Header/Header';
 import { Sidebar } from './../components/Sidebar/Sidebar';
 import { Footer } from './../components/Footer/Footer';
 
-import './../globals.css';
+// import './../globals.css';
+import style from './layout.module.css';
 import NavigationBar from '../(delete-this-and-modify-page.tsx)/NavigationBar';
 import ThemeSwitch from '../(delete-this-and-modify-page.tsx)/ThemeSwitch';
 

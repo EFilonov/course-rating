@@ -1,5 +1,5 @@
 :root {
-    --background: #fff;
+    --background: #e6e6e6;
     --foreground: #171717;
     --black: #3B434E;
     --gray-light: #927d7d;
@@ -23,6 +23,13 @@ html,
 body {
     overflow-x: hidden;
     max-width: 100vw;
+    background-color: var(--background);
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
 }
 
 body {
@@ -49,7 +56,7 @@ footer {
     grid-area: footer;
 }
 
-nav {
+.nav {
     grid-area: sidebar;
     max-height: 90vh;
     overflow-y: auto;
@@ -73,11 +80,7 @@ a {
     color: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-}
+
 
 @media (max-width: 765px) {
     body {

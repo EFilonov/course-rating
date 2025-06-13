@@ -25,14 +25,16 @@ const Menu = (): React.JSX.Element => {
     }, []);
 
     const toggleFirstLevelMenu = (firstLevelItem: FirstLevelMenuItem): void => {
-        setActiveMenuLevel(firstLevelItem.id);
-        // if (activeMenuLevel === firstLevelItem.id) {    
-            // setActiveMenuLevel(undefined);
-            // setActiveSubMenuLevel(undefined);
-            // setActivePageId(undefined);
-        // } else {
-        //     setActiveMenuLevel(firstLevelItem.id);
-        // }
+        
+        if (activeMenuLevel === firstLevelItem.id) {    
+            setActiveMenuLevel(undefined);
+            setActiveSubMenuLevel(undefined);
+            setActivePageId(undefined);
+        } else {
+            setActiveMenuLevel(firstLevelItem.id);
+            setActiveSubMenuLevel(undefined);  
+            setActivePageId(undefined); 
+        }
     };
 
     const toggleSubMenu = (secondLevelItem: MenuItem): void => {
@@ -45,7 +47,7 @@ const Menu = (): React.JSX.Element => {
             <ul className={style.firstLevel}>
                 {firstLevelMenu.map((firstLevelItem) => {
                     return (<li key={firstLevelItem.id} >
-                        <Link href={`/${firstLevelItem.route}`}onClick={() => { toggleFirstLevelMenu(firstLevelItem); }}>
+                        <Link href={`/${firstLevelItem.route}`}onClick={() => {toggleFirstLevelMenu(firstLevelItem); }}>
                             <div className={cn(style.firstLevelItem, { [style.firstLevelItemActive]: firstLevelItem.id === activeMenuLevel })}>
                                 {firstLevelItem.icon} 
                                 <span className={style.firstLevelItemText}>
