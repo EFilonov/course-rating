@@ -1,5 +1,5 @@
 :root {
-    --background: #e6e6e6;
+    --background: #f0eeee;
     --foreground: #171717;
     --black: #3B434E;
     --gray-light: #927d7d;
@@ -56,13 +56,14 @@ footer {
     grid-area: footer;
 }
 
-.nav {
+/*переопределено в Sidebar.module.css*/
+/* .nav {
     grid-area: sidebar;
     max-height: 90vh;
     overflow-y: auto;
     scrollbar-width: none;
 
-}
+} */
 
 main {
     grid-area: main;

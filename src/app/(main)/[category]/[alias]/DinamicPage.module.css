@@ -2,20 +2,6 @@
     margin-top: 32px;
 }
 
-.title {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    justify-items: left;
-    gap: 0 20px;
-    align-items: baseline;
-
-}
-
-.products {
-    display: grid;
-}
-
 .hhtitle {
     margin-top: 32px;
     display: grid;
@@ -23,14 +9,52 @@
     align-items: center;
     justify-items: left;
     gap: 0 20px;
-    align-items: baseline;
+    align-items: flex-start;
 
 }
 
 .seoText {
     margin-top: 32px;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 29px;
+}
+
+.seoText h2 {
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 36px;
+}
+
+.seoText h3 {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.seoText ul li,
+.seoText ol li {
+    padding-left: 10px;
+    list-style: none
+}
+
+.seoText ol>li::before {
+    content: "";
+    display: inline-block;
+    background: url("/icons/listMark/listMarkOl.svg") no-repeat left center;
+    width: 24px;
+    height: 20px;
+    background-size: 20px 20px;
+    vertical-align: middle;
+}
+
+.seoText ul>li::before {
+    content: "";
+    display: inline-block;
+    background: url("/icons/listMark/listMarkUl.svg") no-repeat left center;
+    width: 24px;
+    height: 20px;
+    background-size: 20px 20px;
+    vertical-align: middle;
 }
 
 .tags {
