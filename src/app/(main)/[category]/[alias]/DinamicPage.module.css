@@ -1,0 +1,42 @@
+.pageWrapper {
+    margin-top: 32px;
+}
+
+.title {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-items: left;
+    gap: 0 20px;
+    align-items: baseline;
+
+}
+
+.products {
+    display: grid;
+}
+
+.hhtitle {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-items: left;
+    gap: 0 20px;
+    align-items: baseline;
+
+}
+
+.seoText {
+    margin-top: 32px;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.tags {
+    margin: 32px 0;
+}
+
+.tagsContent {
+    margin-top: 20px;
+}

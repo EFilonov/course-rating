@@ -1,0 +1,27 @@
+.advantages {
+    margin-top: 32px;
+}
+
+.advantagesItem {
+    margin-top: 24px;
+}
+
+.advantageTitle {
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.advIcon {
+    width: 32px;
+    height: 32px;
+    margin-right: 20px;
+}
+
+.advantageText {
+    margin-top: 24px;
+    margin-left: 16px;
+    padding-left: 60px;
+    font-size: 18px;
+    line-height: 29px;
+    border-left: 1px solid black;
+}

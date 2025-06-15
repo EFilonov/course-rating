@@ -35,7 +35,7 @@
 
 .red {
 	color: var(--white);
-	background: #DE0000;
+	background: var(--red);
 
 	font-weight: bold;
 }

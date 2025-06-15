@@ -16,7 +16,7 @@ export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 				</div>
 				<div className={style.search}>
 					<input type="text" name="search" id="search" placeholder='Поиск ...' className={style.searchInput} />
-					<img src="./icons/search/Search-icon.svg" alt="Search button" className={style.searchImg} />
+					<img src="/icons/search/Search-icon.svg" alt="Search button" className={style.searchImg} />
 				</div>
 					
 				<Menu />

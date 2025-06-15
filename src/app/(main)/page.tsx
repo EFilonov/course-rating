@@ -14,8 +14,7 @@ import ThemeSwitch from '../(delete-this-and-modify-page.tsx)/ThemeSwitch';
 const Page = async  ()  => {
     
     return (
-        <>
-         
+        <>         
           <h1>MainPage</h1>
           <ThemeSwitch />
         </>

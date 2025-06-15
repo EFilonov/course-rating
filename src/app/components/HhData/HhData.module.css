@@ -1,0 +1,94 @@
+.hh {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 0 20px;
+}
+
+.hhFirstCard,
+.hhSecondCard {
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-items: center;
+}
+
+.cardStatHeader {
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.firstCardCounter {
+    color: var(--primary);
+    font-size: 28px;
+}
+
+.hhSecondCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.secondCardCounter {
+    text-align: center;
+    color: var(--black);
+    font-size: 24px;
+}
+
+.grop {
+    text-align: center;
+    width: 100%;
+    border-right: 1px solid var(--background);
+}
+
+.grop:last-child {
+    border-right: none;
+}
+
+@media (max-width: 1200px) {
+    .hh {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+    }
+
+    .hhFirstCard {
+        grid-template-columns: 1fr;
+    }
+
+    .grop:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .grop:first-child {
+        padding-top: 0;
+    }
+
+    .secondCardCounter,
+    .cardStatHeader {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .firstCardCounter {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hhSecondCard {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .grop {
+        border-right: none;
+        border-bottom: 1px solid var(--background);
+        width: 100%;
+        padding: 10px 0;
+    }
+
+
+}
