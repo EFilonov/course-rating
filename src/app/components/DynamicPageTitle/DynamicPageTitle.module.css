@@ -17,6 +17,7 @@
 .sortItem {
     display: block;
     cursor: pointer;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
 .active {
@@ -32,4 +33,19 @@
     height: 20px;
     background-size: 20px 20px;
     vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+    .sortBlock {
+        grid-template-columns: auto;
+        justify-items: center;
+    }
+
+    .sortItem {
+        margin-bottom: 10px;
+    }
+
+    .active::before {
+        margin-right: 5px;
+    }
 }

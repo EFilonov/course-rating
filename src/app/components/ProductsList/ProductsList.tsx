@@ -6,6 +6,7 @@ import { useSort } from "@/app/store/sort";
 import { ProductModel } from "@/app/interfaces/product.interface";
 
 import style from './ProductsList.module.css';
+import Product from "../Product/Product";
 
 const ProductsList = ({ className, products}: ProductsListProps): JSX.Element  => {
     const {sortType } = useSort();
@@ -22,11 +23,8 @@ const ProductsList = ({ className, products}: ProductsListProps): JSX.Element  =
    return (
         <ul className = {cn(style.products, className)}>
                 {sortProducts(products)?.map((product) => (
-                    <li key={product._id} className={style.product}>
-                        <div>{product.title}</div>
-                        <p>{product.description}</p>
-                        <span>{product.price} ₴</span>
-                        <span className={style.rating}>Рейтинг: {product.initialRating}</span>
+                    <li key={product._id} className={style.productItem}>
+                        <Product product = {product} />
                     </li>
                 ))}
             </ul>

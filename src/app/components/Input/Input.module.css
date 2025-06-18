@@ -1,0 +1,25 @@
+.input {
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    outline: transparent;
+    height: 32px;
+    font-family: var(--font-roboto), Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: var(--black);
+    padding-left: 10px;
+    background: transparent;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 2px var(--gray);
+}
+
+.input::placeholder {
+    color: var(--gray-light);
+}
+
+.input:focus {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px var(--gray);
+}

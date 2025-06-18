@@ -10,7 +10,7 @@ import style from './Advantages.module.css';
 const Advantages = ({ className, advantages}: AdvantagesProps): JSX.Element  => {
     return ( (advantages&& advantages[0].title == '' && advantages[0].description == '') ? <></> :
         <div className = {cn(style.advantages, className)}>
-                <Htag tag='h3'>Преимущества</Htag>
+                <Htag tag='h2'>Преимущества</Htag>
                 {advantages && advantages.map((advantage) => 
                     <div key={advantage._id} className={style.advantagesItem}>    
                         <div className={style.advantageTitle}>

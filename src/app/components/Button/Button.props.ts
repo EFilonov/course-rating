@@ -6,6 +6,7 @@ export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTML
     appearance: 'blue' | 'gray';
     children: ReactNode;
     arrow?: 'right' | 'down' | 'none';
+    clasName?: string;
     // className?: string;
     // onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }

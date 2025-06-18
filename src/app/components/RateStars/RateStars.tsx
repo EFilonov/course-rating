@@ -1,6 +1,6 @@
 import {rateProps} from "./RateStars.props";
-import {JSX, useEffect, useState} from "react";
-import Star from './Star.svg';
+import {JSX, useState} from "react";
+import Star from './../../../../public/icons/RateStar/Star.svg';
 
 
 import cn from 'classnames';
@@ -42,7 +42,7 @@ const RateStars = ({ className, isEditable, rate = 0, setRating, ...props }: rat
     });
    
     return (
-        <div {...props}>
+        <div {...props} className={cn( className) }>
             {elements}
         </div>
     );

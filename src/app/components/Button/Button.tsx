@@ -1,9 +1,9 @@
 import {ButtonProps} from "./Button.props";
 import {JSX} from "react";
-import style from './Button.module.css';
 import cn from 'classnames';
-import Arrow from './arrow.svg';
+import Image from "next/image";
 
+import style from './Button.module.css';
 
 const Button = ({ appearance, children, className, arrow = 'none', ...props }: ButtonProps): JSX.Element  => {
     return (
@@ -20,7 +20,13 @@ const Button = ({ appearance, children, className, arrow = 'none', ...props }: B
             {arrow !== 'none' && <span className={cn(style.arrow, { //if arrow === 'right') {
                 [style.down]: arrow === 'down',
             })}>
-                <Arrow /> 
+                <Image className={style.arrowIcon}
+                    src="/icons/ButtonArrow/arrow.svg"
+                    alt="arrow"
+                    width={10}
+                    height={10}
+                    style={{color: 'inherit'}}
+                    loading="lazy"/>
             </span>}
               
         </button></>

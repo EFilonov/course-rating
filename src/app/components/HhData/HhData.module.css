@@ -33,14 +33,13 @@
 
 .secondCardCounter {
     text-align: center;
-    color: var(--black);
     font-size: 24px;
 }
 
 .grop {
     text-align: center;
     width: 100%;
-    border-right: 1px solid var(--background);
+    border-right: 1px solid #ddd;
 }
 
 .grop:last-child {
@@ -85,7 +84,7 @@
 
     .grop {
         border-right: none;
-        border-bottom: 1px solid var(--background);
+        border-bottom: 1px solid #ddd;
         width: 100%;
         padding: 10px 0;
     }

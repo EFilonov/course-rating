@@ -1,0 +1,23 @@
+.star {
+    filter: drop-shadow(0 0 2px var(--primary-hover));
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.star svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}

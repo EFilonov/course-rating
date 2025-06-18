@@ -9,8 +9,12 @@ import Advantages from "@/app/components/Advantages/Advantages";
 import parse from 'html-react-parser';
 import DynamicPageTitle from "@/app/components/DynamicPageTitle/DynamicPageTitle";
 import ProductsList from "@/app/components/ProductsList/ProductsList";
+import Input from "@/app/components/Input/Input";
+import TextArea from "@/app/components/TextArea/TextArea";
+import Star from "@/app/components/Star/Star";
 
 import style from './DinamicPage.module.css';
+
 const { fetchPage, fetchMenu, fetchProducts } = useHttp();
 
 // export const generateStaticParams = async () => {
@@ -81,12 +85,11 @@ const CourcesPage = async ({ params }: { params: Promise<{category: string, alia
                 <Htag tag='h3'> Получаемые навыки</Htag>
                 <div className={style.tagsContent}>
                     {page.tags.map((tag, index) => (
-                        <Tag key={index} size='small' color='green'>{tag}</Tag>
+                        <Tag key={index} size='small' color='green' className={style.bottomTags}>{tag}</Tag>
                     ))}
                 </div>
             </div>
         </div>     
-        
     );
 
 };
