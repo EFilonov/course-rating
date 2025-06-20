@@ -1,14 +1,16 @@
 import {InputProps} from "./Input.props";
-import {JSX} from "react";
+import {JSX, ForwardedRef, forwardRef } from "react";
 
 import cn from 'classnames';
 import style from './Input.module.css';
 
-const Input = ({ className, ...props }: InputProps): JSX.Element  => {
+const Input = forwardRef(({ className, validationMessage, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement> ): JSX.Element  => {
     return (
-        <input className={cn(className, style.input)} {...props}>
-        </input>    
+        <div className={cn(style.inputWrapper, className)}>
+            <input className={style.input} {...props} ref={ref}/>
+            <span className={style.validationMessage}>{validationMessage}</span>
+        </div>    
     );
-};
+});
 
 export default Input;

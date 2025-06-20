@@ -1,63 +1,4 @@
-.reviewWrapper {
-    display: block;
-    padding: 24px;
-    font-size: clamp(10px, 2.5vw, 14px);
-}
-
-.reviewHeader {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto;
-    align-items: center;
-    grid-template-areas:
-        "reviewHeaderLeft reviewHeaderRight"
-        "reviewBody reviewBody"
-        "reviewDivider reviewDivider";
-}
-
-.reviewHeaderLeft {
-    grid-area: reviewHeaderLeft;
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    align-items: center;
-}
-
-.reviewHeaderRight {
-    grid-area: reviewHeaderRight;
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.reviewImg {
-    margin-right: 10px;
-}
-
-.reviewName {
-    margin-right: 5px;
-    font-weight: 500;
-}
-
-.reviewDate {
-    margin-right: 10px;
-}
-
-.reviewBody {
-    grid-area: reviewBody;
-    margin-top: 10px;
-}
-
-.reviewDivider {
-    grid-area: reviewDivider;
-    margin: 10px 0;
-}
-
-.reviewHeader:first-child {
-    margin-top: 0;
-}
-
-/* .reviewTextarea,
+.reviewTextarea,
 .reviewInputName,
 .reviewInputTitle {
     font-size: clamp(14px, 3vw, 16px);
@@ -67,6 +8,8 @@
 .reviewForm {
     display: grid;
     grid-template-columns: auto auto auto 1fr auto auto;
+    grid-template-rows: auto;
+    gap: 24px 0;
     align-items: center;
     grid-template-areas:
         "reviewInputName reviewInputName reviewInputTitle . rateFeedback feedbackStars"
@@ -84,18 +27,20 @@
 .reviewInputTitle {
     grid-area: reviewInputTitle;
     width: 220px;
+    align-self: left;
     margin-right: 24px;
 }
 
 .reviewTextarea {
     grid-area: reviewTextarea;
-    margin-top: 20px;
+    height: 100%;
+
 }
 
 .reviewButton {
     grid-area: reviewButton;
-    margin: 20px 10px 0 0;
-    max-width: 141;
+    margin-right: 10px;
+    max-width: 141px;
 
 }
 
@@ -113,80 +58,55 @@
 
 .feedbackStars {
     grid-area: feedbackStars;
-} */
+}
 
 
 @media (max-width: 1200px) {
-    .reviewHeader {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "reviewHeaderLeft reviewHeaderLeft"
-            "reviewHeaderRight reviewHeaderRight"
-            "reviewBody reviewBody"
-            "reviewDivider reviewDivider";
-    }
 
-    .reviewName {
-        width: fit-content;
-    }
-
-    .reviewHeaderRight {
-        margin-top: 10px;
-        grid-template-columns: auto;
-
-    }
-
-    .reviewRating {
-        margin-top: 5px;
-    }
-
-    /* .reviewForm {
+    .reviewForm {
         grid-template-columns: auto auto 1fr auto;
         grid-template-areas:
-            "reviewInputName reviewInputName reviewInputTitle ."
+            "reviewInputName reviewInputName reviewInputTitle reviewInputTitle"
             "reviewTextarea reviewTextarea reviewTextarea reviewTextarea"
-            "rateFeedback . . ."
-            "feedbackStars . . ."
-            "reviewButton reviewInfo reviewInfo reviewInfo";
+            ". . rateFeedback feedbackStars "
+
+            "reviewInfo reviewInfo reviewInfo reviewButton ";
     }
+
+    /* .reviewInputName{} */
 
     .reviewInputTitle {
         margin-right: 0;
     }
 
     .rateFeedback {
-        margin-top: 20px;
+        justify-self: right;
     }
 
-    .feedbackStars {
-        margin-top: 5px;
+    .reviewButton {
+        margin-right: 0;
     }
 
     .reviewInfo {
         font-size: clamp(10px, 2.5vw, 14px);
-    } */
+        text-align: right;
+        margin-right: 10px;
+    }
 }
 
-/* @media (max-width: 900px) {
+@media (max-width: 920px) {
     .reviewForm {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
         grid-template-areas:
-            "reviewInputName"
-            "reviewInputTitle"
-            "reviewTextarea"
-            "rateFeedback"
-            "feedbackStars"
-            "reviewButton"
-            "reviewInfo";
+            "reviewInputName reviewInputName"
+            "reviewInputTitle reviewInputTitle"
+            "reviewTextarea reviewTextarea"
+            "rateFeedback feedbackStars"
+            "reviewInfo reviewButton"
     }
 
-    .reviewInputTitle,
-    .reviewTextarea {
-        margin-top: 15px;
-    }
-
-    .reviewInfo {
-        margin-top: 5px;
+    .reviewButton {
+        width: 100%;
     }
 
     .rateFeedback,
@@ -196,9 +116,26 @@
     .reviewInfo {
         justify-self: right;
     }
-} */
 
-/* .submitted {
+    .reviewInfo {
+        text-align: right;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 379px) {
+    .reviewForm {
+        grid-template-columns: auto auto;
+        grid-template-areas:
+            "reviewInputName reviewInputName"
+            "reviewInputTitle reviewInputTitle"
+            "reviewTextarea reviewTextarea"
+            "rateFeedback feedbackStars"
+            "reviewInfo reviewButton"
+    }
+}
+
+.submitted {
     border-radius: 10px;
     position: relative;
     background-color: var(--green-light);
@@ -244,4 +181,4 @@
 [data-theme="dark"] .reviewInputTitle,
 [data-theme="dark"] .reviewTextarea {
     background: transparent;
-} */
+}

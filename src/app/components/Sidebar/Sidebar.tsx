@@ -7,6 +7,7 @@ import Search from '../Search/Search';
 import Image from 'next/image';
 
 import style from './Sidebar.module.css';
+import { tr } from 'date-fns/locale';
 
 export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 	return (
@@ -16,7 +17,7 @@ export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 						<Image 
 							src="/Logo/LogoEvgen.svg" 
 							alt='Logo' 
-							priority={false}
+							priority={true}
 							className={style.logoImage}
 							quality={70}
 							width= {100}

@@ -108,7 +108,7 @@ const Product = ({ className, product}: ProductProps): JSX.Element  => {
 				</div>
 			</Card>
 			<Card color="lightBlue" className={cn(style.reviewCard, {[style.visible]: isVisibleReview})}>
-				<Review reviews={product.reviews} />
+				<Review reviews={product.reviews} productId={product._id} />
 			</Card>
 		</div>
         

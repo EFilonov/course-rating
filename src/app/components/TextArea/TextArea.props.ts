@@ -5,4 +5,5 @@ export interface TextAreaProps extends DetailedHTMLProps<HTMLAttributes<HTMLText
     className?: string;
     name?: string;
     value?: string | number;
+    validationMessage?: string;
 }

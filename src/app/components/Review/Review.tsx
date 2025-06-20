@@ -1,19 +1,16 @@
 import {ReviewProps} from "./Review.props";
-import {JSX, useState} from "react";
+import {JSX} from "react";
 import cn from 'classnames';
-import TextArea from "../TextArea/TextArea";
 import Divider from "../Divider/Divider";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
 import Image from "next/image";
 import RateStars from "../RateStars/RateStars";
 import {format} from "date-fns";
 import {ru} from "date-fns/locale";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 import style from './Review.module.css';
 
-const Review = ({ className,  reviews}: ReviewProps): JSX.Element  => {
-    const [rating, setRating] = useState<number>(0);
+const Review = ({ className,  reviews, productId}: ReviewProps): JSX.Element  => {
     
     return (
        <div className={cn(className, style.reviewWrapper)} > 
@@ -40,30 +37,9 @@ const Review = ({ className,  reviews}: ReviewProps): JSX.Element  => {
                         </div>
                         <Divider className={style.reviewDivider} />
                 </div>);
+                
             })}
-
-
-            <form className={style.reviewForm}>
-                <div className= {style.rateFeedback}>Оценка</div>
-                <RateStars 
-                    isEditable={true} 
-                    rate={rating} 
-                    setRating = {setRating}
-                    className={style.feedbackStars} /> 
-                <Input
-                    className={style.reviewInputName}
-                    type="text"
-                    placeholder="Ваше имя"/>
-                <Input
-                    className={style.reviewInputTitle}
-                    type="text"
-                    placeholder="Заголовок отзыва"/>
-                <TextArea
-                    className={style.reviewTextarea}
-                    placeholder="Текст отзыва"/>
-                <Button className={style.reviewButton} type="submit" appearance={"blue"}>Отправить</Button>
-                <span className={style.reviewInfo}>* Перед публикацией отзыв пройдет проверку модератором</span>
-            </form>
+            <ReviewForm productId={productId} />
        </div>
 
 

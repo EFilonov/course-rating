@@ -18,6 +18,7 @@
 [data-theme='dark'] {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --green-light: #C8F8E4;
 }
 
 /* [data-theme='light'] {

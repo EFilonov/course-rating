@@ -5,4 +5,5 @@ import {HTMLAttributes, ReactNode, ClassAttributes, DetailedHTMLProps} from "rea
 export interface ReviewProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, ClassAttributes<HTMLDivElement> {
     reviews: Review[];
     className?: string;
+    productId: string;
 }

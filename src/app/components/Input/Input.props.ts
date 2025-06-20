@@ -6,4 +6,5 @@ export interface InputProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputEl
     name?: string;
     value?: string | number;
     type?: string;
+    validationMessage?: string;
 }

@@ -1,12 +1,16 @@
+.starsGroup {
+    position: relative;
+}
+
 .span {
     display: inline-block;
     width: 25px;
     height: 20px;
-
 }
 
 .star {
     transition: all 0.2s;
+
 }
 
 .star:hover {
@@ -16,4 +20,12 @@
 
 .rated svg {
     fill: var(--primary-hover);
+}
+
+.validationMessage {
+    position: absolute;
+    color: var(--red);
+    left: 0px;
+    top: 30px;
+    font-size: 12px;
 }

@@ -6,5 +6,6 @@ export interface rateProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEleme
     rate?: number;
     setRating?: (rating: number) => void;
     className?: string;
+    errors?: string;
 
 }

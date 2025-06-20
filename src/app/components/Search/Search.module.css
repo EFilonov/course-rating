@@ -57,3 +57,13 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 
 }
+
+[data-theme='dark'] .searchInput {
+    background: transparent;
+    color: var(--gray);
+    box-shadow: none
+}
+
+[data-theme='dark'] .searchInput:focus {
+    box-shadow: none
+}
