@@ -1,20 +1,17 @@
 import {ReviewFormProps} from "./ReviewForm.props";
-import {JSX, useEffect, useState} from "react";
+import {ForwardedRef, forwardRef, JSX, useEffect, useRef, useState} from "react";
 import cn from 'classnames';
 import TextArea from "../TextArea/TextArea";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import Image from "next/image";
 import RateStars from "../RateStars/RateStars";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { IFormInput } from "@/app/interfaces/IFormInput.interface";
 
 import style from './ReviewForm.module.css';
-import { fi } from "date-fns/locale";
 
-
-
-const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
+const ReviewForm = forwardRef(({productId}: ReviewFormProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element  => {
     
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -23,11 +20,12 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
         title: '',
         description: '',
         rating: 0,
-        id: ''
+        productId: ''
     };
-    const { register, handleSubmit, control, reset, formState, formState : {isSubmitSuccessful, isSubmitted, errors} } = useForm<IFormInput>({defaultValues: initialState });
+    const { register, handleSubmit, control, reset, setFocus, formState, formState : {isSubmitSuccessful, errors} } = useForm<IFormInput>({defaultValues: initialState });
     const onSubmit = (data: IFormInput) => {
-        console.log({...data, id: productId});
+        console.log({...data, productId: productId}, JSON.stringify({...data, id: productId}));
+        alert(`Отзыв отправлен на модерацию', ${JSON.stringify({...data, id: productId}, null, 2)}`);
     };
 
     useEffect(() => {
@@ -35,17 +33,18 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
             setSubmitted(true);
             reset({...initialState});
         }
+        // setFocus('name'); // Устанавливаем фокус mame ломает scrollintoView
     }),[ formState, reset];
 
     const onHandleSubmit = ():void  => {
        setSubmitted(false);
     };
-   
+
     return (
        <> 
         <form onSubmit={handleSubmit(onSubmit)}
                 className={style.reviewForm}>
-                <div className= {style.rateFeedback}>Оценка</div>
+                <div className= {style.rateFeedback} >Оценка</div>
                 <Controller
                     control={control}
                     rules={{required: { value: true, message: 'Оценка обязательна!' },
@@ -71,7 +70,6 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
                         
                         })}
                     validationMessage={errors.name?.message}/>
-                        
                 <Input className={style.reviewInputTitle}
                     type="text"
                     placeholder="Заголовок отзыва"
@@ -80,7 +78,8 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
                         maxLength: { value: 60, message: 'Не больше 60 символов...' },
                         minLength: { value: 5, message: 'Не менее 5 символов...' },
                         })}
-                    validationMessage={errors.title?.message}/>
+                    validationMessage={errors.title?.message}
+                    />
                 <TextArea
                     className={style.reviewTextarea}
                     placeholder="Текст отзыва"
@@ -88,14 +87,15 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
                         required: { value: true, message: 'Текст пожалуйст!' }, 
                         maxLength: { value: 360, message: 'Не больше 360 символов...' },
                         minLength: { value: 3, message: 'Не менее 3 символов...' },
-                        })}
+                    })}
                     validationMessage={errors.description?.message}
-                    />
-                <Button className={style.reviewButton} type="submit" appearance={"blue"}>Отправить</Button>
+                    
+                />
+                <Button className={style.reviewButton} type="submit" appearance={"blue"} >Отправить</Button>
                 <span className={style.reviewInfo}>* Перед публикацией отзыв пройдет проверку модератором</span>
             </form>
             
-            <div className = {cn(style.submitted, {[style.submittedVisible]:  submitted})}>
+            <div className = {cn(style.submitted, {[style.submittedVisible]:  submitted})} ref={ref}>
                 <div className={style.submitedTitle}>Ваш отзыв отправлен !</div>
                 <div className={style.submittedText}>Мы скоро опубликуем его после проверки.</div>
                 <div className ={style.closeBtn}
@@ -113,6 +113,6 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
 
 
     );
-};
+});
 
 export default ReviewForm;

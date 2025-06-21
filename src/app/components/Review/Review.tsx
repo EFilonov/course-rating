@@ -1,5 +1,5 @@
 import {ReviewProps} from "./Review.props";
-import {JSX} from "react";
+import {ForwardedRef, forwardRef, JSX, memo} from "react";
 import cn from 'classnames';
 import Divider from "../Divider/Divider";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 import style from './Review.module.css';
 
-const Review = ({ className,  reviews, productId}: ReviewProps): JSX.Element  => {
+const Review = memo(forwardRef(({ className,  reviews, productId}: ReviewProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element  => {
     
     return (
        <div className={cn(className, style.reviewWrapper)} > 
@@ -35,15 +35,15 @@ const Review = ({ className,  reviews, productId}: ReviewProps): JSX.Element  =>
                         <div className={style.reviewBody}>
                             {review.description}
                         </div>
-                        <Divider className={style.reviewDivider} />
+                        <Divider className={style.reviewDivider}  />
                 </div>);
                 
             })}
-            <ReviewForm productId={productId} />
+            <ReviewForm productId={productId}  ref={ref}/>
        </div>
 
 
     );
-};
+}));
 
 export default Review;

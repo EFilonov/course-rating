@@ -1,12 +1,11 @@
 import { rateProps } from "./RateStars.props";
-import { JSX, useState, ForwardedRef, forwardRef, useEffect } from "react";
+import { JSX, useState, useEffect } from "react";
 import Star from './../../../../public/icons/RateStar/Star.svg';
-
-
 import cn from 'classnames';
+
 import style from './RateStars.module.css';
 
-const RateStars = forwardRef(({ className, isEditable, errors, rate = 0, setRating, ...props }: rateProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+const RateStars = ({ className, isEditable, errors, rate = 0, setRating, ...props }: rateProps): JSX.Element => {
     
     const starRatingArray: Array<JSX.Element> = new Array(5)
         .fill(
@@ -46,11 +45,11 @@ const RateStars = forwardRef(({ className, isEditable, errors, rate = 0, setRati
     });
 
     return (
-        <div {...props} className={cn(className, style.starsGroup)} ref={ref}>
+        <div {...props} className={cn(className, style.starsGroup)}>
             {elements}
-            <span className={style.validationMessage}>{errors}</span>
+            {errors && <span className={style.validationMessage}>{errors}</span>}
         </div>
     );
-});
+};
 
 export default RateStars;    

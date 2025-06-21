@@ -20,7 +20,7 @@ export const httpService = (): HttpService => {
             method, 
             body, 
             headers,
-            next: { revalidate: 3600} // если используется в Next.js, для кэширования ответа на 1 час 
+            // next: { revalidate: 3600} // если используется в Next.js, для кэширования ответа на 1 час 
         });
 
         if (!response.ok) {

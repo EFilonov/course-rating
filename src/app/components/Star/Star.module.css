@@ -4,6 +4,7 @@
     height: 20px;
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .star svg {
