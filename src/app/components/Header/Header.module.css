@@ -1,0 +1,25 @@
+.header {
+    display: none;
+}
+
+.themeBtn {
+    justify-self: left;
+    margin-left: 5px;
+}
+
+.burger {
+    justify-self: right;
+    margin-right: 12px;
+}
+
+
+@media (max-width: 765px) {
+    .header {
+        margin-top: 10px;
+        display: grid;
+        height: fit-content;
+        grid-template-columns: auto auto;
+
+    }
+
+}

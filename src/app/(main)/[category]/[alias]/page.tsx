@@ -9,9 +9,7 @@ import Advantages from "@/app/components/Advantages/Advantages";
 import parse from 'html-react-parser';
 import DynamicPageTitle from "@/app/components/DynamicPageTitle/DynamicPageTitle";
 import ProductsList from "@/app/components/ProductsList/ProductsList";
-import Input from "@/app/components/Input/Input";
-import TextArea from "@/app/components/TextArea/TextArea";
-import Star from "@/app/components/Star/Star";
+
 
 import style from './DinamicPage.module.css';
 
@@ -61,7 +59,7 @@ const CourcesPage = async ({ params }: { params: Promise<{category: string, alia
     // const metaData: Metadata = {
     //     title: "ProductPage",
     // };
-
+        
     return (
         <div className={style.pageWrapper}>
             <DynamicPageTitle count={products.length} title={page.title}/>

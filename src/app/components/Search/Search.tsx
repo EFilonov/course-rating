@@ -6,8 +6,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import style from './Search.module.css';
 
-
-
 const Search = ({  children, className, ...props }: SearchProps): JSX.Element  => {
 
     const [search, setSearch] = useState<string>('');   

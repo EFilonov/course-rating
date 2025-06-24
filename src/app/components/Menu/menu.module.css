@@ -41,8 +41,8 @@
 .secondLevel {
     display: block;
     margin: 0 12px 0;
-    padding-left: 32px;
     border-left: 1px solid var(--black);
+    padding-left: 32px;
 }
 
 .secondLevelItem {

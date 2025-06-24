@@ -65,6 +65,16 @@ const nextConfig: NextConfig = {
       hostname: 'localhost',
       pathname: '/**',
     },
+    {
+      protocol: 'http',
+      hostname: 'cdn-bucket.hb.bizmrg.com',
+      pathname: '/**',
+    },
+    {
+      protocol: 'https',
+      hostname: 'cdn-bucket.hb.bizmrg.com',
+      pathname: '/**',
+    },
   ],
   },
   

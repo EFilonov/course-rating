@@ -1,6 +1,6 @@
 .title {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr 116px auto;
     align-items: center;
     justify-items: left;
     gap: 0 20px;
@@ -9,19 +9,23 @@
 
 .sortBlock {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     justify-items: left;
-    gap: 0 45px;
+    gap: 5px 0;
 }
 
 .sortItem {
     display: block;
     cursor: pointer;
     font-size: clamp(14px, 1.5vw, 16px);
+    white-space: nowrap;
+    justify-self: left;
+    padding-left: 24px;
 }
 
 .active {
     color: var(--primary);
+    padding-left: 0
 }
 
 .active::before {
@@ -35,17 +39,24 @@
     vertical-align: middle;
 }
 
-@media (max-width: 640px) {
+
+@media (max-width: 785px) {
+    .title {
+        gap: 0 10px;
+    }
+
     .sortBlock {
         grid-template-columns: auto;
         justify-items: center;
     }
+}
 
-    .sortItem {
-        margin-bottom: 10px;
+@media (max-width: 765px) {
+    .title {
+        grid-template-columns: auto 1fr 116px;
     }
 
-    .active::before {
-        margin-right: 5px;
+    .themeButton {
+        display: none;
     }
 }

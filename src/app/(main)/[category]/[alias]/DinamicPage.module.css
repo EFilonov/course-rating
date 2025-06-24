@@ -71,3 +71,9 @@
 .bottomTags {
     margin-top: 5px;
 }
+
+@media (max-width: 765px) {
+    .pageWrapper {
+        margin-top: 15px;
+    }
+}

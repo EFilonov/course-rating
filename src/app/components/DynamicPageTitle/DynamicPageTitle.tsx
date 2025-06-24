@@ -5,9 +5,9 @@ import Tag from "../Tag/Tag";
 import Htag from "../Htag/Htag";
 import { useSort } from "@/app/store/sort";
 import cn from 'classnames';
+import ThemeButton from "../ThemeButton/ThemeButton";
 
 import style from './DynamicPageTitle.module.css';
-
 
 const DynamicPageTitle = ({ className, title, count }: DynamicPageTitleProps): JSX.Element  => {
     const {sortType, setSortType} = useSort();
@@ -25,7 +25,9 @@ const DynamicPageTitle = ({ className, title, count }: DynamicPageTitleProps): J
                          onClick={() => setSortType('price')}>
                         По цене
                     </div>
-                    
+                </div>
+                <div className={style.themeButton}>
+                    <ThemeButton />
                 </div>
         </div>
     );

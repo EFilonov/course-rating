@@ -7,7 +7,7 @@ import Search from '../Search/Search';
 import Image from 'next/image';
 
 import style from './Sidebar.module.css';
-import { tr } from 'date-fns/locale';
+
 
 export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 	return (

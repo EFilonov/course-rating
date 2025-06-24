@@ -1,6 +1,6 @@
 "use client";
 import {ProductProps} from "./Product.props";
-import {JSX, useMemo, useRef, useState} from "react";
+import {ForwardedRef, forwardRef, JSX, use, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import cn from 'classnames';
 import Card from "../Card/Card";
 import Button from "../Button/Button";
@@ -10,55 +10,62 @@ import Star from "../Star/Star";
 import Divider from "../Divider/Divider";
 import Image from "next/image";
 import Review from "../Review/Review";
+import {motion, AnimatePresence} from "framer-motion";
+import { useSort } from "@/app/store/sort";
+import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
+import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
 
 import style from './Product.module.css';
 
-const Product = ({ className, product}: ProductProps): JSX.Element  => {
+
+
+
+const Product = motion.create(forwardRef(({ className, product}: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element  => {
+	const {sortType} = useSort();
 
 	const [isVisibleReview, setIsVisibleReview] = useState<boolean>(false);
+
+	useEffect(() => {
+		setIsVisibleReview(false);
+
+		typeof window !== "undefined" ? window.scrollTo({ top: 0, behavior: 'smooth' }) : null;
+		
+	}, [ sortType]);
 	
 	const toggleVisibleReview = (): void => {
 		setIsVisibleReview(!isVisibleReview);
 	};
 	
-	const getRate = useMemo(() => {
-		const roundToOneDecimal = (val: number): number => {
-			return Math.round(val * 10) / 10;
-		};
-
-		if (product.reviewAvg !== null && product.reviewAvg !== undefined) {
-			return roundToOneDecimal(product.reviewAvg);
-		} else if (product.initialRating) {
-			return roundToOneDecimal(product.initialRating);
-		}
-		return 0;
-	}, [product.reviewAvg, product.initialRating]);
-
-	const revieRef = useRef<HTMLDivElement>(null);
+	const revieRef = useRef<HTMLFormElement>(null);
 
 	const scrollToReview = () => {
 		setIsVisibleReview(true);
-		
-		revieRef.current?.scrollIntoView({
-					behavior: 'smooth',
-					block: 'end'
-			});
-			
 	};
 
+	useEffect(() => {
+		if (isVisibleReview) {
+			revieRef.current?.scrollIntoView({
+				behavior: 'smooth',
+				block: 'end'
+			});
+		}
+	}, [isVisibleReview]);
+
 	return (
-      	<div className={cn(style.productWrapper, className)}>
+      	<div className={cn(style.productWrapper, className)} ref={layoutRef}>
 			<Card className={style.product}>
 				<div className={style.logo}>
-					<Image
-						src={product.image}
-						alt={product.title}
-						quality={70}
-						priority={false}
-						width={70}
-						height={70}
-						loading="lazy"
-					/>
+					<ImageBoundery>
+						<Image
+							src={fixDoubleHttp(product.image)}
+							alt={product.title}
+							quality={70}
+							priority={false}
+							width={70}
+							height={70}
+							loading="lazy"
+						/>
+					</ImageBoundery>
 				</div>
 				<div className={style.title}>{product.title}</div>
 				<div className={style.price}>
@@ -77,14 +84,13 @@ const Product = ({ className, product}: ProductProps): JSX.Element  => {
 					{splitByThree(product.credit)}/<span className={style.month}> мес</span>
 				</div>
 				<div className={style.rating}>
-					<span className="visualyHidden">{getRate}</span>
-					<a href = '#ref' 
-						onClick={scrollToReview}
-						>
-						<Star value={getRate} className={style.star}/>
+					<span className="visualyHidden">{product.initialRating || 0}</span>
+					<a href = '#ref' onClick={scrollToReview} >
+						<Star value={product.initialRating || 0} className={style.star}/>
 					</a>
 				</div>
-				<div className={style.tags}>{product.categories.map(c => <Tag key={c} className={style.category} color='ghost'>{c}</Tag>)}</div>
+				<div className={style.tags}>{product.categories.map(c => 
+					<Tag key={c} className={style.category} color='ghost'>{c}</Tag>)}</div>
 				<div className={style.priceTitle} aria-hidden={true}>цена</div>
 				<div className={style.creditTitle} aria-hidden={true}>кредит</div>
 				<div className={style.rateTitle}>
@@ -121,12 +127,22 @@ const Product = ({ className, product}: ProductProps): JSX.Element  => {
             			Читать отзывы
 					</Button>
 				</div>
-			</Card>
-			<Card color="lightBlue" className={cn(style.reviewCard, {[style.visible]: isVisibleReview})} >
-				<Review reviews={product.reviews} productId={product._id} ref={revieRef} />
-			</Card>
-		</div>
+				</Card>
+				<AnimatePresence>
+					{isVisibleReview && (
+					<Card color="lightBlue" className={cn(style.reviewCard, { [style.visible]: isVisibleReview })}>
+						<motion.div
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							transition={{ duration: 0.3, ease: "easeInOut" }}
+						>
+							<Review reviews={product.reviews} productId={product._id} ref={revieRef} />
+						</motion.div>
+					</Card>)}
+				</AnimatePresence>
+	</div>
         
     );    
-};
+}));
 export default Product;

@@ -1,5 +1,4 @@
 'use client';
-
 import {type ReactNode } from 'react';
 // import type { Metadata } from 'next';
 import { Roboto} from 'next/font/google';
@@ -7,12 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { Header } from './../components/Header/Header';
 import { Sidebar } from './../components/Sidebar/Sidebar';
 import { Footer } from './../components/Footer/Footer';
-
-// import './../globals.css';
-import style from './layout.module.css';
-import NavigationBar from '../(delete-this-and-modify-page.tsx)/NavigationBar';
-import ThemeSwitch from '../(delete-this-and-modify-page.tsx)/ThemeSwitch';
-
+import Up from '../components/Up/Up';
 
 const roboto = Roboto({
     subsets: ['cyrillic','latin'],
@@ -21,7 +15,6 @@ const roboto = Roboto({
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     
-
     return (
         <html suppressHydrationWarning lang='ru'>
             <body className={`${roboto.variable}`}>
@@ -32,6 +25,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
                             {children}
                         </main>
                     <Footer/>
+                    <Up/>
                 </ThemeProvider>
             </body>
         </html>

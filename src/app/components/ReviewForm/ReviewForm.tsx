@@ -1,5 +1,5 @@
 import {ReviewFormProps} from "./ReviewForm.props";
-import {ForwardedRef, forwardRef, JSX, useEffect, useRef, useState} from "react";
+import {ForwardedRef, forwardRef, JSX, useEffect,  useState} from "react";
 import cn from 'classnames';
 import TextArea from "../TextArea/TextArea";
 import Input from "../Input/Input";
@@ -11,7 +11,7 @@ import { IFormInput } from "@/app/interfaces/IFormInput.interface";
 
 import style from './ReviewForm.module.css';
 
-const ReviewForm = forwardRef(({productId}: ReviewFormProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element  => {
+const ReviewForm = forwardRef(({productId}: ReviewFormProps, revieRef: ForwardedRef<HTMLFormElement>): JSX.Element  => {
     
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -42,7 +42,7 @@ const ReviewForm = forwardRef(({productId}: ReviewFormProps, ref: ForwardedRef<H
 
     return (
        <> 
-        <form onSubmit={handleSubmit(onSubmit)}
+        <form onSubmit={handleSubmit(onSubmit)} ref={revieRef}
                 className={style.reviewForm}>
                 <div className= {style.rateFeedback} >Оценка</div>
                 <Controller
@@ -56,7 +56,7 @@ const ReviewForm = forwardRef(({productId}: ReviewFormProps, ref: ForwardedRef<H
                             setRating={field.onChange}
                             rate={field.value}
                             className={style.feedbackStars}
-                            ref = {field.ref} 
+                            // ref = {field.ref} 
                             errors={fieldState.error?.message}/>
                     )}
                 />
@@ -95,7 +95,7 @@ const ReviewForm = forwardRef(({productId}: ReviewFormProps, ref: ForwardedRef<H
                 <span className={style.reviewInfo}>* Перед публикацией отзыв пройдет проверку модератором</span>
             </form>
             
-            <div className = {cn(style.submitted, {[style.submittedVisible]:  submitted})} ref={ref}>
+            <div className = {cn(style.submitted, {[style.submittedVisible]:  submitted})} >
                 <div className={style.submitedTitle}>Ваш отзыв отправлен !</div>
                 <div className={style.submittedText}>Мы скоро опубликуем его после проверки.</div>
                 <div className ={style.closeBtn}

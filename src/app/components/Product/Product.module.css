@@ -72,8 +72,6 @@
 .price,
 .credit {
     align-self: flex-end;
-    /* font-size: 20px;
-    line-height: 27px; */
     font-size: clamp(14px, 3vw, 20px);
     line-height: 1.35;
 }
