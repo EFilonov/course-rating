@@ -93,6 +93,12 @@
     margin-left: 5px;
 }
 
+.starButton {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
 .description {
     margin-bottom: 15px;
 

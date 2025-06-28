@@ -1,7 +1,7 @@
 import { SidebarProps } from './Sidebar.props';
 import { JSX, Suspense } from 'react';
 import cn from 'classnames';
-import Menu from '../Menu/menu';
+import Menu from '../Menu/Menu';
 import Link from 'next/link';
 import Search from '../Search/Search';
 import Image from 'next/image';

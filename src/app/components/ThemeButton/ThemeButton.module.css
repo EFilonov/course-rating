@@ -2,7 +2,7 @@
     --bg: var(--primary);
     --fg: #ffffff;
     background-color: var(--bg);
-    border-radius: 5px;
+    border-radius: 3px;
     --dimensions: 28px;
     width: var(--dimensions);
     height: var(--dimensions);
@@ -17,7 +17,7 @@
 }
 
 .themeToggleBtn .maincircle {
-    --dimensions: 13px;
+    --dimensions: 12px;
     width: var(--dimensions);
     height: var(--dimensions);
     background-color: var(--fg);
@@ -86,7 +86,7 @@
 
 .themeToggleBtn:hover {
     user-select: none;
-    filter: hue-rotate(350deg) brightness(97%) drop-shadow(0 0 1px var(--primary-hover));
+    filter: hue-rotate(350deg) brightness(97%);
     transition: filter 0.2s ease-in-out;
 }
 

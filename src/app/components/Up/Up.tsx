@@ -2,9 +2,9 @@
 import {JSX, useEffect} from "react";
 import Image from "next/image";
 import { useAnimation, motion } from "motion/react";
+import { useScrollY } from "@/app/hooks/useScrollY";
 
 import style from './Up.module.css';
-import { useScrollY } from "@/app/hooks/useScrollY";
 
 const Up = (): JSX.Element  => {
     const controls = useAnimation();
@@ -24,10 +24,11 @@ const Up = (): JSX.Element  => {
     }, [y]);
 
     return (
-        <motion.button className={ style.up} 
+        <motion.button className={style.up} 
             onClick={scrollToTop}
             animate={controls}
-            initial={{ opacity: 0 }}>
+            initial={{ opacity: 0 }}
+            aria-label="Scroll to top">
             <Image
                 src="/icons/Up/Up.svg"
                 alt="UpIcon"

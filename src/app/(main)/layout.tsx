@@ -1,34 +1,27 @@
 'use client';
 import {type ReactNode } from 'react';
 // import type { Metadata } from 'next';
-import { Roboto} from 'next/font/google';
+
 import { ThemeProvider } from 'next-themes';
 import { Header } from './../components/Header/Header';
 import { Sidebar } from './../components/Sidebar/Sidebar';
 import { Footer } from './../components/Footer/Footer';
 import Up from '../components/Up/Up';
 
-const roboto = Roboto({
-    subsets: ['cyrillic','latin'],
-    variable: '--font-roboto',
-    weight: ['100', '200', '300', '400', '500', '700', '900']});
+
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     
     return (
-        <html suppressHydrationWarning lang='ru'>
-            <body className={`${roboto.variable}`}>
-                <ThemeProvider>
-                    <Header/>
-                        <Sidebar/>
-                        <main>
-                            {children}
-                        </main>
-                    <Footer/>
-                    <Up/>
-                </ThemeProvider>
-            </body>
-        </html>
+       <ThemeProvider>
+            <Header/>
+                <Sidebar/>
+                <main>
+                    {children}
+                </main>
+            <Footer/>
+            <Up/>
+        </ThemeProvider>
     );
 };
 

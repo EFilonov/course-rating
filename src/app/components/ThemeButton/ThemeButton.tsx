@@ -16,7 +16,7 @@ export const ThemeButton = ({ className }: ThemeButtonProps) => {
     if (!mounted) {return null;}
 
     return (
-        <button
+        <button aria-label="Toggle theme"
             className={cn(style.themeToggleBtn, className, { [style.active]: theme === 'light' })}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >

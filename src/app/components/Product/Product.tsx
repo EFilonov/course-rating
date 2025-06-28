@@ -1,6 +1,6 @@
 "use client";
-import {ProductProps} from "./Product.props";
-import {ForwardedRef, forwardRef, JSX, use, useCallback, useEffect, useMemo, useRef, useState} from "react";
+import { ProductProps } from "./Product.props";
+import { ForwardedRef, forwardRef, JSX, use, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import cn from 'classnames';
 import Card from "../Card/Card";
 import Button from "../Button/Button";
@@ -10,18 +10,19 @@ import Star from "../Star/Star";
 import Divider from "../Divider/Divider";
 import Image from "next/image";
 import Review from "../Review/Review";
-import {motion, AnimatePresence} from "framer-motion";
-import { useSort } from "@/app/store/sort";
+import { motion, AnimatePresence } from "framer-motion";
+import { sortState } from "@/app/store/sortState";
 import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
 import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
+import { useRouter } from "next/navigation";
 
 import style from './Product.module.css';
 
 
 
-
-const Product = motion.create(forwardRef(({ className, product}: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element  => {
-	const {sortType} = useSort();
+const Product = motion.create(forwardRef(({ className, product }: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element => {
+	const { sortType } = sortState();
+	const router = useRouter();
 
 	const [isVisibleReview, setIsVisibleReview] = useState<boolean>(false);
 
@@ -29,30 +30,41 @@ const Product = motion.create(forwardRef(({ className, product}: ProductProps, l
 		setIsVisibleReview(false);
 
 		typeof window !== "undefined" ? window.scrollTo({ top: 0, behavior: 'smooth' }) : null;
-		
-	}, [ sortType]);
-	
+
+	}, [sortType]);
+
 	const toggleVisibleReview = (): void => {
 		setIsVisibleReview(!isVisibleReview);
 	};
-	
-	const revieRef = useRef<HTMLFormElement>(null);
 
-	const scrollToReview = () => {
-		setIsVisibleReview(true);
+	// const revieRef = useRef<HTMLFormElement>(null);
+
+	// const scrollToReview = () => {
+	// 	setIsVisibleReview(true);
+	// };
+
+	// useEffect(() => {
+	// 	if (isVisibleReview) {
+	// 		setTimeout(() => {
+	// 			revieRef.current?.scrollIntoView({
+	// 				behavior: 'smooth',
+	// 				block: 'center',
+	// 				inline: 'center'
+
+	// 			});
+	// 		}, 150);
+
+	// 	}
+	// }, [isVisibleReview]);
+	const onStarButtonClick = () => {
+			setIsVisibleReview(true);
+			setTimeout(() => {
+				router.push(`#${product._id}`);
+			}, 150);
 	};
-
-	useEffect(() => {
-		if (isVisibleReview) {
-			revieRef.current?.scrollIntoView({
-				behavior: 'smooth',
-				block: 'end'
-			});
-		}
-	}, [isVisibleReview]);
-
+	
 	return (
-      	<div className={cn(style.productWrapper, className)} ref={layoutRef}>
+		<div className={cn(style.productWrapper, className)} ref={layoutRef}>
 			<Card className={style.product}>
 				<div className={style.logo}>
 					<ImageBoundery>
@@ -73,11 +85,11 @@ const Product = motion.create(forwardRef(({ className, product}: ProductProps, l
 						{/* <span className="visualyHidden">цена</span> */}
 						{splitByThree(product.price)}
 					</span>
-					{product.oldPrice && 
-          			<Tag className={style.oldPrice} color="green">
-						{/* <span className="visualyHidden">скидка</span> */}
-						{splitByThree(product.price - product.oldPrice)}
-					</Tag>}
+					{product.oldPrice &&
+						<Tag className={style.oldPrice} color="green">
+							{/* <span className="visualyHidden">скидка</span> */}
+							{splitByThree(product.price - product.oldPrice)}
+						</Tag>}
 				</div>
 				<div className={style.credit}>
 					{/* <span className="visualyHidden">кредит </span> */}
@@ -85,17 +97,18 @@ const Product = motion.create(forwardRef(({ className, product}: ProductProps, l
 				</div>
 				<div className={style.rating}>
 					<span className="visualyHidden">{product.initialRating || 0}</span>
-					<a href = '#ref' onClick={scrollToReview} >
-						<Star value={product.initialRating || 0} className={style.star}/>
-					</a>
+					<button aria-label="Go to reviews"
+						className={style.starButton}
+						onClick={() => {onStarButtonClick();}}>
+						<Star value={product.initialRating || 0} className={style.star} />
+					</button>
 				</div>
-				<div className={style.tags}>{product.categories.map(c => 
+				<div className={style.tags}>{product.categories.map(c =>
 					<Tag key={c} className={style.category} color='ghost'>{c}</Tag>)}</div>
 				<div className={style.priceTitle} aria-hidden={true}>цена</div>
 				<div className={style.creditTitle} aria-hidden={true}>кредит</div>
 				<div className={style.rateTitle}>
-          			<a href="#ref" ></a>
-        		</div>
+				</div>
 				<Divider className={style.hr} />
 				<div className={style.description}>{product.description}</div>
 				<div className={style.feature}>
@@ -124,12 +137,12 @@ const Product = motion.create(forwardRef(({ className, product}: ProductProps, l
 						appearance="gray"
 						arrow={isVisibleReview ? "down" : "right"}
 						className={style.reviewButton}>
-            			Читать отзывы
+						Читать отзывы
 					</Button>
 				</div>
-				</Card>
-				<AnimatePresence>
-					{isVisibleReview && (
+			</Card>
+			<AnimatePresence>
+				{isVisibleReview && (
 					<Card color="lightBlue" className={cn(style.reviewCard, { [style.visible]: isVisibleReview })}>
 						<motion.div
 							initial={{ opacity: 0, height: 0 }}
@@ -137,12 +150,12 @@ const Product = motion.create(forwardRef(({ className, product}: ProductProps, l
 							exit={{ opacity: 0, height: 0 }}
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 						>
-							<Review reviews={product.reviews} productId={product._id} ref={revieRef} />
+							<Review reviews={product.reviews} productId={product._id} />
 						</motion.div>
 					</Card>)}
-				</AnimatePresence>
-	</div>
-        
-    );    
+			</AnimatePresence>
+		</div>
+
+	);
 }));
 export default Product;

@@ -1,6 +1,6 @@
 import { useHttp } from "@/app/hooks/useHttp";
 import { notFound } from "next/navigation";
-import { MenuItem, PageItem } from "@/app/interfaces/menu.interface";
+import { FirstLevelMenuItem, MenuItem, PageItem } from "@/app/interfaces/menu.interface";
 import { firstLevelMenu } from "@/app/components/Menu/constants/firstLevelMenu";
 import Htag from "@/app/components/Htag/Htag";
 import Tag from "@/app/components/Tag/Tag";
@@ -27,6 +27,27 @@ const { fetchPage, fetchMenu, fetchProducts } = useHttp();
 //         return notFound();
 //     });
 
+export const generateMetadata = async ({ params }: { params: Promise<{category: string, alias: string }> }) => {
+    const { alias, category } = await params; 
+    const page = await fetchPage(alias);
+    if (!page) { notFound(); }
+
+    return {
+        title: page.metaTitle,
+        description: page.metaDescription,
+        openGraph: {
+            title: page.metaTitle,
+            description: page.metaDescription,
+            images: '/images/openGraph.png',
+            url: `https://yourdomain.com/${category}/${alias}`,
+            type: 'article',
+            siteName: 'Evgeniy Filonov portfolio',
+            locale: 'ru_RU',
+        },  
+    };
+};
+
+
 interface Path {
         category: string;
         alias: string;
@@ -50,15 +71,13 @@ const CourcesPage = async ({ params }: { params: Promise<{category: string, alia
     const { alias, category } = await params; 
 
    const page = await fetchPage(alias);
-    if (!page ) { notFound();}
+    if (!page || !category) { notFound();}
 
     const products = await fetchProducts(page.category);
 
-     if (!products ) { notFound();}
+    if (!products ) { notFound();}
 
-    // const metaData: Metadata = {
-    //     title: "ProductPage",
-    // };
+    
         
     return (
         <div className={style.pageWrapper}>

@@ -1,0 +1,46 @@
+.mainWrapper {
+    margin-top: 24px;
+}
+
+.mainTitle {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+
+.heroDivider {
+    margin: 20px 0;
+}
+
+.mainFilterTitle {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* color: var(--black); */
+}
+
+.mainFilter {
+    margin-top: 15px;
+}
+
+.mainFilterList {
+
+    list-style: none;
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 10px;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.mainFilterButton {
+    color: black;
+    background: none;
+    /* font-size: clamp(14px, 2vw, 16px); */
+}
+
+.filterIcon {
+    color: var(--primary);
+}

@@ -1,5 +1,5 @@
 import {ReviewFormProps} from "./ReviewForm.props";
-import {ForwardedRef, forwardRef, JSX, useEffect,  useState} from "react";
+import {JSX, useEffect,  useState} from "react";
 import cn from 'classnames';
 import TextArea from "../TextArea/TextArea";
 import Input from "../Input/Input";
@@ -11,7 +11,7 @@ import { IFormInput } from "@/app/interfaces/IFormInput.interface";
 
 import style from './ReviewForm.module.css';
 
-const ReviewForm = forwardRef(({productId}: ReviewFormProps, revieRef: ForwardedRef<HTMLFormElement>): JSX.Element  => {
+const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
     
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -42,63 +42,64 @@ const ReviewForm = forwardRef(({productId}: ReviewFormProps, revieRef: Forwarded
 
     return (
        <> 
-        <form onSubmit={handleSubmit(onSubmit)} ref={revieRef}
-                className={style.reviewForm}>
-                <div className= {style.rateFeedback} >Оценка</div>
-                <Controller
-                    control={control}
-                    rules={{required: { value: true, message: 'Оценка обязательна!' },
-                                min: { value: 1, message: 'Не менее 1 звезды...'}}} 
-                    name="rating"
-                    render={({ field, fieldState }) => (
-                        <RateStars 
-                            isEditable={true}
-                            setRating={field.onChange}
-                            rate={field.value}
-                            className={style.feedbackStars}
-                            // ref = {field.ref} 
-                            errors={fieldState.error?.message}/>
-                    )}
-                />
-                <Input className={style.reviewInputName}
-                    type="text"
-                    placeholder="Ваше имя"
-                    {...register("name", { 
-                        required: { value: true, message: 'Имя обязательно!' }, 
-                        maxLength: { value: 20, message: 'Не больше 20 символов...' },
-                        minLength: { value: 2, message: 'Не менее 2 символов...' },
-                        
-                        })}
-                    validationMessage={errors.name?.message}/>
-                <Input className={style.reviewInputTitle}
-                    type="text"
-                    placeholder="Заголовок отзыва"
-                    {...register("title", { 
-                        required: { value: true, message: 'Заголовок обязательно!' }, 
-                        maxLength: { value: 60, message: 'Не больше 60 символов...' },
-                        minLength: { value: 5, message: 'Не менее 5 символов...' },
-                        })}
-                    validationMessage={errors.title?.message}
-                    />
-                <TextArea
-                    className={style.reviewTextarea}
-                    placeholder="Текст отзыва"
-                    {...register("description", { 
-                        required: { value: true, message: 'Текст пожалуйст!' }, 
-                        maxLength: { value: 360, message: 'Не больше 360 символов...' },
-                        minLength: { value: 3, message: 'Не менее 3 символов...' },
-                    })}
-                    validationMessage={errors.description?.message}
+        <form onSubmit={handleSubmit(onSubmit)} 
+            id = {productId}
+            className={style.reviewForm}>
+            <div className= {style.rateFeedback} >Оценка</div>
+            <Controller
+                control={control}
+                rules={{required: { value: true, message: 'Оценка обязательна!' },
+                            min: { value: 1, message: 'Не менее 1 звезды...'}}} 
+                name="rating"
+                render={({ field, fieldState }) => (
+                    <RateStars 
+                        isEditable={true}
+                        setRating={field.onChange}
+                        rate={field.value}
+                        className={style.feedbackStars}
+                        errors={fieldState.error?.message}/>
+                )}
+            />
+            <Input className={style.reviewInputName}
+                id={"name"}
+                type="text"
+                placeholder="Ваше имя"
+                {...register("name", { 
+                    required: { value: true, message: 'Имя обязательно!' }, 
+                    maxLength: { value: 20, message: 'Не больше 20 символов...' },
+                    minLength: { value: 2, message: 'Не менее 2 символов...' },
                     
+                    })}
+                validationMessage={errors.name?.message}/>
+            <Input className={style.reviewInputTitle}
+                id={'title'}
+                type="text"
+                placeholder="Заголовок отзыва"
+                {...register("title", { 
+                    required: { value: true, message: 'Заголовок обязательно!' }, 
+                    maxLength: { value: 60, message: 'Не больше 60 символов...' },
+                    minLength: { value: 5, message: 'Не менее 5 символов...' },
+                    })}
+                validationMessage={errors.title?.message}
                 />
-                <Button className={style.reviewButton} type="submit" appearance={"blue"} >Отправить</Button>
-                <span className={style.reviewInfo}>* Перед публикацией отзыв пройдет проверку модератором</span>
-            </form>
-            
+            <TextArea
+                className={style.reviewTextarea}
+                placeholder="Текст отзыва"
+                {...register("description", { 
+                    required: { value: true, message: 'Текст пожалуйст!' }, 
+                    maxLength: { value: 360, message: 'Не больше 360 символов...' },
+                    minLength: { value: 3, message: 'Не менее 3 символов...' },
+                })}
+                validationMessage={errors.description?.message}
+                
+            />
+            <Button className={style.reviewButton} type="submit" appearance={"blue"} >Отправить</Button>
+            <span className={style.reviewInfo}>* Перед публикацией отзыв пройдет проверку модератором</span>
+        </form>
             <div className = {cn(style.submitted, {[style.submittedVisible]:  submitted})} >
                 <div className={style.submitedTitle}>Ваш отзыв отправлен !</div>
                 <div className={style.submittedText}>Мы скоро опубликуем его после проверки.</div>
-                <div className ={style.closeBtn}
+                <button className ={style.closeBtn}
                     onClick={onHandleSubmit}>
                     <Image src='/icons/Review/Close.svg'
                         alt='Close Icon'
@@ -107,12 +108,12 @@ const ReviewForm = forwardRef(({productId}: ReviewFormProps, revieRef: Forwarded
                         priority={false}
                         className={style.closeImg}
                         quality={70}/>
-                </div>
+                </button>
             </div>
        </>
 
 
     );
-});
+};
 
 export default ReviewForm;

@@ -21,6 +21,7 @@ const withBundleAnalyzer = initializeBundleAnalyzer({
 // };
 
 const nextConfig: NextConfig = {
+  // output: 'export',
   turbopack: {
     rules: {
       '*.svg': {

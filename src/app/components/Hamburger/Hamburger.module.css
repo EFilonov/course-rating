@@ -49,6 +49,6 @@
 
 .hamburger:hover {
     user-select: none;
-    filter: hue-rotate(350deg) brightness(97%) drop-shadow(0 0 1px var(--primary-hover));
+    filter: hue-rotate(350deg) brightness(97%);
     transition: filter 0.2s ease-in-out;
 }

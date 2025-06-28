@@ -170,6 +170,8 @@
     top: 10;
     right: 10;
     cursor: pointer;
+    border: none;
+    background: transparent;
 }
 
 [data-theme="dark"] .submittedVisible {

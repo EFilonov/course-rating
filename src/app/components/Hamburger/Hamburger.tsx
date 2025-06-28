@@ -1,13 +1,16 @@
 import {HamburgerProps} from "./Hamburger.props";
-import {JSX} from "react";
+import {JSX, useState} from "react";
 import cn from "classnames";
 import style from "./Hamburger.module.css";
 
-const Hamburger = ({ className, active = false }: HamburgerProps): JSX.Element => {
+const Hamburger = ({ className, onClick, active = false }: HamburgerProps): JSX.Element => {
+    
+
     return (
         <button
             className={cn(style.hamburger, { [style.active]: active }, className)}
             type="button"
+            onClick={onClick}
         >
             <span></span>
             <span></span>

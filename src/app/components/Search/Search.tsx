@@ -36,7 +36,6 @@ const Search = ({  children, className, ...props }: SearchProps): JSX.Element  =
         <div className={cn(style.search, className)} {...props}>
             <input type="text" 
                 name="search" 
-                id="search" 
                 placeholder='Поиск ...' 
                 className={style.searchInput}
                 value={search}
@@ -46,7 +45,7 @@ const Search = ({  children, className, ...props }: SearchProps): JSX.Element  =
                  />
             <button type="submit" 
                 className={style.searchButton} 
-                aria-label='Search'
+                aria-label='Search button'
                 onClick={onSearch}
                 
                 >
