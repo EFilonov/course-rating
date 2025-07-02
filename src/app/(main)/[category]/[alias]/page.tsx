@@ -9,7 +9,7 @@ import Advantages from "@/app/components/Advantages/Advantages";
 import parse from 'html-react-parser';
 import DynamicPageTitle from "@/app/components/DynamicPageTitle/DynamicPageTitle";
 import ProductsList from "@/app/components/ProductsList/ProductsList";
-
+import { Metadata } from "next";
 
 import style from './DinamicPage.module.css';
 
@@ -27,7 +27,7 @@ const { fetchPage, fetchMenu, fetchProducts } = useHttp();
 //         return notFound();
 //     });
 
-export const generateMetadata = async ({ params }: { params: Promise<{category: string, alias: string }> }) => {
+export const generateMetadata = async ({ params }: { params: Promise<{category: string, alias: string }> }): Promise<Metadata> => {
     const { alias, category } = await params; 
     const page = await fetchPage(alias);
     if (!page) { notFound(); }
@@ -39,11 +39,19 @@ export const generateMetadata = async ({ params }: { params: Promise<{category: 
             title: page.metaTitle,
             description: page.metaDescription,
             images: '/images/openGraph.png',
-            url: `https://yourdomain.com/${category}/${alias}`,
+            url: `https://yourdomain.com/${category}/${alias}`, // настройка URL для Open Graph
             type: 'article',
             siteName: 'Evgeniy Filonov portfolio',
             locale: 'ru_RU',
-        },  
+        },
+        metadataBase: new URL('https://yourdomain.com'), // настройка базового URL для метаданных
+        twitter: {
+            card: 'summary_large_image',
+            title: page.metaTitle,
+            description: page.metaDescription,
+            images: '/images/openGraph.png',
+            creator: '@KipZhek', 
+        },
     };
 };
 

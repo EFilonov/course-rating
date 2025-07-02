@@ -23,18 +23,28 @@ const DetailsModal = React.forwardRef<HTMLDivElement, DetailsModalProps>(
         ref={ref}
         sx={{
           position: 'relative',
-          width: 400,
+          borderRadius: 2,
+          m: 2,
+          width: 'fit-content',
           bgcolor: 'background.paper',
           border: '2px solid #000',
           boxShadow: 24,
           p: 4,
+          '[data-theme="dark"] &': {
+            bgcolor: 'var(--primary)',
+          },
         }}
       >
-        <Typography id="server-modal-title" variant="h6" component="h2">
-          Server-side modal
+        <Typography id="server-modal-title" variant="h6" component="h2" sx={{fontSize: 'clamp(12px, 4vw, 16px)'}}>
+          Переход на страницу провайдера курсов!!!
         </Typography>
-        <Typography id="server-modal-description" sx={{ pt: 2 }}>
-          If you disable JavaScript, you will still see me.
+        <Typography id="server-modal-description" 
+        sx={{ pt: 2, color: 'green', fontSize: 'clamp(10px, 3vw, 14px)', textAlign: 'right', mt: 2,
+          '[data-theme="dark"] &': {
+            color: '#4aff00',
+          },
+         }}>
+          Клик на оверлее вне области модального окна - для закрытия...
         </Typography>
       </Box>
     </Modal>

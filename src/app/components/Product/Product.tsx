@@ -1,23 +1,18 @@
 "use client";
 import { ProductProps } from "./Product.props";
-import { ForwardedRef, forwardRef, JSX, use, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ForwardedRef, forwardRef, JSX, useEffect, useState } from "react";
 import cn from 'classnames';
 import Card from "../Card/Card";
 import Button from "../Button/Button";
-import splitByThree from "@/app/helpers/splitByThree";
-import Tag from "../Tag/Tag";
-import Star from "../Star/Star";
 import Divider from "../Divider/Divider";
-import Image from "next/image";
 import Review from "../Review/Review";
 import { motion, AnimatePresence } from "framer-motion";
 import { sortState } from "@/app/store/sortState";
-import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
-import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
+import ProductHeader from "../ProductHeader/ProductHeader";
+import DetailsModal from "../DetailsModal/DetailsModal";
 import { useRouter } from "next/navigation";
 
 import style from './Product.module.css';
-
 
 
 const Product = motion.create(forwardRef(({ className, product }: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element => {
@@ -25,6 +20,7 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 	const router = useRouter();
 
 	const [isVisibleReview, setIsVisibleReview] = useState<boolean>(false);
+	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	useEffect(() => {
 		setIsVisibleReview(false);
@@ -37,79 +33,21 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 		setIsVisibleReview(!isVisibleReview);
 	};
 
-	// const revieRef = useRef<HTMLFormElement>(null);
-
-	// const scrollToReview = () => {
-	// 	setIsVisibleReview(true);
-	// };
-
-	// useEffect(() => {
-	// 	if (isVisibleReview) {
-	// 		setTimeout(() => {
-	// 			revieRef.current?.scrollIntoView({
-	// 				behavior: 'smooth',
-	// 				block: 'center',
-	// 				inline: 'center'
-
-	// 			});
-	// 		}, 150);
-
-	// 	}
-	// }, [isVisibleReview]);
 	const onStarButtonClick = () => {
 			setIsVisibleReview(true);
 			setTimeout(() => {
 				router.push(`#${product._id}`);
 			}, 150);
 	};
+
+	const onToggleOpenModal = () => {
+		setOpenModal(!openModal);
+	};
 	
 	return (
 		<div className={cn(style.productWrapper, className)} ref={layoutRef}>
 			<Card className={style.product}>
-				<div className={style.logo}>
-					<ImageBoundery>
-						<Image
-							src={fixDoubleHttp(product.image)}
-							alt={product.title}
-							quality={70}
-							priority={false}
-							width={70}
-							height={70}
-							loading="lazy"
-						/>
-					</ImageBoundery>
-				</div>
-				<div className={style.title}>{product.title}</div>
-				<div className={style.price}>
-					<span>
-						{/* <span className="visualyHidden">цена</span> */}
-						{splitByThree(product.price)}
-					</span>
-					{product.oldPrice &&
-						<Tag className={style.oldPrice} color="green">
-							{/* <span className="visualyHidden">скидка</span> */}
-							{splitByThree(product.price - product.oldPrice)}
-						</Tag>}
-				</div>
-				<div className={style.credit}>
-					{/* <span className="visualyHidden">кредит </span> */}
-					{splitByThree(product.credit)}/<span className={style.month}> мес</span>
-				</div>
-				<div className={style.rating}>
-					<span className="visualyHidden">{product.initialRating || 0}</span>
-					<button aria-label="Go to reviews"
-						className={style.starButton}
-						onClick={() => {onStarButtonClick();}}>
-						<Star value={product.initialRating || 0} className={style.star} />
-					</button>
-				</div>
-				<div className={style.tags}>{product.categories.map(c =>
-					<Tag key={c} className={style.category} color='ghost'>{c}</Tag>)}</div>
-				<div className={style.priceTitle} aria-hidden={true}>цена</div>
-				<div className={style.creditTitle} aria-hidden={true}>кредит</div>
-				<div className={style.rateTitle}>
-				</div>
-				<Divider className={style.hr} />
+				<ProductHeader className={style.productHeader} onClick={onStarButtonClick} product={product} />
 				<div className={style.description}>{product.description}</div>
 				<div className={style.feature}>
 					{product.characteristics.map(c => (
@@ -132,7 +70,9 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 				</div>
 				<Divider className={cn(style.hr, style.hr2)} />
 				<div className={style.actions}>
-					<Button appearance="blue">Узнать подробнее</Button>
+					<Button
+						onClick={onToggleOpenModal}
+						appearance="blue">Узнать подробнее</Button>
 					<Button onClick={toggleVisibleReview}
 						appearance="gray"
 						arrow={isVisibleReview ? "down" : "right"}
@@ -154,6 +94,7 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 						</motion.div>
 					</Card>)}
 			</AnimatePresence>
+			<DetailsModal open={openModal} onClose={onToggleOpenModal}/>
 		</div>
 
 	);
