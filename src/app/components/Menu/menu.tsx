@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, use } from 'react';
-import { MenuItem, PageItem, FirstLevelMenuItem } from '../../interfaces/menu.interface';
+import {MenuLvlActive } from '../../interfaces/menu.interface';
 import cn from 'classnames';
 import Link from 'next/link';
 import { firstLevelMenu } from './constants/firstLevelMenu';
@@ -8,151 +8,149 @@ import { motion } from "motion/react";
 import { MenuProps } from './Menu.props';
 import { usePathname } from 'next/navigation';
 import { menuState } from '@/app/store/menuState';
+import { getUniqueByProp } from '@/app/helpers/getUniqueByProp';
 
 import style from './Menu.module.css';
+import { FlatMenuState } from '@/app/interfaces/menuState.interface';
+
 
 const Menu = ({className}: MenuProps): React.JSX.Element => {
     const path = usePathname();
+    const flatMenu = menuState((state) => state.flatMenu);
 
-    const menus = menuState((state) => state.menus);
+    const [menuLvlActive, setMenuLvlActive] = useState<MenuLvlActive>({
+        first: undefined,
+        second: undefined
+        });
+
+    const defineActiveLvlByPath = (path: string) => {
+        const arrFromPath = path.split('/');
+        if (arrFromPath.length < 3) return;
+        const flatItem = flatMenu.find(item => item.thirdLvl === arrFromPath[2]);
+        if (flatItem?.firstLvl && flatItem.secondLvlName) {
+            return setMenuLvlActive({
+                ...menuLvlActive,
+                first: flatItem.firstLvl,
+                second: flatItem.secondLvlName,
+            });
+        } 
+    };
+
+    useEffect(() => {
+        defineActiveLvlByPath(path);
+    }, [path, flatMenu]);
+
     
+    const { first, second } = menuLvlActive;
 
+    const handleMenuLevel = (level: 'first' | 'second', value?: string) => {
+        setMenuLvlActive((prev) => {
+            const newState = { ...prev };
+            if (prev[level] === value) {
+                if (level === 'first') return { first: undefined, second: undefined, third: undefined };
+                if (level === 'second') return { ...prev, second: undefined, third: undefined };
+            } else {
+                if (level === 'first') return { first: value, second: undefined, third: undefined };
+                if (level === 'second') return { ...prev, second: value, third: undefined };
+            }
+            return newState;
+        });
+    };
 
-
-    const [activeMenuLevel, setActiveMenuLevel] = useState<number | undefined>(0);
-    const [activeSUbMenuLevel, setActiveSubMenuLevel] = useState<MenuItem | undefined>(undefined);
-    const [activePageId, setActivePageId] = useState<string | undefined>(undefined);
+    const handleMenuLevelKeyDown = (e: React.KeyboardEvent, level: 'first' | 'second', value?: string ) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            handleMenuLevel(level, value);
+        }
+    };
 
     const animationVariantsForSubMenu = (idx: number) => ({
-        hidden: { opacity: 0, x: -32 },
+        hidden: { opacity: 0, x: -15 },
         visible: { opacity: 1, x: 0, transition: { duration: 0.3, delay: 0.1 + idx * 0.04 } }
     });
-        
-    const toggleFirstLevelMenu = (firstLevelItem: FirstLevelMenuItem): void => {
-        
-        if (activeMenuLevel === firstLevelItem.id) {    
-            setActiveMenuLevel(undefined);
-            setActiveSubMenuLevel(undefined);
-            setActivePageId(undefined);
-        } else {
-            setActiveMenuLevel(firstLevelItem.id);
-            setActiveSubMenuLevel(undefined);  
-            setActivePageId(undefined); 
-        }
-    };
 
-    const toggleSubMenu = (secondLevelItem: MenuItem): void => {
-        (activeSUbMenuLevel?._id === secondLevelItem._id) ? setActiveSubMenuLevel(undefined) : setActiveSubMenuLevel(secondLevelItem); 
-    };
-    // Тот случай, когда соблюдая DRY, кода в 2 больше, потому нет DRY  
-    const onKeyDownFirstLevelMenu = (e: React.KeyboardEvent<HTMLAnchorElement>, menuItem:  FirstLevelMenuItem ): void => {
-        e.preventDefault();
-        if (e.key === 'Enter' || e.key === ' ') {
-         toggleFirstLevelMenu(menuItem);   
-        }
-    };
-
-    const onKeyDownSecondLevelMenu = (e: React.KeyboardEvent<HTMLDivElement>, menuItem:  MenuItem ): void => {
-        e.preventDefault();
-        if (e.key === 'Enter' || e.key === ' ') {
-         toggleSubMenu(menuItem);   
-        }
-    };
-    console.log(menus, 'menus');
-    const makeFirstLevelMenu = () => {
-        return (
-            <ul className={cn(style.firstLevel, className)}>
-                {firstLevelMenu.map((firstLevelItem, index) => {
-                    return (
-                        <li key={firstLevelItem.id} >
-                            <Link href={`#/${firstLevelItem.route}`}
-                                onClick={() => {toggleFirstLevelMenu(firstLevelItem);}}
-                                onKeyDown={(e) => onKeyDownFirstLevelMenu(e, firstLevelItem)}>
-                                <motion.div className={cn(style.firstLevelItem, { [style.firstLevelItemActive]: firstLevelItem.id === activeMenuLevel })}
-                                    initial={{ opacity: 0, x: -60 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, delay: 0.1 }}
-                                    layout>
-                                    {firstLevelItem.icon} 
-                                    <span className={style.firstLevelItemText}>
-                                        {firstLevelItem.name}
-                                    </span>
-                                </motion.div>
-                            </Link>
-                            {firstLevelItem.id === activeMenuLevel && 
-                            makeSecondLevelMenu(menus[firstLevelMenu.findIndex(item => item.id === firstLevelItem.id)] || [], firstLevelItem.route)}
-                        </li>);
-                })}
-            </ul>
-        );
-    };
-
-    const makeSecondLevelMenu = (menu: MenuItem[], route: string) => {
-        if (menu.length === 0) return <></>;
-        
-        return (
-            <ul className={style.secondLevel}>
-                {menu.map((secondLevelItem, idx) => {
-                    // console.log('secondLevelItem', secondLevelItem, 'path', path,);
-                    return <motion.li
-                        key={secondLevelItem._id?.secondCategory}
-                        className={style.secondLevelItem}
-                        variants={animationVariantsForSubMenu(idx)}
-                        initial="hidden"
-                        animate="visible"
-                    > 
-                        <div className={cn({[style.secondLevelItemActive]: secondLevelItem._id === activeSUbMenuLevel?._id})}
-                            tabIndex={0}
-                            onClick={() => { toggleSubMenu(secondLevelItem);}}
-                            onKeyDown={(e) => onKeyDownSecondLevelMenu(e, secondLevelItem)}
-                            >
-                            <span className={style.secondLevelItemText} >
-                                {secondLevelItem._id?.secondCategory}
-                            </span>
-                        </div>
-                        {secondLevelItem._id === activeSUbMenuLevel?._id && makeThirdLevelMenu(activeSUbMenuLevel?.pages, route)}
-                    </motion.li>;
-                })}
-            </ul>
-        );
-    };
-
-    const makeThirdLevelMenu = (activeSUbMenuLevel: PageItem[] | undefined, route: string) => {
-        return (
-            <ul className={style.thirdLevel}>
-                {activeSUbMenuLevel?.map((page: PageItem, idx) => {
-                    // console.log('page._id', page._id, 'path', path, 'page alias', page.alias);
-                    return <motion.li
-                        key={page._id}
-                        className={style.thirdLevelItem}
-                        variants={animationVariantsForSubMenu(idx)}
-                        initial="hidden"
-                        animate="visible">
-                        <Link href={`/${route}/${page.alias}`} onClick={() => { setActivePageId(page._id); }}>
-                            <div className={cn({ [style.thirdLevelItemActive]: path.includes(page.alias)
-                            //page._id === activePageId 
-
-                            }
-
-                            )}>
-                                <span className={style.thirdLevelItemText}>{page.category}</span>
-                            </div>
-                        </Link>
-                    </motion.li>;
-                })}
-            </ul>
-        );
-    };
-
-    return (
-        <>
-            <nav className="menu">
-                {makeFirstLevelMenu()}
-            </nav>
-        </>
+    
+    const makeFirstLevelMenu = () => (
+        <ul className={cn(style.firstLevel, className)}>
+            {firstLevelMenu.map((firstLevelItem, idx) => (
+                <li key={firstLevelItem.id}>
+                    <Link
+                        href={``}
+                        onKeyDown={e => handleMenuLevelKeyDown(e, 'first', firstLevelItem.route)}
+                        onClick={() => handleMenuLevel('first', firstLevelItem.route)}
+                    >
+                        <motion.div
+                            className={cn(style.firstLevelItem, { [style.firstLevelItemActive]: firstLevelItem.route === first })}
+                            variants={animationVariantsForSubMenu(idx)}
+                            initial="hidden"
+                            animate="visible"
+                            layout
+                        >
+                            {firstLevelItem.icon}
+                            <span className={style.firstLevelItemText}>{firstLevelItem.name}</span>
+                        </motion.div>
+                    </Link>
+                    {firstLevelItem.route === first &&
+                        makeSecondLevelMenu(flatMenu.filter(item => item.firstLvl === firstLevelItem.route))}
+                </li>
+            ))}
+        </ul>
     );
 
+    const makeSecondLevelMenu = (secondLevelMenu: FlatMenuState[]) => {
+        if (secondLevelMenu.length === 0) return <></>;
 
+        return (
+            <ul className={style.secondLevel}>
+                {getUniqueByProp(secondLevelMenu, 'secondLvlName').map((secondLevelItem, idx) => (
+                    <li key={secondLevelItem.secondLvlName} className={style.secondLevelItem}>
+                        <motion.div
+                            className={cn({ [style.secondLevelItemActive]: secondLevelItem.secondLvlName === second })}
+                            key={secondLevelItem.href}
+                            variants={animationVariantsForSubMenu(idx)}
+                            initial="hidden"
+                            animate="visible"
+                            layout
+                            tabIndex={0}
+                            onClick={() => handleMenuLevel('second', secondLevelItem.secondLvlName)}
+                            onKeyDown={e => handleMenuLevelKeyDown(e, 'second', secondLevelItem.secondLvlName)}
+                        >
+                            <span className={style.secondLevelItemText}>{secondLevelItem.secondLvlName}</span>
+                        </motion.div>
+                        {secondLevelItem.secondLvlName === second &&
+                            makeThirdLevelMenu(flatMenu.filter(item => item.secondLvlName === second))}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+
+    const makeThirdLevelMenu = (thirdLevelMenu: FlatMenuState[]) => (
+        <ul className={style.thirdLevel}>
+            {thirdLevelMenu.map((thirdLevelItem, idx) => (
+                <motion.li
+                    key={thirdLevelItem.thirdLvlId}
+                    className={style.thirdLevelItem}
+                    variants={animationVariantsForSubMenu(idx)}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <Link href={`/${thirdLevelItem.firstLvl}/${thirdLevelItem.thirdLvl}`}>
+                        <div 
+                            className={cn({[style.thirdLevelItemActive]: path.includes(thirdLevelItem.thirdLvl)})}
+                            tabIndex={0}>
+                            <span className={style.thirdLevelItemText}>{thirdLevelItem.thirdLvlName}</span>
+                        </div>
+                    </Link>
+                </motion.li>
+            ))}
+        </ul>
+    );
+
+    return (
+        <nav className="menu">
+            {makeFirstLevelMenu()}
+        </nav>
+    );
 };
 
 export default Menu;

@@ -22,3 +22,8 @@ export interface FirstLevelMenuItem {
 	icon: JSX.Element;
 	id: number;
 }
+
+export interface MenuLvlActive {
+		first: string | undefined;
+		second: string | undefined;
+	}
