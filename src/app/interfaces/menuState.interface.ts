@@ -1,11 +1,14 @@
 import { MenuItem } from "./menu.interface";
+import { TopPageModel } from "./page.interface";
+import { ProductModel } from "./product.interface";
 
 export interface MenuState {
-    menus: MenuItem[][];
+    // menus: MenuItem[][];
     setMenus?: (menus: MenuItem[][]) => void;
     loading: boolean;
     error?: string | null;
     flatMenu: FlatMenuState[];
+    allProducts: ProductModel[];
 }
 
 export interface FlatMenuState {
@@ -16,5 +19,7 @@ export interface FlatMenuState {
     thirdLvlName: string;
     href: string;
     thirdLvlId: string;
+    productsCategory: string;
     [key: string]: string
 }
+

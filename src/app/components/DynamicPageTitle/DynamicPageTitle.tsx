@@ -13,8 +13,8 @@ const DynamicPageTitle = ({ className, title, count }: DynamicPageTitleProps): J
     const { sortType, setSortType } = sortState();
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, sortType: string): void => {
-        e.preventDefault();
         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
             setSortType(sortType);
         }
     };

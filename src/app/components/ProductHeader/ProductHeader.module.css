@@ -1,14 +1,11 @@
-.productWrapper {
+/* .productWrapper {
     position: relative;
-}
+} */
 
-.product {
+.productHeader {
     display: grid;
     grid-template-columns:
         [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
-
-    margin-top: 30px;
-    padding: 24px;
     z-index: 10
 }
 
@@ -40,18 +37,7 @@
 .rating,
 .rateTitle {
     grid-column: ratestart / end;
-
     white-space: nowrap;
-}
-
-.hr,
-.description,
-.actions {
-    grid-column: start / end;
-}
-
-.feature {
-    grid-column: start / middle;
 }
 
 .logo img {
@@ -67,6 +53,9 @@
 
 .category {
     margin-top: 7px;
+    font-size: clamp(10px, 2vw, 14px);
+    text-align: center;
+    font-weight: 300;
 }
 
 .price,
@@ -99,12 +88,7 @@
     background: transparent;
 }
 
-.description {
-    margin-bottom: 15px;
 
-    font-size: clamp(12px, 2.5vw, 16px);
-    line-height: 1.5;
-}
 
 .priceTitle,
 .creditTitle,
@@ -119,95 +103,9 @@
     text-align: left;
 }
 
-.reviewButton {
-    margin-left: 20px;
-}
-
-.advBlock {
-    font-size: clamp(12px, 2.5vw, 16px);
-    line-height: 1.5;
-    grid-column: middle / end;
-}
-
-.advTitle {
-    margin-bottom: 5px;
-
-    font-weight: bold;
-}
-
-.advantages {
-    /* margin-bottom: 20px; */
-    padding-left: 15px;
-
-    border-left: 2px solid #1DC37E;
-}
-
-.disadvantages {
-    padding-left: 15px;
-    border-left: 2px solid var(--red);
-}
-
-.characteristics {
-    display: grid;
-    align-items: baseline;
-
-    padding-right: 60px;
-
-    font-size: clamp(12px, 2.5vw, 16px);
-    line-height: 1.5;
-    grid-template-columns: auto 1fr auto;
-    gap: 10px;
-}
-
-.characteristicsName {
-    font-weight: bold;
-}
-
-.characteristicsDots {
-    margin-bottom: 5px;
-    border-bottom: 1px dashed var(--gray);
-}
-
-.reviews {
-    overflow: hidden;
-    padding: 30px;
-}
-
-.rateTitle a {
-    color: var(--primary);
-}
-
-.hr,
-.hr2 {
-    margin: 20px 0;
-}
-
-.reviewCard {
-    position: relative;
-    overflow: hidden;
-    max-height: 0;
-    padding: 0;
-    z-index: 0;
-    background: var(--light-blue);
-    border: none;
-    margin-top: 10px;
-
-}
-
-[data-theme="dark"] .reviewCard {
-    background-color: transparent;
-
-}
-
-.visible {
-    max-height: fit-content;
-    border: initial;
-    border: 1px solid #ddd;
-}
-
 @media screen and (max-width: 1200px) {
-    .product {
-        margin-top: 20px;
+    .productHeader {
+        /* margin-top: 20px; */
         grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
         grid-template-areas:
             "logo . title title title title title"
@@ -215,12 +113,6 @@
             "price price price . credit . ."
             "priceTitle . . . creditTitle . rateTitle"
             "rating rating rating . . . ."
-            "hr hr hr hr hr hr hr"
-            "description description description description description description description"
-            "feature feature feature feature feature feature feature"
-            "advBlock advBlock advBlock advBlock advBlock advBlock advBlock"
-            "hr2 hr2 hr2 hr2 hr2 hr2 hr2"
-            "actions actions actions actions actions actions actions";
     }
 
     .logo {
@@ -269,34 +161,6 @@
     .rateTitle {
         grid-area: rateTitle;
     }
-
-    .hr {
-        grid-area: hr;
-
-    }
-
-    .description {
-        grid-area: description;
-    }
-
-    .feature {
-        grid-area: feature;
-
-        margin-bottom: 20px;
-    }
-
-    .advBlock {
-        grid-area: advBlock;
-    }
-
-    .hr2 {
-        grid-area: hr2;
-
-    }
-
-    .actions {
-        grid-area: actions;
-    }
 }
 
 @media screen and (max-width: 640px) {
@@ -309,12 +173,6 @@
             "priceTitle priceTitle price"
             "creditTitle creditTitle credit"
             "rating rating rating"
-            "hr hr hr"
-            "description description description"
-            "feature feature feature"
-            "advBlock advBlock advBlock"
-            "hr2 hr2 hr2"
-            "actions actions actions";
     }
 
     .price {
@@ -330,15 +188,10 @@
         text-align: right;
 
     }
-
-    .hr,
-    .hr2 {
-        margin: 10px 0;
-    }
 }
 
 @media screen and (max-width: 480px) {
-    .product {
+    .productHeader {
         grid-template-columns: 85px auto;
         grid-template-areas:
             "logo title"
@@ -349,14 +202,6 @@
             "creditTitle creditTitle"
             "rating rating"
             "rateTitle rateTitle"
-            "hr hr"
-            "description description"
-            "description description"
-            "feature feature"
-            "advBlock advBlock"
-            "hr2 hr2"
-
-            "actions actions";
     }
 
     .logo {

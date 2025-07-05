@@ -59,7 +59,9 @@ const Menu = ({className}: MenuProps): React.JSX.Element => {
 
     const handleMenuLevelKeyDown = (e: React.KeyboardEvent, level: 'first' | 'second', value?: string ) => {
         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
             handleMenuLevel(level, value);
+            ; // Reset scroll position to the top
         }
     };
 

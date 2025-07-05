@@ -47,26 +47,29 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 	return (
 		<div className={cn(style.productWrapper, className)} ref={layoutRef}>
 			<Card className={style.product}>
-				<ProductHeader className={style.productHeader} onClick={onStarButtonClick} product={product} />
+				<ProductHeader className={style.pHeader} onClick={onStarButtonClick} product={product} />
+				<Divider className={style.hr} />
 				<div className={style.description}>{product.description}</div>
-				<div className={style.feature}>
-					{product.characteristics.map(c => (
-						<div className={style.characteristics} key={c.name}>
-							<span className={style.characteristicsName}>{c.name}</span>
-							<span className={style.characteristicsDots}></span>
-							<span className={style.characteristicsValue}>{c.value}</span>
-						</div>
-					))}
-				</div>
-				<div className={style.advBlock}>
-					{product.advantages && <div className={style.advantages}>
-						<div className={style.advTitle}>Преимущества</div>
-						<div>{product.advantages}</div>
-					</div>}
-					{product.disAdvantages && <div className={style.disadvantages}>
-						<div className={style.advTitle}>Недостатки</div>
-						<div>{product.disAdvantages}</div>
-					</div>}
+				<div className={style.table}>
+					<div className={style.feature}>
+						{product.characteristics.map(c => (
+							<div className={style.characteristics} key={c.name}>
+								<span className={style.characteristicsName}>{c.name}</span>
+								<span className={style.characteristicsDots}></span>
+								<span className={style.characteristicsValue}>{c.value}</span>
+							</div>
+						))}
+					</div>
+					<div className={style.advBlock}>
+						{product.advantages && <div className={style.advantages}>
+							<div className={style.advTitle}>Преимущества</div>
+							<div>{product.advantages}</div>
+						</div>}
+						{product.disAdvantages && <div className={style.disadvantages}>
+							<div className={style.advTitle}>Недостатки</div>
+							<div>{product.disAdvantages}</div>
+						</div>}
+					</div>
 				</div>
 				<Divider className={cn(style.hr, style.hr2)} />
 				<div className={style.actions}>

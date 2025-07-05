@@ -4,18 +4,18 @@ import { JSX } from "react";
 import splitByThree from "@/app/helpers/splitByThree";
 import Tag from "../Tag/Tag";
 import Star from "../Star/Star";
-import Divider from "../Divider/Divider";
+import cn from "classnames";
 import Image from "next/image";
 import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
 import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
 
-import style from './../Product/Product.module.css';
+import style from './ProductHeader.module.css';
 
 
-const Product = ({ onClick, product }: ProductProps): JSX.Element => {
-	
+const Product = ({ onClick, className, product }: ProductProps): JSX.Element => {
+
 	return (
-		 <> 
+		<div className={cn(style.productHeader, className)}>
 			<div className={style.logo}>
 				<ImageBoundery>
 					<Image
@@ -54,10 +54,7 @@ const Product = ({ onClick, product }: ProductProps): JSX.Element => {
 				<Tag key={c} className={style.category} color='ghost'>{c}</Tag>)}</div>
 			<div className={style.priceTitle} aria-hidden={true}>цена</div>
 			<div className={style.creditTitle} aria-hidden={true}>кредит</div>
-			<div className={style.rateTitle}>
-			</div>
-			<Divider className={style.hr} />
-		</>
+		</div>
 
 	);
 };

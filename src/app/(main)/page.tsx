@@ -1,5 +1,4 @@
 'use client';
-
 import Card from '../components/Card/Card';
 import Divider from '../components/Divider/Divider';
 import Htag from '../components/Htag/Htag';
@@ -9,15 +8,41 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import StarsIcon from '@mui/icons-material/Stars';
 import PaidIcon from '@mui/icons-material/Paid';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { menuState } from '../store/menuState';
 
+
 import style from './Page.module.css';
+import ProductHeader from '../components/ProductHeader/ProductHeader';
 
 
 const Page =  ()  => {
   const [filter, setFilter] = useState('rating');
-  const menus = menuState((state) => state.menus);
+   const allProducts = menuState((state) => state.allProducts);
+   const loading = menuState((state) => state.loading);
+  
+
+
+  const renderTopRatedProducts = () => {
+    return allProducts.map((product, index) => {
+      if (index >= 30) return null; // Ограничиваем вывод первыми 5 продуктами
+      return (
+        <Card key={index} className={style.product}>
+          
+          <ProductHeader product={product} />
+          
+        </Card>
+      );  
+
+    }
+    );
+  };
+
+  useEffect(() => {
+    // Здесь можно добавить логику для фильтрации продуктов по выбранному фильтру
+    // Например, если filter изменился, то можно обновить список продуктов
+    console.log(loading, 'Loading state');
+  }, [loading]);
 
   
   const filters = [
@@ -68,6 +93,8 @@ const Page =  ()  => {
             })}
           </BottomNavigation> 
         </Card>
+        { loading ? <h1>LOADING</h1> : renderTopRatedProducts() }
+
        
       </section>
 
