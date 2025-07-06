@@ -9,10 +9,11 @@ import Image from "next/image";
 import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
 import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
 
+
 import style from './ProductHeader.module.css';
 
 
-const Product = ({ onClick, className, product }: ProductProps): JSX.Element => {
+const ProductHeader = ({ onClick, className, product }: ProductProps ): JSX.Element => {
 
 	return (
 		<div className={cn(style.productHeader, className)}>
@@ -58,4 +59,4 @@ const Product = ({ onClick, className, product }: ProductProps): JSX.Element => 
 
 	);
 };
-export default Product;
+export default ProductHeader;

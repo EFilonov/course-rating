@@ -25,7 +25,7 @@ const Menu = ({className}: MenuProps): React.JSX.Element => {
 
     const defineActiveLvlByPath = (path: string) => {
         const arrFromPath = path.split('/');
-        if (arrFromPath.length < 3) return;
+        if (arrFromPath.length < 3) return setMenuLvlActive({first: 'cources', second: undefined});
         const flatItem = flatMenu.find(item => item.thirdLvl === arrFromPath[2]);
         if (flatItem?.firstLvl && flatItem.secondLvlName) {
             return setMenuLvlActive({

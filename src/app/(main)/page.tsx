@@ -8,43 +8,46 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import StarsIcon from '@mui/icons-material/Stars';
 import PaidIcon from '@mui/icons-material/Paid';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { menuState } from '../store/menuState';
-
+import ProductHeader from '../components/ProductHeader/ProductHeader';
+import {sortProducts} from '../helpers/sortFn';
+import { getUniqueByProp } from '../helpers/getUniqueByProp';
+import { motion, AnimatePresence } from 'framer-motion';
+import MainPageSkeleton from '../components/Skeletons/MainPageSkeleton/MainPageSkeleton';
 
 import style from './Page.module.css';
-import ProductHeader from '../components/ProductHeader/ProductHeader';
 
 
 const Page =  ()  => {
   const [filter, setFilter] = useState('rating');
-   const allProducts = menuState((state) => state.allProducts);
-   const loading = menuState((state) => state.loading);
+  const allProducts = menuState((state) => state.allProducts);
+  const loading = menuState((state) => state.loading);
   
-
-
   const renderTopRatedProducts = () => {
-    return allProducts.map((product, index) => {
-      if (index >= 30) return null; // Ограничиваем вывод первыми 5 продуктами
-      return (
-        <Card key={index} className={style.product}>
-          
-          <ProductHeader product={product} />
-          
-        </Card>
-      );  
-
-    }
+    const uniqueProducts = getUniqueByProp(allProducts, 'title');
+    return (
+      <AnimatePresence>
+        {sortProducts(uniqueProducts, filter).map((product, index) => {
+          if (index >= 30) return null; // Limit to top 5 products
+          return (
+          <motion.div
+            key={product._id}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2, ease: "anticipate" }}
+            layout>
+            <Card className={style.product} >
+              <ProductHeader product={product}/>
+            </Card>
+          </motion.div>
+          );
+        })}
+      </AnimatePresence>
     );
   };
 
-  useEffect(() => {
-    // Здесь можно добавить логику для фильтрации продуктов по выбранному фильтру
-    // Например, если filter изменился, то можно обновить список продуктов
-    console.log(loading, 'Loading state');
-  }, [loading]);
-
-  
   const filters = [
     { id: 1, name: 'Популярности', active: true, filter: 'rating', icon: <StarsIcon className={style.filterIcon} fontSize='large'/> },
     { id: 2, name: 'По цене', active: false, filter: 'price', icon: <PaidIcon className={style.filterIcon} fontSize='large'/> },
@@ -55,17 +58,15 @@ const Page =  ()  => {
     setFilter(newValue);
   };
       
-
+  
   return (
     <div className={style.mainWrapper}>
       <div className={style.mainTitle}>
         <Htag tag='h1'> Добро пожаловать в наш рейтинг курсов !</Htag>
         <ThemeButton className={style.mainThemeButton} />
       </div>
-
-      {/* Hero */}
       <section className={style.hero}>
-        <Card  className={style.heroCard}>
+        <Card  className={style.heroCard} >
           <Htag tag='h3'>Здесь можно подобрать удобный для вас онлайн курс из широкого списка популярных категорий </Htag>
           <Divider className={style.heroDivider} />
           <div className={style.mainFilterTitle} >Топ 5 популярных курсов по:</div>
@@ -92,33 +93,11 @@ const Page =  ()  => {
               );
             })}
           </BottomNavigation> 
+          { loading ? <MainPageSkeleton/> : renderTopRatedProducts() }
         </Card>
-        { loading ? <h1>LOADING</h1> : renderTopRatedProducts() }
-
-       
       </section>
-
-      {/* Popular Courses */}
-      {/* <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Популярные курсы</h2>
-        <div className={styles.grid}>
-          {courses.map((course, index) => (
-            <div key={index} className={styles.card}>
-              <img src={course.image} alt={course.title} className={styles.cardImage} />
-              <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{course.title}</h3>
-                <p className={styles.cardText}>{course.description}</p>
-                <div className={styles.buttonGroup}>
-                  <a href="#" className={classNames(styles.button, styles.primary)}>Узнать подробнее</a>
-                  <a href="#" className={classNames(styles.button, styles.secondary)}>Читать отзывы</a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
     </div>
   );
 };
 
-export default Page; 
+export default Page;

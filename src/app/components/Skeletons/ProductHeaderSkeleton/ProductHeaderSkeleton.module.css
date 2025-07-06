@@ -1,0 +1,70 @@
+.skelWrp {
+    display: grid;
+    gap: 0 20px;
+    grid-template-columns: auto minmax(20px, 300px) minmax(30px, 1fr) auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "image titleTags prices rating"
+        "image titleTags prices rating"
+
+}
+
+.image {
+    grid-area: image;
+    /* margin-right: 20px; */
+}
+
+.titleTags {
+    grid-area: titleTags;
+    /* margin-right: 20px; */
+}
+
+.tags {
+    width: calc(100% - 20px);
+}
+
+.prices {
+    grid-area: prices;
+    width: 90%;
+    justify-self: right;
+    /* margin-right: 35px; */
+}
+
+.oldPrice {
+    width: calc(100% - 25px);
+}
+
+.rating {
+    grid-area: rating;
+    align-self: center;
+}
+
+.tags,
+.oldPrice,
+.creditValue2 {
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .skelWrp {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "image titleTags"
+            "prices prices"
+            "rating rating";
+    }
+
+    .prices {
+        margin-top: 20px;
+        width: 50%;
+        justify-self: left;
+    }
+
+    .credit {
+        margin-top: 20px;
+    }
+
+    .rating {
+        margin-top: 10px;
+    }
+}

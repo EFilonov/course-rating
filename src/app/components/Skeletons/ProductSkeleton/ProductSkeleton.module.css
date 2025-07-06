@@ -1,0 +1,33 @@
+.skTitle {
+    width: 55%;
+    margin-top: 40px;
+}
+
+.skeletonCardMain {
+    display: grid;
+}
+
+.skDivider1 {
+    margin: 20px 0;
+}
+
+.skAdvTitle {
+    width: 65%;
+}
+
+.skContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+    margin-top: 20px;
+}
+
+.skDivider2 {
+    margin: 20px 0;
+}
+
+.skBtns {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 20px;
+}

@@ -1,10 +1,9 @@
-import CourcesSkeleton from "@/app/components/CourcesSkeleton/CourcesSkeleton";
+import ProductSkeleton from "@/app/components/Skeletons/ProductSkeleton/ProductSkeleton";
 
 export default function Loading (): React.JSX.Element  {
   return (
     <>
-    <h1>LOADING</h1>
-    <CourcesSkeleton/>
+      <ProductSkeleton/>
     </>
     
   );

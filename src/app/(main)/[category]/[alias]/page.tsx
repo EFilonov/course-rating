@@ -12,6 +12,8 @@ import ProductsList from "@/app/components/ProductsList/ProductsList";
 import { Metadata } from "next";
 
 import style from './DinamicPage.module.css';
+import ProductSkeleton from "@/app/components/Skeletons/ProductSkeleton/ProductSkeleton";
+
 
 const { fetchPage, fetchMenu, fetchProducts } = useHttp();
 
@@ -89,6 +91,7 @@ const CourcesPage = async ({ params }: { params: Promise<{category: string, alia
         
     return (
         <div className={style.pageWrapper}>
+            
             <DynamicPageTitle count={products.length} title={page.title}/>
             <ProductsList className={style.products} products = {products} />
 

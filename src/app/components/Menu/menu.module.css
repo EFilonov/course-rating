@@ -23,7 +23,7 @@
 }
 
 .firstLevel {
-    /* user-select: none; */
+    user-select: none;
     margin-top: 20px;
     display: block;
 }
@@ -43,6 +43,7 @@
 }
 
 .secondLevel {
+    user-select: none;
     display: block;
     margin: 0 12px 0;
     border-left: 1px solid var(--black);
@@ -50,13 +51,14 @@
 }
 
 .secondLevelItem {
+    user-select: none;
     list-style: none;
     cursor: pointer;
     margin: 5px 0;
 }
 
 .secondLevelItemText {
-    /* user-select: none; */
+    user-select: none;
     text-transform: uppercase;
     font-weight: 400;
     font-size: 12px;
@@ -64,6 +66,7 @@
 }
 
 .thirdLevel {
+    user-select: none;
     display: block;
     margin: 10px 0;
     padding-left: 10px;
@@ -75,7 +78,7 @@
 }
 
 .thirdLevelItemText {
-    /* user-select: none; */
+    user-select: none;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

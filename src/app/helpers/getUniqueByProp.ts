@@ -1,4 +1,4 @@
-export const getUniqueByProp = <T extends Record<string, string>>(array: T[], prop: string): T[] => {
+export const getUniqueByProp = <T>(array: T[], prop: keyof T): T[] => {
   const seen = new Set<string>();
 
   return array.filter(item => {

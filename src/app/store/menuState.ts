@@ -10,20 +10,22 @@ const { fetchMenu, fetchProducts } = useHttp();
 const FLAT_MENU_KEY = 'flatMenuCache';
 const PRODUCTS_CACHE_KEY = 'productsCache';
 
-
+const isBrowser = typeof window !== "undefined" && typeof sessionStorage !== "undefined";
 
 const getFlatMenu = async (): Promise<FlatMenuState[]> => {
-    // 1. Пробуем взять из sessionStorage
-    const cached = sessionStorage.getItem(FLAT_MENU_KEY) || null;
-    if (cached) {
-        try {
-            const data = JSON.parse(cached) as FlatMenuState[];
-            if (Array.isArray(data) && data.length > 0) {
-                console.log('Using flatMenu from sessionStorage');
-                return data;
+    if (isBrowser) {
+        // 1. Пробуем взять из sessionStorage
+        const cached = sessionStorage.getItem(FLAT_MENU_KEY);
+        if (cached) {
+            try {
+                const data = JSON.parse(cached) as FlatMenuState[];
+                if (Array.isArray(data) && data.length > 0) {
+                    console.log('Using flatMenu from sessionStorage');
+                    return data;
+                }
+            } catch (e) {
+                // ignore parse error
             }
-        } catch (e) {
-            // ignore parse error
         }
     }
 
@@ -51,7 +53,9 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
             });
         });
         // 3. Кладём в sessionStorage
-        sessionStorage.setItem(FLAT_MENU_KEY, JSON.stringify(flat));
+        if (isBrowser) {
+            sessionStorage.setItem(FLAT_MENU_KEY, JSON.stringify(flat));
+        }
         return flat;
     })
     .catch((error) => {
@@ -61,18 +65,20 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
 };
 
 const getAllProducts = async (flatMenu: FlatMenuState[]) => {
-    // 1. Пробуем взять из sessionStorage
-    const cached = sessionStorage.getItem(PRODUCTS_CACHE_KEY) || null;
-    if (cached) {
-        try {
-            const data = JSON.parse(cached) as Array<FlatMenuState & { products: ProductModel[] }>;
+    if (isBrowser) {
+        // 1. Пробуем взять из sessionStorage
+        const cached = sessionStorage.getItem(PRODUCTS_CACHE_KEY);
+        if (cached) {
+            try {
+                const data = JSON.parse(cached) as Array<FlatMenuState & { products: ProductModel[] }>;
 
-            if (Array.isArray(data) && data.length > 0) {
-                console.log('Using productsCache from sessionStorage');
-                return data;
+                if (Array.isArray(data) && data.length > 0) {
+                    console.log('Using productsCache from sessionStorage');
+                    return data;
+                }
+            } catch (e) {
+                // ignore parse error
             }
-        } catch (e) {
-            // ignore parse error
         }
     }
 
@@ -89,7 +95,9 @@ const getAllProducts = async (flatMenu: FlatMenuState[]) => {
         })
     ).then((productsWithMenu) => {
         // 3. Кладём в sessionStorage
-        sessionStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(productsWithMenu));
+        if (isBrowser) {
+            sessionStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(productsWithMenu));
+        }
         return productsWithMenu;
     }).catch((error) => {
         console.error('Error fetching all products:', error);
@@ -113,7 +121,6 @@ export const menuState = create<MenuState>((set) => ({
                 const productsWithMenu = await getAllProducts(flatMenu);
                 const allProducts = productsWithMenu.flatMap(item => item.products);
                 set({ allProducts, loading: false });
-                // return allProducts;
             } catch (error) {
                 console.error('Error fetching menus:', error);
                 set({ error: error instanceof Error ? error.message : 'Ошибка загрузки', loading: false });
