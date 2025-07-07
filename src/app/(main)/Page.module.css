@@ -51,6 +51,29 @@
     color: var(--primary);
 }
 
+.prductHdrItem {
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mouseTooltip {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    display: 'none';
+    z-index: 9999;
+    pointer-events: 'none';
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(40px);
+}
+
+
 @media (max-width: 765px) {
     .mainThemeButton {
         display: none;

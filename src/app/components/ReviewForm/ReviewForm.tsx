@@ -43,7 +43,7 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
     return (
        <> 
         <form onSubmit={handleSubmit(onSubmit)} 
-            id = {productId}
+            id = {`${productId}=review`}
             className={style.reviewForm}>
             <div className= {style.rateFeedback} >Оценка</div>
             <Controller

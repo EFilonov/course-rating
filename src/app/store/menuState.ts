@@ -119,7 +119,12 @@ export const menuState = create<MenuState>((set) => ({
                 set({ flatMenu });
                 // Асинхронно получаем продукты и кладём их в стор
                 const productsWithMenu = await getAllProducts(flatMenu);
-                const allProducts = productsWithMenu.flatMap(item => item.products);
+                const allProducts = productsWithMenu.flatMap(item =>
+                    item.products.map(product => ({
+                        ...product,
+                        href: item.href
+                    }))
+                );
                 set({ allProducts, loading: false });
             } catch (error) {
                 console.error('Error fetching menus:', error);

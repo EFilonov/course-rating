@@ -25,6 +25,7 @@ export interface ProductModel {
   reviews: Review[]
   reviewCount: number
   reviewAvg: number
+  href?: string // Added for flat menu items
   
 }
 

@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { sortState } from "@/app/store/sortState";
 import ProductHeader from "../ProductHeader/ProductHeader";
 import DetailsModal from "../DetailsModal/DetailsModal";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import style from './Product.module.css';
 
@@ -18,15 +18,14 @@ import style from './Product.module.css';
 const Product = motion.create(forwardRef(({ className, product }: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element => {
 	const { sortType } = sortState();
 	const router = useRouter();
+	const path = usePathname();
 
 	const [isVisibleReview, setIsVisibleReview] = useState<boolean>(false);
 	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	useEffect(() => {
 		setIsVisibleReview(false);
-
-		typeof window !== "undefined" ? window.scrollTo({ top: 0, behavior: 'smooth' }) : null;
-
+		// (typeof window !== "undefined" && path.includes('#'))  ? window.scrollTo({ top: 0, behavior: 'smooth' }) : null;
 	}, [sortType]);
 
 	const toggleVisibleReview = (): void => {
@@ -36,7 +35,7 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 	const onStarButtonClick = () => {
 			setIsVisibleReview(true);
 			setTimeout(() => {
-				router.push(`#${product._id}`);
+				router.push(`#${product._id}=review`);
 			}, 150);
 	};
 
@@ -46,7 +45,7 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 	
 	return (
 		<div className={cn(style.productWrapper, className)} ref={layoutRef}>
-			<Card className={style.product}>
+			<Card className={style.product} id = {product._id} >
 				<ProductHeader className={style.pHeader} onClick={onStarButtonClick} product={product} />
 				<Divider className={style.hr} />
 				<div className={style.description}>{product.description}</div>

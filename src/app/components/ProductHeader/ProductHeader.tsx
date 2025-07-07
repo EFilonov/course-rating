@@ -11,6 +11,7 @@ import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
 
 
 import style from './ProductHeader.module.css';
+import { ta } from "date-fns/locale";
 
 
 const ProductHeader = ({ onClick, className, product }: ProductProps ): JSX.Element => {
@@ -46,6 +47,7 @@ const ProductHeader = ({ onClick, className, product }: ProductProps ): JSX.Elem
 			<div className={style.rating}>
 				<span className="visualyHidden">{product.initialRating || 0}</span>
 				<button aria-label="Go to reviews"
+					tabIndex={onClick ? 0 : -1}
 					className={style.starButton}
 					onClick={onClick}>
 					<Star value={product.initialRating || 0} className={style.star} />

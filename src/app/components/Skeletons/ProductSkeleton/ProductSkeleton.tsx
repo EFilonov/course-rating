@@ -27,6 +27,23 @@ const ProductSkeleton = (): JSX.Element => {
                     </div>
                 </div>
             </Card>
+            <Card >
+                <ProductHeaderSkeleton/>
+                <div className={style.skeletonCardMain}>
+                <Divider className={style.skDivider1}/>
+                    <Skeleton height={30} borderRadius={5} className={style.skAdvTitle}/> 
+                <div className={style.skContent}>
+                    <Skeleton  height={100} borderRadius={5} className={style.skHh}/>
+                    <Skeleton  height={100} borderRadius={5} className={style.skAdvantage}/>
+                </div>
+                <Divider className={style.skDivider2}/>
+                <div className={style.skBtns}>
+                    <Skeleton width={75} height={40} borderRadius={5} className={style.skBtn}/>
+                    <Skeleton width={75} height={40} borderRadius={5} className={style.skBtn}/>
+                    </div>
+                </div>
+            </Card>
+            
         </SkeletonTheme> 
     );
 };
