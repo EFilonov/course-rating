@@ -1,0 +1,82 @@
+.mainWrapper {
+    margin-top: 24px;
+}
+
+
+.mainTitle {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+
+.heroDivider {
+    margin: 20px 0;
+}
+
+.heroCard {
+    overflow: hidden;
+}
+
+
+.mainFilterTitle {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* color: var(--black); */
+}
+
+.mainFilter {
+    margin-top: 15px;
+}
+
+.mainFilterList {
+
+    list-style: none;
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 10px;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.mainFilterButton {
+    color: black;
+    background: none;
+    /* font-size: clamp(14px, 2vw, 16px); */
+}
+
+.filterIcon {
+    color: var(--primary);
+}
+
+.prductHdrItem {
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mouseTooltip {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    display: 'none';
+    z-index: 9999;
+    pointer-events: 'none';
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(40px);
+}
+
+
+@media (max-width: 765px) {
+    .mainThemeButton {
+        display: none;
+    }
+
+}

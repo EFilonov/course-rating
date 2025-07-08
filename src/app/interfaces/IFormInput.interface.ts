@@ -4,4 +4,5 @@ export interface IFormInput extends Record<string, unknown> {
     description?: string;
     id?: string;
     rating?: number;
+    search?: string;
 }

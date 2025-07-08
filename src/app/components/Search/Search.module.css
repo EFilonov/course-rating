@@ -11,6 +11,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+.active {
+    border: 1px solid var(--red);
+}
+
 .searchInput {
     border: none;
     outline: transparent;
@@ -56,6 +60,12 @@
 .search:has(.searchInput:focus) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 
+}
+
+.errorMessage {
+    color: var(--red);
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 [data-theme='dark'] .searchInput {

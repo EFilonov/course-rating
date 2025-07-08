@@ -22,7 +22,8 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
         rating: 0,
         productId: ''
     };
-    const { register, handleSubmit, control, reset, setFocus, formState, formState : {isSubmitSuccessful, errors} } = useForm<IFormInput>({defaultValues: initialState });
+    const { register, handleSubmit, control, reset, formState, formState : {isSubmitSuccessful, errors} } = useForm<IFormInput>({defaultValues: initialState });
+    
     const onSubmit = (data: IFormInput) => {
         console.log({...data, productId: productId}, JSON.stringify({...data, id: productId}));
         alert(`Отзыв отправлен на модерацию', ${JSON.stringify({...data, id: productId}, null, 2)}`);
