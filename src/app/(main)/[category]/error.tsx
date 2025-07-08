@@ -14,29 +14,28 @@ export default function Error({ error }: ErrorInterface, reset: () => void): Rea
   };
 
   return (
-    <div style={{
+    <main style={{
       display: 'flex',
       flexDirection: 'column',
-      height: '55vh',
+      maxHeight: '75vh',
       paddingBottom: '28px',
       gridArea: 'main', // важно для сетки!
     }}>
+        
       <h3 style={{
         marginTop: '28px',
         fontSize: 'clamp(16px, 3vw, 12px)',
         fontWeight: 200
       }}>{errorInstance.message}</h3>
-
       <div style={{
         display: 'flex',
         justifyContent: 'flex-start',
         marginTop: '20px',
         gap: '24px'
       }}>
-         <Button onClick={onGoToMain} appearance='blue'>На главную</Button>
-      <Button onClick={onGoToPrevious} appearance='blue'>На предыдущую</Button>
+        <Button onClick={onGoToMain} appearance='blue'>На главную</Button>
+        <Button onClick={onGoToPrevious} appearance='blue'>На предыдущую</Button>
       </div>
-     
       <img
         src="/images/error_bg.png"
         alt="Error Background"
@@ -45,7 +44,7 @@ export default function Error({ error }: ErrorInterface, reset: () => void): Rea
           objectFit: 'cover'
         }}
       />
-    </div>
-
+      
+    </main>
   );
 }

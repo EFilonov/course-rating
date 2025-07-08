@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 export interface HttpService {
     request<T extends object | object[]>(
         url: string,
@@ -24,8 +26,9 @@ export const httpService = (): HttpService => {
         });
 
         if (!response.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-        }
+            notFound();
+            // throw new Error(`Could fetch ${url}, status: ${response.status}`);
+        } 
 
         const data: T = await response.json();
         // console.log(`Response from ${url}:`, data); // для отладки, можно убрать в продакшн');
