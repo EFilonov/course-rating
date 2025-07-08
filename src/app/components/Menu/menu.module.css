@@ -16,7 +16,7 @@
 .firstLevelItem:hover,
 .firstLevelItem:hover img,
 .firstLevelItem:hover .firstLevelItemText {
-    /* user-select: none; */
+    user-select: none;
     filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%) contrast(101%);
     color: var(--primary-hover);
 

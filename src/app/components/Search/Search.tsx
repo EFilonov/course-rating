@@ -8,6 +8,7 @@ import { IFormInput } from "@/app/interfaces/IFormInput.interface";
 
 import style from './Search.module.css';
 
+
 const Search = ({  children, onMobileMenuClose, className, ...props }: SearchProps): JSX.Element  => {
    
     const router = useRouter(); 
@@ -71,7 +72,6 @@ const Search = ({  children, onMobileMenuClose, className, ...props }: SearchPro
             <span className={style.errorMessage}>{errors.search.message}</span>
             )}
         </div>
-        
     );
 };
 export default Search;

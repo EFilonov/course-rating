@@ -2,7 +2,6 @@
     margin-top: 30px;
 }
 
-
 .searchHeader {
     font-size: clamp(22px, 2vw, 26px);
     display: grid;
@@ -10,13 +9,10 @@
     grid-template-rows: auto;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .searchCard {
     margin-top: 20px;
-    /* padding: 20px; */
-
 }
 
 .empty {

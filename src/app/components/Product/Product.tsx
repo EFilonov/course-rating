@@ -25,7 +25,6 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 
 	useEffect(() => {
 		setIsVisibleReview(false);
-		// (typeof window !== "undefined" && path.includes('#'))  ? window.scrollTo({ top: 0, behavior: 'smooth' }) : null;
 	}, [sortType]);
 
 	const toggleVisibleReview = (): void => {

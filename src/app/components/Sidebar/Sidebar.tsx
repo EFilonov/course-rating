@@ -28,7 +28,6 @@ export const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
 				<Suspense fallback={<div>Some loading....</div>}>
 					<Search onMobileMenuClose={()=>{}}/>
 				</Suspense>
-				
 				<Menu />
 			</div>
 	);

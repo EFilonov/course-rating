@@ -9,9 +9,9 @@ import { MenuProps } from './Menu.props';
 import { usePathname } from 'next/navigation';
 import { menuState } from '@/app/store/menuState';
 import { getUniqueByProp } from '@/app/helpers/getUniqueByProp';
+import { FlatMenuState } from '@/app/interfaces/menuState.interface';
 
 import style from './Menu.module.css';
-import { FlatMenuState } from '@/app/interfaces/menuState.interface';
 
 
 const Menu = ({className}: MenuProps): React.JSX.Element => {

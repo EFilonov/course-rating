@@ -3,7 +3,6 @@
 import Button from "@/app/components/Button/Button";
 import { ErrorInterface } from "@/app/interfaces/Error.interface";
 
-
 export default function Error({ error }: ErrorInterface, reset: () => void): React.JSX.Element {
   const errorInstance = new globalThis.Error(error?.message || 'An error occurred');
   const onGoToMain = () => {

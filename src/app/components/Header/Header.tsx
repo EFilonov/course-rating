@@ -8,7 +8,7 @@ import { motion } from 'motion/react';
 import Search from '../Search/Search';
 import Menu from '../Menu/Menu';
 import cn from 'classnames';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import style from './Header.module.css';
@@ -17,7 +17,6 @@ import style from './Header.module.css';
 export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 
 	const pathname = usePathname();
-	// const searchParams = useSearchParams();
 	const router = useRouter();
 	const [isOpened, setIsOpened] = useState<boolean>(false);
 	
@@ -36,6 +35,7 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 		if (info.offset.x < -50) setIsOpened(false);
 		if (info.offset.x > 50) goToMainPage();
 	};
+	
 	
 	return (
 		<>

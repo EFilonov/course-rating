@@ -8,18 +8,6 @@ const withBundleAnalyzer = initializeBundleAnalyzer({
 });
 
 
-// const nextConfig: NextConfig = {
-//     output: 'standalone',
-//     turbopack: {
-//         rules: {
-//             '*.svg': {
-//                 loaders: ['@svgr/webpack'],
-//                 as: '*.js',
-//             },
-//         },
-//     },
-// };
-
 const nextConfig: NextConfig = {
   // output: 'export',
   turbopack: {

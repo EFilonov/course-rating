@@ -5,6 +5,7 @@ import splitByThree from "@/app/helpers/splitByThree";
 
 import style from './HhData.module.css';
 
+
 const HhData = ({ className, ...props }: HhDataProps): JSX.Element  => {
     return (
         <div className={style.hh} >

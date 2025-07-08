@@ -1,7 +1,3 @@
-/* .productWrapper {
-    position: relative;
-} */
-
 .productHeader {
     display: grid;
     grid-template-columns:

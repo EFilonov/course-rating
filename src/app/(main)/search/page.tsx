@@ -1,6 +1,5 @@
 'use client';
 import ThemeButton from "@/app/components/ThemeButton/ThemeButton";
-import Card from "@/app/components/Card/Card";
 import SearchResults from "@/app/components/SearchResults/SearchResults";
 import { Suspense } from "react";
 import MainPageSkeleton from "@/app/components/Skeletons/MainPageSkeleton/MainPageSkeleton";

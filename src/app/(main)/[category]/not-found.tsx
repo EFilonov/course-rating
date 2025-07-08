@@ -44,7 +44,6 @@ export default function Error({ error }: ErrorInterface, reset: () => void): Rea
           objectFit: 'cover'
         }}
       />
-      
     </main>
   );
 }

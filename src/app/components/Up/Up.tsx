@@ -6,6 +6,7 @@ import { useScrollY } from "@/app/hooks/useScrollY";
 
 import style from './Up.module.css';
 
+
 const Up = (): JSX.Element  => {
     const controls = useAnimation();
     const y = useScrollY();

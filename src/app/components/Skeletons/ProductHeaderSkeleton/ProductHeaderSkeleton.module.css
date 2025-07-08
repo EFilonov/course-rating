@@ -11,12 +11,12 @@
 
 .image {
     grid-area: image;
-    /* margin-right: 20px; */
+
 }
 
 .titleTags {
     grid-area: titleTags;
-    /* margin-right: 20px; */
+
 }
 
 .tags {
@@ -27,7 +27,7 @@
     grid-area: prices;
     width: 90%;
     justify-self: right;
-    /* margin-right: 35px; */
+
 }
 
 .oldPrice {

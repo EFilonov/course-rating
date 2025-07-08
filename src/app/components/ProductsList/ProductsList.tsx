@@ -8,10 +8,10 @@ import { sortProducts } from "@/app/helpers/sortFn";
 
 import style from './ProductsList.module.css';
 
+
 const ProductsList = ({ className, products }: ProductsListProps): JSX.Element => {
     const { sortType } = sortState();
-
-
+    
     return (
         <ul className={cn(style.products, className)}>
             {sortProducts(products, sortType)?.map((product) => {

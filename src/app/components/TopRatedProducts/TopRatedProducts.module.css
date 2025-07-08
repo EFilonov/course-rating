@@ -2,7 +2,6 @@
     margin-top: 24px;
 }
 
-
 .mainTitle {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -22,7 +21,6 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    /* color: var(--black); */
 }
 
 .mainFilter {
@@ -44,7 +42,6 @@
 .mainFilterButton {
     color: black;
     background: none;
-    /* font-size: clamp(14px, 2vw, 16px); */
 }
 
 .filterIcon {

@@ -10,7 +10,6 @@
 
 .container {
     height: 72px;
-    /* padding: 0 16px; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;

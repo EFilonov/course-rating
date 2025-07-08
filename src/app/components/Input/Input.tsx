@@ -1,7 +1,7 @@
 import {InputProps} from "./Input.props";
 import {JSX, ForwardedRef, forwardRef } from "react";
-
 import cn from 'classnames';
+
 import style from './Input.module.css';
 
 const Input = ({ className, id, validationMessage, ...props }: InputProps ): JSX.Element  => {

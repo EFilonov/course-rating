@@ -1,7 +1,7 @@
 import {TagProps} from "./Tag.props";
 import {JSX} from "react";
-
 import cn from 'classnames';
+
 import style from './Tag.module.css';
 
 

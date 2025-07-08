@@ -9,6 +9,7 @@ import ThemeButton from "../ThemeButton/ThemeButton";
 
 import style from './DynamicPageTitle.module.css';
 
+
 const DynamicPageTitle = ({ className, title, count }: DynamicPageTitleProps): JSX.Element => {
     const { sortType, setSortType } = sortState();
 

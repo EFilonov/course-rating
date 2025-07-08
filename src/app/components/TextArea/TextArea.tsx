@@ -1,8 +1,9 @@
 import {TextAreaProps} from "./TextArea.props";
 import {ForwardedRef, forwardRef, JSX} from "react";
-
 import cn from 'classnames';
+
 import style from './TextArea.module.css';
+
 
 const TextArea = ({ className, validationMessage, ...props }: TextAreaProps): JSX.Element  => {
     return (

@@ -10,6 +10,7 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 import style from './Review.module.css';
 
+
 const Review = memo(({ className,  reviews, productId}: ReviewProps): JSX.Element  => {
     
     return (
@@ -41,8 +42,6 @@ const Review = memo(({ className,  reviews, productId}: ReviewProps): JSX.Elemen
             })}
             <ReviewForm productId={productId}/>
        </div>
-
-
     );
 });
 

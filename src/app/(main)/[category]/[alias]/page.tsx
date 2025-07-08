@@ -57,7 +57,6 @@ export const generateMetadata = async ({ params }: { params: Promise<{category: 
     };
 };
 
-
 interface Path {
         category: string;
         alias: string;
@@ -87,8 +86,6 @@ const CourcesPage = async ({ params }: { params: Promise<{category: string, alia
 
     if (!products ) { notFound();}
 
-    
-        
     return (
         <div className={style.pageWrapper}>
             

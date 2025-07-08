@@ -1,6 +1,5 @@
 import {CardProps} from "./Card.props";
 import {JSX} from "react";
-
 import cn from 'classnames';
 import style from './Card.module.css';
 

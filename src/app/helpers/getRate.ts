@@ -1,6 +1,5 @@
 import { ProductModel } from "../interfaces/product.interface";
 
-
 export const getRate = (product: ProductModel) => {
         const roundToOneDecimal = (val: number): number => {
             return Math.round(val * 10) / 10;

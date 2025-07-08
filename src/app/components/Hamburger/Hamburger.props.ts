@@ -4,6 +4,4 @@ export interface HamburgerProps extends DetailedHTMLProps<ButtonHTMLAttributes<H
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     className?: string;
     active?: boolean;
-    
-    
 }

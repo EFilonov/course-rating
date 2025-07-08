@@ -5,7 +5,6 @@ import TopRatedProducts from "../TopRatedProducts/TopRatedProducts";
 
 import Card from "../Card/Card";
         
-
 const SearchResults = (): React.JSX.Element => {
     const allProducts = menuState((state) => state.allProducts);
     const searchParams = useSearchParams();

@@ -14,8 +14,7 @@ export const useHttp = () => {
     const fetchProducts = (category: string): Promise<ProductModel[]> => request(API.product.find, 'POST',JSON.stringify({
     category: category,
     limit: 10,
-  }) 
-        );
+    }));
 
     return  { fetchMenu, fetchPage, fetchProducts};
 };
