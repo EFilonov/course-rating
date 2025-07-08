@@ -69,6 +69,7 @@ const Page =  ()  => {
           { loading ? <MainPageSkeleton/> : <TopRatedProducts products={allProducts} filter={filter}/> }
         </Card>
       </section>
+      <div className={style.empty}></div>
     </div>
   );
 };

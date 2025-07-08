@@ -44,7 +44,6 @@
 .mainFilterButton {
     color: black;
     background: none;
-    /* font-size: clamp(14px, 2vw, 16px); */
 }
 
 .filterIcon {
@@ -73,6 +72,9 @@
     backdrop-filter: blur(40px);
 }
 
+.empty {
+    margin-top: 28px;
+}
 
 @media (max-width: 765px) {
     .mainThemeButton {

@@ -1,21 +1,51 @@
 'use client';
 
-interface ErrorProps {
-  error?: {
-    message?: string;
-    [key: string]: string | undefined;
-  };
-}
+import Button from "@/app/components/Button/Button";
+import { ErrorInterface } from "@/app/interfaces/Error.interface";
 
-export default function Error({ error }: ErrorProps, reset: () => void): React.JSX.Element {
+
+export default function Error({ error }: ErrorInterface, reset: () => void): React.JSX.Element {
   const errorInstance = new globalThis.Error(error?.message || 'An error occurred');
-  
+  const onGoToMain = () => {
+    window.location.href = '/';
+  };
+  const onGoToPrevious = () => {
+    window.history.back();
+  };
+
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-red-500">Error</div>
-      <h1 className="text-red-500">{errorInstance.message}</h1>
-      <button onClick={() => reset()} style = {{width: '60px', height: '20px'}} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"> RESET </button>
-        
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '55vh',
+      paddingBottom: '28px',
+      gridArea: 'main', // важно для сетки!
+    }}>
+      <h3 style={{
+        marginTop: '28px',
+        fontSize: 'clamp(16px, 3vw, 12px)',
+        fontWeight: 200
+      }}>{errorInstance.message}</h3>
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        marginTop: '20px',
+        gap: '24px'
+      }}>
+         <Button onClick={onGoToMain} appearance='blue'>На главную</Button>
+      <Button onClick={onGoToPrevious} appearance='blue'>На предыдущую</Button>
+      </div>
+     
+      <img
+        src="/images/error_bg.png"
+        alt="Error Background"
+        style={{
+          width: '100%',
+          objectFit: 'cover'
+        }}
+      />
     </div>
+
   );
 }

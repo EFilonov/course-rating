@@ -19,8 +19,6 @@ const SearchPage = (): React.JSX.Element => {
                     <SearchResults/>
                 </Suspense>
             <div className={style.empty}></div>    
-                
-            
         </div>
     );
 };
