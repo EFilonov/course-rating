@@ -9,7 +9,7 @@ const withBundleAnalyzer = initializeBundleAnalyzer({
 
 
 const nextConfig: NextConfig = {
-  // output: 'export',
+  output: 'standalone',
   turbopack: {
     rules: {
       '*.svg': {
