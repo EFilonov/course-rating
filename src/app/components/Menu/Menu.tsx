@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect, use } from 'react';
-import {MenuLvlActive } from '../../interfaces/menu.interface';
+import { MenuLvlActive } from '../../interfaces/menu.interface';
 import cn from 'classnames';
 import Link from 'next/link';
 import { firstLevelMenu } from './constants/firstLevelMenu';
 import { motion } from "motion/react";
-import { MenuProps } from './nu.props';
+import { MenuProps } from './Menu.props';
 import { usePathname } from 'next/navigation';
 import { menuState } from '@/app/store/menuState';
 import { getUniqueByProp } from '@/app/helpers/getUniqueByProp';

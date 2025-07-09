@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ThemeButton } from '../ThemeButton/ThemeButton';
 import { motion } from 'framer-motion';
 import Search from '../Search/Search';
-import {Menu} from '../Menu/nu';
+import {Menu} from '../Menu/Menu';
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
