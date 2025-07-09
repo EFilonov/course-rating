@@ -5,7 +5,7 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { firstLevelMenu } from './constants/firstLevelMenu';
 import { motion } from "motion/react";
-import { MenuProps } from './Menu.props';
+import { MenuProps } from './nu.props';
 import { usePathname } from 'next/navigation';
 import { menuState } from '@/app/store/menuState';
 import { getUniqueByProp } from '@/app/helpers/getUniqueByProp';
