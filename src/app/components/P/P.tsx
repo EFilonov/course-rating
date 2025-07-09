@@ -2,7 +2,7 @@ import {PProps} from "./P.props";
 import {JSX} from "react";
 import cn from 'classnames';
 
-import style from './p.module.css';
+import style from './P.module.css';
 
 
 const P = ({ fontSize = 'regular', className, children, ...props }: PProps): JSX.Element  => {

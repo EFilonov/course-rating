@@ -31,4 +31,3 @@ export const ThemeButton = ({ className }: ThemeButtonProps) => {
     );
 };
 
-export default ThemeButton;

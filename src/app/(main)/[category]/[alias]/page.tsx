@@ -1,6 +1,6 @@
 import { useHttp } from "@/app/hooks/useHttp";
 import { notFound } from "next/navigation";
-import { FirstLevelMenuItem, MenuItem, PageItem } from "@/app/interfaces/menu.interface";
+import {  MenuItem, PageItem } from "@/app/interfaces/menu.interface";
 import { firstLevelMenu } from "@/app/components/Menu/constants/firstLevelMenu";
 import Htag from "@/app/components/Htag/Htag";
 import Tag from "@/app/components/Tag/Tag";

@@ -2,7 +2,7 @@
 import Card from '../components/Card/Card';
 import Divider from '../components/Divider/Divider';
 import Htag from '../components/Htag/Htag';
-import ThemeButton from '../components/ThemeButton/ThemeButton';
+import { ThemeButton } from '../components/ThemeButton/ThemeButton';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import StarsIcon from '@mui/icons-material/Stars';

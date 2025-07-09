@@ -1,5 +1,5 @@
 'use client';
-import ThemeButton from "@/app/components/ThemeButton/ThemeButton";
+import { ThemeButton } from "@/app/components/ThemeButton/ThemeButton";
 import SearchResults from "@/app/components/SearchResults/SearchResults";
 import { Suspense } from "react";
 import MainPageSkeleton from "@/app/components/Skeletons/MainPageSkeleton/MainPageSkeleton";

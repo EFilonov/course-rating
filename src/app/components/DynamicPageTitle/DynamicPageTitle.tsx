@@ -5,7 +5,7 @@ import Tag from "../Tag/Tag";
 import Htag from "../Htag/Htag";
 import { sortState} from "@/app/store/sortState";
 import cn from 'classnames';
-import ThemeButton from "../ThemeButton/ThemeButton";
+import {ThemeButton} from "../ThemeButton/ThemeButton";
 
 import style from './DynamicPageTitle.module.css';
 

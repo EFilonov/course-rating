@@ -14,7 +14,7 @@ import { FlatMenuState } from '@/app/interfaces/menuState.interface';
 import style from './Menu.module.css';
 
 
-const Menu = ({className}: MenuProps): React.JSX.Element => {
+export const Menu = ({className}: MenuProps): React.JSX.Element => {
     const path = usePathname();
     const flatMenu = menuState((state) => state.flatMenu);
 
@@ -155,4 +155,4 @@ const Menu = ({className}: MenuProps): React.JSX.Element => {
     );
 };
 
-export default Menu;
+
