@@ -31,8 +31,7 @@ const Page =  ()  => {
     setFilter(newValue);
   };
       
-  
-  return (
+return (
     <div className={style.mainWrapper}>
       <div className={style.mainTitle}>
         <Htag tag='h1'> Добро пожаловать в наш рейтинг курсов !</Htag>
@@ -40,7 +39,7 @@ const Page =  ()  => {
       </div>
       <section className={style.hero}>
         <Card  className={style.heroCard} >
-          <Htag tag='h3'>Здесь можно подобрать удобный для вас онлайн курс из широкого списка популярных категорий </Htag>
+          <Htag tag='h2'>Здесь можно подобрать удобный для вас онлайн курс из широкого списка популярных категорий </Htag>
           <Divider className={style.heroDivider} />
           <div className={style.mainFilterTitle} >Топ 30 лучших курсов по:</div>
           <BottomNavigation sx={

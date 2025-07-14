@@ -9,4 +9,9 @@ export const API = {
     review: {
         createDemo: process.env.NEXT_PUBLIC_DOMAIN + '/api/review/create-demo',
     }
+    
 };
+
+export const MONGO_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@efilonovcluster.qj9n1iu.mongodb.net/course_rating?retryWrites=true&w=majority&appName=EFilonovCluster`;
+
+

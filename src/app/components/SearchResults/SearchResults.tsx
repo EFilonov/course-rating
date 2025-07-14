@@ -1,9 +1,11 @@
+"use client";
 import { menuState } from "@/app/store/menuState";
 import { useSearchParams } from "next/navigation";
 import TopRatedProducts from "../TopRatedProducts/TopRatedProducts";
 
 
 import Card from "../Card/Card";
+import { use } from "react";
         
 const SearchResults = (): React.JSX.Element => {
     const allProducts = menuState((state) => state.allProducts);

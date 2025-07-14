@@ -1,11 +1,13 @@
 import { create } from "zustand";
 
 import { firstLevelMenu } from "../components/Menu/constants/firstLevelMenu";
-import { useHttp } from "../hooks/useHttp";
+
 import { FlatMenuState, MenuState } from "../interfaces/menuState.interface";
 import { ProductModel } from "../interfaces/product.interface"; // если ещё не импортирован
+import { httpClient } from "../services/httpClient";
+import { de } from "date-fns/locale";
 
-const { fetchMenu, fetchProducts } = useHttp();
+const { fetchMenu, fetchProducts } = httpClient();
 
 const FLAT_MENU_KEY = 'flatMenuCache';
 const PRODUCTS_CACHE_KEY = 'productsCache';
@@ -32,7 +34,9 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
     // 2. Если нет — делаем запрос
     const flat: FlatMenuState[] = [];
     return await Promise.all(
-        firstLevelMenu.map((firstCategory) => fetchMenu(firstCategory.id))
+        firstLevelMenu.map((firstCategory) => {
+           return fetchMenu(firstCategory.id);
+        })
     )
     .then((allMenus) => {
         allMenus.forEach((menuArr, index) => {
