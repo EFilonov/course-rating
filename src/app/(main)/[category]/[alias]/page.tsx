@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import { MenuItem, PageItem } from "@/app/interfaces/menu.interface";
 import { firstLevelMenu } from "@/app/components/Menu/constants/firstLevelMenu";
@@ -11,25 +10,17 @@ import DynamicPageTitle from "@/app/components/DynamicPageTitle/DynamicPageTitle
 import ProductsList from "@/app/components/ProductsList/ProductsList";
 import { Metadata } from "next";
 import { httpClient } from "@/app/services/httpClient";
+import { connectMongo } from "@/app/services/mongoService";
+import { Menu } from "@/app/dbSchemas/menuSchema";
+import { Page } from "@/app/dbSchemas/pageSchema";
+import { TopPageModel } from "@/app/interfaces/page.interface";
+import { Products } from "@/app/dbSchemas/productsSchema";
+import { ProductModel } from "@/app/interfaces/product.interface";
 
 import style from './DinamicPage.module.css';
-import { connectMongo } from "@/app/services/mongoService";
-
 
 
 const { fetchPage, fetchMenu, fetchProducts } = httpClient();
-
-// export const generateStaticParams = async () => {
-//     const menu = await fetchMenu(0);
-
-//     return menu.map(item =>{
-
-//         if (item.pages) {
-
-//             return item.pages.map(page => ({category: 'cources', alias: page.alias }));
-//         }
-//         return notFound();
-//     });
 
 export const generateMetadata = async ({ params }: { params: Promise<{ category: string, alias: string }> }): Promise<Metadata> => {
 
@@ -64,28 +55,60 @@ interface Path {
     category: string;
     alias: string;
 }
+const getMenuFromDborFetch = async (category: number): Promise<MenuItem[]> => {
+    await connectMongo();
+    const menuCategory = await Menu.find(
+        { firstCategory: category },
+        { menu: 1, _id: 0 });
+    if (!menuCategory || menuCategory.length === 0) {
+       return await fetchMenu(category);
+    }
+    return menuCategory[0].menu;
+};
+
+const getPageFromDborFetch = async (alias: string): Promise<TopPageModel> => {
+    await connectMongo();
+    const page = await Page.findOne(
+    { alias: alias },
+    { page: 1, _id: 0 });
+    if (!page || !page.pages || page.pages.length === 0) {
+        return await fetchPage(alias);;
+    }
+    return await page[0].page;
+};
+
+const getProductsFromDborFetch = async (category: string): Promise<ProductModel[]> => {
+    await connectMongo();
+    const products = await Products.find(
+        { category: category },
+        { products: 1, _id: 0 });
+    if (!products || products.length === 0) {
+        return await fetchProducts(category);
+    }
+    return products[0].products;
+};
+
 
 export const generateStaticParams = async () => {
+    
     const paths: Path[] = [];
     for (const firstCategory of firstLevelMenu) {
-        const menuCategory = await fetchMenu(firstCategory.id);
-        menuCategory.forEach((item: MenuItem) => {
+        const menuItems = await getMenuFromDborFetch(firstCategory.id);
+        menuItems.forEach((item: MenuItem) => {
             item.pages.forEach((page: PageItem) => {
-
                 paths.push({ category: firstCategory.route, alias: page.alias });
             });
         });
-    };
+    }
     return paths;
 };
 
 const CourcesPage = async ({ params }: { params: Promise<{ category: string, alias: string }> }) => {
     const { alias, category } = await params;
-
-    const page = await fetchPage(alias);
+    const page = await getPageFromDborFetch(alias);
     if (!page || !category) { notFound(); }
 
-    const products = await fetchProducts(page.category);
+    const products = await getProductsFromDborFetch(page.category);
 
     if (!products) { notFound(); }
 

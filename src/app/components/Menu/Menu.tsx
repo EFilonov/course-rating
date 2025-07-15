@@ -138,7 +138,7 @@ export const Menu = ({className}: MenuProps): React.JSX.Element => {
                 >
                     <Link href={`/${thirdLevelItem.firstLvl}/${thirdLevelItem.thirdLvl}`}>
                         <div 
-                            className={cn({[style.thirdLevelItemActive]: path.includes(thirdLevelItem.thirdLvl)})}
+                            className={cn({[style.thirdLevelItemActive]: path.split('/')[2] === thirdLevelItem.thirdLvl})}
                             tabIndex={0}>
                             <span className={style.thirdLevelItemText}>{thirdLevelItem.thirdLvlName}</span>
                         </div>
