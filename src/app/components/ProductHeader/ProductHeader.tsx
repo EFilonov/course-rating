@@ -7,21 +7,19 @@ import Star from "../Star/Star";
 import cn from "classnames";
 import Image from "next/image";
 import ImageBoundery from "../ErrorBounderies/ImageBoundery/ImageBoundery";
-import { fixDoubleHttp } from "@/app/helpers/fixDoubleHttp";
 
 
 import style from './ProductHeader.module.css';
-import { ta } from "date-fns/locale";
-
 
 const ProductHeader = ({ onClick, className, product }: ProductProps ): JSX.Element => {
-
+	const imageName: string | undefined = product.image ? product.image.split('/').pop() : 'error.gif';
+	
 	return (
 		<div className={cn(style.productHeader, className)}>
 			<div className={style.logo}>
 				<ImageBoundery>
 					<Image
-						src={fixDoubleHttp(product.image)}
+						src={`/images/products/${imageName}`}
 						alt={product.title}
 						quality={70}
 						priority={false}

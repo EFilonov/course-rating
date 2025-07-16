@@ -8,7 +8,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import StarsIcon from '@mui/icons-material/Stars';
 import PaidIcon from '@mui/icons-material/Paid';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { menuState } from '../store/menuState';
 import MainPageSkeleton from '../components/Skeletons/MainPageSkeleton/MainPageSkeleton';
 import TopRatedProducts from '../components/TopRatedProducts/TopRatedProducts';
@@ -30,6 +30,11 @@ const Page =  ()  => {
    const handleChangeFilter = (event: React.SyntheticEvent, newValue: string) => {
     setFilter(newValue);
   };
+  
+  useEffect(() => {
+    fetch("/api/getImages");
+  }, []);
+  
       
 return (
     <div className={style.mainWrapper}>

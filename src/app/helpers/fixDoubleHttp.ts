@@ -4,5 +4,6 @@ export function fixDoubleHttp(url: string): string {
     if (secondHttpIndex !== -1) {
         return url.slice(secondHttpIndex);
     }
+    
     return url;
 }

@@ -88,7 +88,6 @@ const getProductsFromDborFetch = async (category: string): Promise<ProductModel[
     return products[0].products;
 };
 
-
 export const generateStaticParams = async () => {
     
     const paths: Path[] = [];
@@ -104,14 +103,15 @@ export const generateStaticParams = async () => {
 };
 
 const CourcesPage = async ({ params }: { params: Promise<{ category: string, alias: string }> }) => {
+    
     const { alias, category } = await params;
     const page = await getPageFromDborFetch(alias);
     if (!page || !category) { notFound(); }
 
     const products = await getProductsFromDborFetch(page.category);
-
+        
     if (!products) { notFound(); }
-
+    
     return (
         <div className={style.pageWrapper}>
 
