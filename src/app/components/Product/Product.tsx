@@ -16,9 +16,9 @@ import style from './Product.module.css';
 
 
 const Product = motion.create(forwardRef(({ className, product }: ProductProps, layoutRef: ForwardedRef<HTMLDivElement>): JSX.Element => {
+	
 	const { sortType } = sortState();
 	const router = useRouter();
-	const path = usePathname();
 
 	const [isVisibleReview, setIsVisibleReview] = useState<boolean>(false);
 	const [openModal, setOpenModal] = useState<boolean>(false);
@@ -91,7 +91,7 @@ const Product = motion.create(forwardRef(({ className, product }: ProductProps, 
 							exit={{ opacity: 0, height: 0 }}
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 						>
-							<Review reviews={product.reviews} productId={product._id} />
+							<Review reviews={product.reviews} productId={product._id}/>
 						</motion.div>
 					</Card>)}
 			</AnimatePresence>

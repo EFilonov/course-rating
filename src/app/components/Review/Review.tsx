@@ -17,7 +17,7 @@ const Review = memo(({ className,  reviews, productId}: ReviewProps): JSX.Elemen
        <div className={cn(className, style.reviewWrapper)} > 
             {reviews.map((review) => {
                 return(
-                    <div key= {review._id} className={style.reviewHeader}>
+                    <div key= {review.createdAt} className={style.reviewHeader}>
                         <div className={style.reviewHeaderLeft}>
                             <Image src='/icons/Review/Review.svg'
                             alt='Review Icon'

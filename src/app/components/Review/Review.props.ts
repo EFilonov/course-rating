@@ -6,4 +6,5 @@ export interface ReviewProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEle
     reviews: Review[];
     className?: string;
     productId: string;
+    
 }

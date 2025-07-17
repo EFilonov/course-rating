@@ -20,14 +20,18 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
         name: '',
         title: '',
         description: '',
-        rating: 0,
-        productId: ''
+        rating: 0
     };
     const { register, handleSubmit, control, reset, formState, formState : {isSubmitSuccessful, errors} } = useForm<IFormInput>({defaultValues: initialState });
     
     const onSubmit = (data: IFormInput) => {
-        console.log({...data, productId: productId}, JSON.stringify({...data, id: productId}));
-        alert(`Отзыв отправлен на модерацию', ${JSON.stringify({...data, id: productId}, null, 2)}`);
+        fetch('/api/form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({...data, id: productId, createdAt: new Date()})
+        });
     };
 
     useEffect(() => {
