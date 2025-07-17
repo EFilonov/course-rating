@@ -61,6 +61,8 @@
 
     .mobileHeaderToMain {
         display: grid;
+        color: black;
+        font-weight: 600;
         grid-template-columns: 1fr auto;
         align-items: center;
         border-radius: 5px;
@@ -115,5 +117,6 @@
     [data-theme='dark'] .mobileMenuClose,
     [data-theme='dark'] .mobileHeaderToMain {
         background: transparent;
+        color: white;
     }
 }
