@@ -35,12 +35,12 @@ export const generateMetadata = async ({ params }: { params: Promise<{ category:
             title: page.metaTitle,
             description: page.metaDescription,
             images: '/images/openGraph.png',
-            url: `https://yourdomain.com/${category}/${alias}`, // настройка URL для Open Graph
+            url: `https://evgens-rating.vercel.app//${category}/${alias}`, // настройка URL для Open Graph
             type: 'article',
             siteName: 'Evgeniy Filonov portfolio',
             locale: 'ru_RU',
         },
-        metadataBase: new URL('https://yourdomain.com'), // настройка базового URL для метаданных
+        metadataBase: new URL('https://evgens-rating.vercel.app/'), // настройка базового URL для метаданных
         twitter: {
             card: 'summary_large_image',
             title: page.metaTitle,
