@@ -1,5 +1,5 @@
 import {ReviewFormProps} from "./ReviewForm.props";
-import {JSX, useEffect,  useState} from "react";
+import {JSX, memo, useEffect,  useState} from "react";
 import cn from 'classnames';
 import TextArea from "../TextArea/TextArea";
 import Input from "../Input/Input";
@@ -12,7 +12,7 @@ import { IFormInput } from "@/app/interfaces/IFormInput.interface";
 import style from './ReviewForm.module.css';
 
 
-const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
+const ReviewForm = memo(({productId, handleReviewListUpdate}: ReviewFormProps): JSX.Element  => {
     
     const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -38,6 +38,7 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
         if (isSubmitSuccessful) {
             setSubmitted(true);
             reset({...initialState});
+            handleReviewListUpdate();
         }
     },[ formState, reset]);
 
@@ -119,6 +120,6 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
 
 
     );
-};
+});
 
 export default ReviewForm;

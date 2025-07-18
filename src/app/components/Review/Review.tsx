@@ -1,5 +1,5 @@
 import {ReviewProps} from "./Review.props";
-import {JSX, memo} from "react";
+import {JSX, memo, useState, useCallback, useEffect} from "react";
 import cn from 'classnames';
 import Divider from "../Divider/Divider";
 import Image from "next/image";
@@ -10,12 +10,25 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 import style from './Review.module.css';
 
-
 const Review = memo(({ className,  reviews, productId}: ReviewProps): JSX.Element  => {
-    
+    const [reviewListUpdated, setReviewListUpdated] = useState(false);
+    const [reviewList, setReviewList] = useState(reviews);
+
+    // Memoize the handler to avoid unnecessary re-renders
+    const handleReviewListUpdate = useCallback(() => {
+        setReviewListUpdated(prev => !prev);
+    }, []);
+
+    useEffect(() => {
+        fetch(`/api/form?id=${productId}`)
+            .then(response => response.json())
+            .then(data => setReviewList(data))
+            .catch(error => console.error('Error fetching reviews:', error));
+    }, [reviewListUpdated, productId]);
+
     return (
        <div className={cn(className, style.reviewWrapper)} > 
-            {reviews.map((review) => {
+            {reviewList.map((review) => {
                 return(
                     <div key= {review.createdAt} className={style.reviewHeader}>
                         <div className={style.reviewHeaderLeft}>
@@ -40,7 +53,7 @@ const Review = memo(({ className,  reviews, productId}: ReviewProps): JSX.Elemen
                 </div>);
                 
             })}
-            <ReviewForm productId={productId}/>
+            <ReviewForm productId={productId} handleReviewListUpdate = {handleReviewListUpdate}/>
        </div>
     );
 });
