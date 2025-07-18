@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const productsSchema = new mongoose.Schema(
@@ -7,8 +6,8 @@ const productsSchema = new mongoose.Schema(
     products: Array
 }, 
 { 
-    strict: false,           // разрешает любые поля, даже не описанные в схеме
-    collection: "products"     // явно указывает коллекцию
+    strict: false,           // allows any fields, even those not described in the schema
+    collection: "products"   // explicitly specifies the collection
     }
 );
 

@@ -13,9 +13,9 @@ export async function downloadImages(links: string[], targetDir: string) {
         if (!fileName) continue;
         const filePath = path.join(targetDir, fileName);
 
-        // Проверяем, есть ли файл в папке
+        // Check if the file already exists in the folder
         if (fs.existsSync(filePath)) {
-            // Если файл уже есть, ничего не делаем
+            // If the file already exists, do nothing
             continue;
         }
 
@@ -24,7 +24,7 @@ export async function downloadImages(links: string[], targetDir: string) {
             client.get(link, (res) => {
                 if (res.statusCode !== 200) return reject(res.statusCode);
 
-                // Проверка, что это изображение
+                // Check that the response is an image
                 const contentType = res.headers['content-type'];
                 if (!contentType || !contentType.startsWith('image/')) {
                     return reject(`Not an image: ${link} (${contentType})`);

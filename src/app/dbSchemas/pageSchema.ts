@@ -6,8 +6,8 @@ const pageSchema = new mongoose.Schema(
     page: Object
 }, 
 { 
-    strict: false,           // разрешает любые поля, даже не описанные в схеме
-    collection: "page"     // явно указывает коллекцию
+    strict: false,           // allows any fields, even those not described in the schema
+    collection: "page"       // explicitly specifies the collection
     }
 );
 

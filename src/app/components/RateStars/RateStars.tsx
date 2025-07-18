@@ -16,7 +16,7 @@ const RateStars = ({ className, isEditable, errors, rate = 0, setRating, ...prop
 
     const [starLightPosition, setStarLightPosition] = useState<number>(rate);
 
-    useEffect(() => {                   //при сбросе формы
+    useEffect(() => {  //on form reset
         setStarLightPosition(rate || 0); 
     }, [rate]);
 

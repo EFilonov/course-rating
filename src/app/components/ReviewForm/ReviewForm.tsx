@@ -39,7 +39,6 @@ const ReviewForm = ({productId}: ReviewFormProps): JSX.Element  => {
             setSubmitted(true);
             reset({...initialState});
         }
-        // setFocus('name'); // Устанавливаем фокус mame ломает scrollintoView
     },[ formState, reset]);
 
     const onHandleSubmit = ():void  => {

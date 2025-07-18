@@ -35,7 +35,6 @@ export async function POST(req: Request) {
   await connectMongo();
   await ensureAliasUniqueIndex(); 
   const { alias } = await req.json();
-  console.log("alias из POST", alias);
 
   const page = await Page.findOne({ alias });
   if (page) {

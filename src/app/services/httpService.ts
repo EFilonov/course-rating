@@ -17,22 +17,22 @@ export const httpService = (): HttpService => {
         body: BodyInit | null = null,
         headers: HeadersInit = { 'Content-Type': 'application/json' }
     ): Promise<T> => {
-        // await new Promise(resolve => setTimeout(() => resolve(''), 2000)); // имитация задержки для отладки
+        // await new Promise(resolve => setTimeout(() => resolve(''), 2000)); // simulate delay for debugging
         const response = await fetch(url, { 
             method, 
             body, 
             headers,
-            cache: 'force-cache', // отключаем кэширование, если нужно
-            next: { revalidate: 3600} // если используется в Next.js, для кэширования ответа на 1 час 
+            //cache: 'force-cache', // disable caching if needed
+            ///next: { revalidate: 3600} // if used in Next.js, cache response for 1 hour 
         });
 
         if (!response.ok) {
             notFound();
-            // throw new Error(`Could fetch ${url}, status: ${response.status}`);
+            // throw new Error(`Could not fetch ${url}, status: ${response.status}`);
         } 
 
         const data: T = await response.json();
-        // console.log(`Response from ${url}:`, data); // для отладки, можно убрать в продакшн');
+        // console.log(`Response from ${url}:`, data); // for debugging, can be removed in production
 
         return data;
     };

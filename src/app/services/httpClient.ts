@@ -16,7 +16,6 @@ export const httpClient = () => {
             try {
                 const res = await fetch(`${baseUrl}/api/menu?category=${firstCategory}`);
                 if (res.ok) {
-                //    console.log('Меню получено c внутреннего API');
                 const data = await res.json();
                 return  data as MenuItem[];}
             } catch (error) {

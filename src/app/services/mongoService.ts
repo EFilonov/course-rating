@@ -10,7 +10,7 @@ let isConnected = false;
 
 export const connectMongo = async () => {
   if (isConnected || mongoose.connection.readyState === 1) {
-    // если соединение уже установлено, ничего не делаем
+    // if the connection is already established, do nothing
     return;
   }
   try {

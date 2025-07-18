@@ -27,24 +27,20 @@ export async function GET(req: NextRequest) {
     if (!menus || menus.length === 0) {
       return NextResponse.json([], { status: 404 });
     } else if (menus.length > 0) {
-      console.log('Меню пролуче из БД +++');
       return  NextResponse.json(menus[0]?.menu, { status: 200 });
     }
 }
 
 export async function POST(req: NextRequest) {
   const { request } = httpService();
-  console.log('Получаем меню c внешнего API');
   await connectMongo();
-  await ensureCategoryUniqueIndex(); // <-- добавлено
+  await ensureCategoryUniqueIndex();
   const { firstCategory } = await req.json();
   const existingMenu = await Menu.findOne({ firstCategory });
   if (existingMenu) { 
-    console.log('Меню найдено в базе данных');
     return NextResponse.json(existingMenu.menu, { status: 200 });
   } else {
     const menu = await request(API.topPage.find, 'POST', JSON.stringify({ firstCategory }));
-    console.log('Сохраняем новое меню в базу данных');
     await Menu.create({ firstCategory, menu });
     return NextResponse.json(menu, { status: 200 });
   }

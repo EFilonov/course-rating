@@ -17,7 +17,7 @@ const Star = ({ value, className }: StarProps): React.JSX.Element => {
                     strokeWidth="1"
                 />
             </svg>
-            {/* Заполненная часть звезды через div на фоне */}
+           
             <div className={style.background}
                 style={{width: `${fillPercent}%`}}
             >

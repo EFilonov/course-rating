@@ -35,7 +35,7 @@ export default [
 
   {
     rules: {
-      // ✅ Точка с запятой
+      // Semicolon
       'semi': ['warn', 'always'],
 
       // React rules
@@ -60,7 +60,7 @@ export default [
   },
 
   {
-    // ✅ Next.js community workaround
+    // Next.js community workaround
     plugins: {
       '@next/next': nextPlugin,
     },

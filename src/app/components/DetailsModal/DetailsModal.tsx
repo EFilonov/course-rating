@@ -16,7 +16,7 @@ const DetailsModal = React.forwardRef<HTMLDivElement, DetailsModalProps>(
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1300, // выше layout
+        zIndex: 1300, 
       }}
     >
       <Box

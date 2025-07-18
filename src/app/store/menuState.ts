@@ -3,9 +3,9 @@ import { create } from "zustand";
 import { firstLevelMenu } from "../components/Menu/constants/firstLevelMenu";
 
 import { FlatMenuState, MenuState } from "../interfaces/menuState.interface";
-import { ProductModel } from "../interfaces/product.interface"; // если ещё не импортирован
+import { ProductModel } from "../interfaces/product.interface"; // if not yet imported
 import { httpClient } from "../services/httpClient";
-import { de } from "date-fns/locale";
+
 
 const { fetchMenu, fetchProducts } = httpClient();
 
@@ -16,7 +16,7 @@ const isBrowser = typeof window !== "undefined" && typeof sessionStorage !== "un
 
 const getFlatMenu = async (): Promise<FlatMenuState[]> => {
     if (isBrowser) {
-        // 1. Пробуем взять из sessionStorage
+        // 1. Try to get from sessionStorage
         const cached = sessionStorage.getItem(FLAT_MENU_KEY);
         if (cached) {
             try {
@@ -31,7 +31,7 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
         }
     }
 
-    // 2. Если нет — делаем запрос
+    // 2. If not found — make a request
     const flat: FlatMenuState[] = [];
     return await Promise.all(
         firstLevelMenu.map((firstCategory) => {
@@ -56,7 +56,7 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
                 });
             });
         });
-        // 3. Кладём в sessionStorage
+        // 3. Save to sessionStorage
         if (isBrowser) {
             sessionStorage.setItem(FLAT_MENU_KEY, JSON.stringify(flat));
         }
@@ -70,7 +70,7 @@ const getFlatMenu = async (): Promise<FlatMenuState[]> => {
 
 const getAllProducts = async (flatMenu: FlatMenuState[]) => {
     if (isBrowser) {
-        // 1. Пробуем взять из sessionStorage
+        // 1. Try to get from sessionStorage
         const cached = sessionStorage.getItem(PRODUCTS_CACHE_KEY);
         if (cached) {
             try {
@@ -86,7 +86,7 @@ const getAllProducts = async (flatMenu: FlatMenuState[]) => {
         }
     }
 
-    // 2. Если нет — делаем запросы
+    // 2. If not found — make requests
     return await Promise.all(
         flatMenu.map(async (item) => {
             try {
@@ -98,7 +98,7 @@ const getAllProducts = async (flatMenu: FlatMenuState[]) => {
             }
         })
     ).then((productsWithMenu) => {
-        // 3. Кладём в sessionStorage
+        // 3. Save to sessionStorage
         if (isBrowser) {
             sessionStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(productsWithMenu));
         }
@@ -121,7 +121,7 @@ export const menuState = create<MenuState>((set) => ({
             try {
                 const flatMenu = await getFlatMenu();
                 set({ flatMenu });
-                // Асинхронно получаем продукты и кладём их в стор
+                // Asynchronously get products and save them to the store
                 const productsWithMenu = await getAllProducts(flatMenu);
                 const allProducts = productsWithMenu.flatMap(item =>
                     item.products.map(product => ({
@@ -132,8 +132,8 @@ export const menuState = create<MenuState>((set) => ({
                 set({ allProducts, loading: false });
             } catch (error) {
                 console.error('Error fetching menus:', error);
-                set({ error: error instanceof Error ? error.message : 'Ошибка загрузки', loading: false });
-                // return [];
+                set({ error: error instanceof Error ? error.message : 'Loading error', loading: false });
+                
             } finally {
                 set({ loading: false });
             }

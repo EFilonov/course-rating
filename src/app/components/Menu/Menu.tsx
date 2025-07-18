@@ -61,7 +61,7 @@ export const Menu = ({className}: MenuProps): React.JSX.Element => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleMenuLevel(level, value);
-            ; // Reset scroll position to the top
+             // Reset scroll position to the top
         }
     };
 

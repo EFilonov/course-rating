@@ -19,7 +19,7 @@ export default function Error({ error }: ErrorInterface, reset: () => void): Rea
       flexDirection: 'column',
       maxHeight: '75vh',
       paddingBottom: '28px',
-      gridArea: 'main', // важно для сетки!
+      gridArea: 'main', // important for grid layout!
     }}>
         
       <h3 style={{
@@ -33,8 +33,8 @@ export default function Error({ error }: ErrorInterface, reset: () => void): Rea
         marginTop: '20px',
         gap: '24px'
       }}>
-        <Button onClick={onGoToMain} appearance='blue'>На главную</Button>
-        <Button onClick={onGoToPrevious} appearance='blue'>На предыдущую</Button>
+        <Button onClick={onGoToMain} appearance='blue'>To main page</Button>
+        <Button onClick={onGoToPrevious} appearance='blue'>To previous page</Button>
       </div>
       <img
         src="/images/error_bg.png"

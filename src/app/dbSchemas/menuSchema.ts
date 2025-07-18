@@ -6,8 +6,8 @@ const menuSchema = new mongoose.Schema(
     menu: Array
   }, 
 { 
-    strict: false,           // разрешает любые поля, даже не описанные в схеме
-    collection: "menu"     // явно указывает коллекцию
+    strict: false,           // allows any fields, even those not described in the schema
+    collection: "menu"       // explicitly specifies the collection
     }
 );
 

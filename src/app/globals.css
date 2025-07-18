@@ -21,11 +21,6 @@
     --green-light: #C8F8E4;
 }
 
-/* [data-theme='light'] {
-    --light-blue: #EBEBEB;
-
-} */
-
 html,
 body {
     overflow-x: hidden;
@@ -99,7 +94,5 @@ a {
         display: block;
     }
 
-    /* nav {
-        display: none;
-    } */
+
 }

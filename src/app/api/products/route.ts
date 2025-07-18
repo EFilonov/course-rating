@@ -27,24 +27,21 @@ export async function GET(req: NextRequest) {
   if (!products || products.length === 0) {
     return NextResponse.json([], { status: 404 });
   } else if (products.length > 0) {
-    console.log('Продукты пролучеы из БД');
     return NextResponse.json(products[0].products, { status: 200 });
   }
 }
 
 export async function POST(req: NextRequest) {
   const { request } = httpService();
-  console.log('Получаем продукты c внешнего API');
-  await connectMongo();
+
++  await connectMongo();
   await ensureCategoryUniqueIndex(); 
   const { category } = await req.json();
   const existingProducts = await Products.findOne({ category });
   if (existingProducts) { 
-    console.log('Продукты уже существуют в БД');
     return NextResponse.json(existingProducts.products, { status: 200 });
   } else {
     const products = await request(API.product.find, 'POST', JSON.stringify({ category: category, limit: 10 }));
-    console.log('Сохраняем новое меню в базу данных');
     await Products.create({ category, products });
     return NextResponse.json(products, { status: 200 });
   }
