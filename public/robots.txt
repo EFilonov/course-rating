@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://evgens-rating.vercel.app
+
+# Sitemaps
+Sitemap: https://evgens-rating.vercel.app/sitemap.xml
