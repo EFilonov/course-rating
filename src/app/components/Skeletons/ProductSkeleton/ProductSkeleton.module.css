@@ -1,7 +1,8 @@
 .skTitle {
+    overflow-y: visible;
+
     width: 55%;
     margin-top: 40px;
-    overflow-y: visible;
 }
 
 .skeletonCardMain {
@@ -20,6 +21,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 20px;
+
     margin-top: 20px;
 }
 

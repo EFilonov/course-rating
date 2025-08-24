@@ -4,20 +4,24 @@
 
 .formDescription {
     display: block;
+
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+
+    resize: none;
+
+    color: var(--black);
     border: 1px solid var(--gray);
     border-radius: 5px;
     outline: transparent;
-    height: 75px;
-    font-family: var(--font-roboto), Arial, sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 21px;
-    color: var(--black);
-    padding: 10px;
     background: transparent;
-    width: 100%;
-    resize: none;
     background: white;
+
+    font-family: var(--font-roboto), Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
 }
 
 .formDescription::placeholder {
@@ -26,20 +30,23 @@
 
 .formDescription:focus {
     transition: all 0.2s ease-in-out;
+
     box-shadow: 0 2px 4px var(--gray);
 }
 
 .validationMessage {
     position: absolute;
-    color: var(--red);
-    left: 5px;
     top: 78px;
+    left: 5px;
+
+    color: var(--red);
+
     font-size: 12px;
 }
 
 [data-theme='dark'] .formDescription {
-    background: transparent;
     color: var(--gray);
+    background: transparent;
     box-shadow: none
 }
 

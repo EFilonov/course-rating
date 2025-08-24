@@ -1,8 +1,9 @@
 .productHeader {
+    z-index: 10;
+
     display: grid;
     grid-template-columns:
-        [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
-    z-index: 10
+        [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end]
 }
 
 .logo {
@@ -17,12 +18,12 @@
 
 .price,
 .priceTitle {
-    grid-column: pricestart / priceend;
+    white-space: nowrap;
+
     font-size: clamp(14px, 4vw, 20px);
     font-weight: 400;
     line-height: 1.35;
-
-    white-space: nowrap;
+    grid-column: pricestart / priceend;
 }
 
 .credit,
@@ -33,6 +34,7 @@
 .rating,
 .rateTitle {
     grid-column: ratestart / end;
+
     white-space: nowrap;
 }
 
@@ -42,6 +44,7 @@
 
 .title {
     align-self: flex-end;
+
     font-size: clamp(14px, 3vw, 20px);
     font-weight: 600;
     line-height: 1.35;
@@ -49,14 +52,17 @@
 
 .category {
     margin-top: 7px;
-    font-size: clamp(10px, 2vw, 14px);
+
     text-align: center;
+
+    font-size: clamp(10px, 2vw, 14px);
     font-weight: 300;
 }
 
 .price,
 .credit {
     align-self: flex-end;
+
     font-size: clamp(14px, 3vw, 20px);
     line-height: 1.35;
 }
@@ -80,6 +86,7 @@
 
 .starButton {
     cursor: pointer;
+
     border: none;
     background: transparent;
 }
@@ -99,7 +106,7 @@
     text-align: left;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (width <= 1200px) {
     .productHeader {
         /* margin-top: 20px; */
         grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
@@ -137,21 +144,26 @@
 
     .rating {
         grid-area: rating;
+
         margin-top: 5px;
     }
 
     .priceTitle {
-        grid-area: priceTitle;
         align-self: center;
-        text-align: left;
+
         margin-right: 7px;
+
+        text-align: left;
+        grid-area: priceTitle;
     }
 
     .creditTitle {
-        grid-area: creditTitle;
         align-self: center;
-        text-align: left;
+
         margin-right: 7px;
+
+        text-align: left;
+        grid-area: creditTitle;
     }
 
     .rateTitle {
@@ -159,7 +171,7 @@
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <= 640px) {
     .product {
         margin-top: 10px;
         grid-template-columns: 70px 30px 1fr;
@@ -186,7 +198,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
     .productHeader {
         grid-template-columns: 85px auto;
         grid-template-areas:
@@ -201,7 +213,6 @@
     }
 
     .logo {
-
         margin-bottom: 7px;
     }
 
@@ -211,12 +222,13 @@
 
     .creditTitle,
     .priceTitle {
-        text-align: left;
         margin-bottom: 10px;
+
+        text-align: left;
     }
 
     .price,
     .credit {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 }

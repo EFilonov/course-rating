@@ -4,6 +4,7 @@
 
 .span {
     display: inline-block;
+
     width: 25px;
     height: 20px;
 }
@@ -15,6 +16,7 @@
 
 .star:hover {
     filter: drop-shadow(0 0 5px var(--primary-hover));
+
     cursor: pointer;
 }
 
@@ -24,8 +26,10 @@
 
 .validationMessage {
     position: absolute;
-    color: var(--red);
-    left: 0px;
     top: 30px;
+    left: 0;
+
+    color: var(--red);
+
     font-size: 12px;
 }

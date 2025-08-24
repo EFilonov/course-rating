@@ -10,6 +10,7 @@
  .table {
      display: grid;
      grid-template-columns: 1fr 1fr;
+
      margin-top: 24px;
  }
 
@@ -29,24 +30,29 @@
 
  .advTitle {
      margin-bottom: 5px;
+
      font-weight: bold;
  }
 
  .advantages {
      padding-left: 20px;
+
      border-left: 2px solid #1DC37E;
  }
 
  .disadvantages {
-     padding-left: 20px;
-     border-left: 2px solid var(--red);
      margin-top: 20px;
+     padding-left: 20px;
+
+     border-left: 2px solid var(--red);
  }
 
  .characteristics {
      display: grid;
      align-items: baseline;
+
      padding-right: 40px;
+
      font-size: clamp(12px, 2.5vw, 16px);
      line-height: 1.5;
      grid-template-columns: auto 1fr auto;
@@ -59,6 +65,7 @@
 
  .characteristicsDots {
      margin-bottom: 5px;
+
      border-bottom: 1px dashed var(--gray);
  }
 
@@ -73,13 +80,16 @@
 
  .reviewCard {
      position: relative;
-     overflow: hidden;
-     max-height: 0;
-     padding: 0;
      z-index: 0;
-     background: var(--light-blue);
-     border: none;
+
+     overflow: hidden;
+
+     max-height: 0;
      margin-top: 10px;
+     padding: 0;
+
+     border: none;
+     background: var(--light-blue);
 
  }
 
@@ -90,11 +100,12 @@
 
  .visible {
      max-height: fit-content;
+
      border: initial;
      border: 1px solid #ddd;
  }
 
- @media screen and (max-width: 1200px) {
+ @media screen and (width <= 1200px) {
      .table {
 
          grid-template-columns: 1fr;

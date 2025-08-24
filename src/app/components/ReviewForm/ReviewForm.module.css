@@ -6,54 +6,59 @@
 }
 
 .reviewForm {
-    margin-top: 20px;
     display: grid;
+    align-items: center;
+
+    margin-top: 20px;
     grid-template-columns: auto auto auto 1fr auto auto;
     grid-template-rows: auto;
     gap: 24px 0;
-    align-items: center;
     grid-template-areas:
-        "reviewInputName reviewInputName reviewInputTitle . rateFeedback feedbackStars"
-        "reviewTextarea reviewTextarea reviewTextarea reviewTextarea reviewTextarea reviewTextarea"
-        "reviewButton reviewInfo reviewInfo reviewInfo reviewInfo reviewInfo"
+        'reviewInputName reviewInputName reviewInputTitle . rateFeedback feedbackStars'
+        'reviewTextarea reviewTextarea reviewTextarea reviewTextarea reviewTextarea reviewTextarea'
+        'reviewButton reviewInfo reviewInfo reviewInfo reviewInfo reviewInfo';
 }
 
 .reviewInputName {
     grid-area: reviewInputName;
+
     width: 220px;
     margin-right: 24px;
-
 }
 
 .reviewInputTitle {
-    grid-area: reviewInputTitle;
+    justify-self: start;
+
     width: 220px;
-    align-self: left;
     margin-right: 24px;
+    grid-area: reviewInputTitle;
 }
 
 .reviewTextarea {
     grid-area: reviewTextarea;
-    height: 100%;
 
+    height: 100%;
 }
 
 .reviewButton {
-    grid-area: reviewButton;
-    margin-right: 10px;
     max-width: 141px;
-
+    margin-right: 10px;
+    grid-area: reviewButton;
 }
 
 .reviewInfo {
     grid-area: reviewInfo;
+
     align-self: center;
+
     margin-top: 20px;
+
     font-size: clamp(10px, 2.5vw, 14px);
 }
 
 .rateFeedback {
     grid-area: rateFeedback;
+
     margin-right: 8px;
 }
 
@@ -61,17 +66,14 @@
     grid-area: feedbackStars;
 }
 
-
-@media (max-width: 1200px) {
-
+@media (width <= 1200px) {
     .reviewForm {
         grid-template-columns: auto auto 1fr auto;
         grid-template-areas:
-            "reviewInputName reviewInputName reviewInputTitle reviewInputTitle"
-            "reviewTextarea reviewTextarea reviewTextarea reviewTextarea"
-            ". . rateFeedback feedbackStars "
-
-            "reviewInfo reviewInfo reviewInfo reviewButton ";
+            'reviewInputName reviewInputName reviewInputTitle reviewInputTitle'
+            'reviewTextarea reviewTextarea reviewTextarea reviewTextarea'
+            '. . rateFeedback feedbackStars '
+            'reviewInfo reviewInfo reviewInfo reviewButton ';
     }
 
     .reviewInputTitle {
@@ -87,21 +89,23 @@
     }
 
     .reviewInfo {
-        font-size: clamp(10px, 2.5vw, 14px);
-        text-align: right;
         margin-right: 10px;
+
+        text-align: right;
+
+        font-size: clamp(10px, 2.5vw, 14px);
     }
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
     .reviewForm {
         grid-template-columns: 1fr auto;
         grid-template-areas:
-            "reviewInputName reviewInputName"
-            "reviewInputTitle reviewInputTitle"
-            "reviewTextarea reviewTextarea"
-            "rateFeedback feedbackStars"
-            "reviewInfo reviewButton"
+            'reviewInputName reviewInputName'
+            'reviewInputTitle reviewInputTitle'
+            'reviewTextarea reviewTextarea'
+            'rateFeedback feedbackStars'
+            'reviewInfo reviewButton';
     }
 
     .reviewButton {
@@ -111,53 +115,57 @@
     .rateFeedback,
     .feedbackStars,
     .reviewButton,
-    .reviewInfo,
     .reviewInfo {
         justify-self: right;
     }
 
     .reviewInfo {
-        text-align: right;
         margin-top: 10px;
+
+        text-align: right;
     }
 }
 
-@media (max-width: 379px) {
+@media (width <= 379px) {
     .reviewForm {
         grid-template-columns: auto auto;
         grid-template-areas:
-            "reviewInputName reviewInputName"
-            "reviewInputTitle reviewInputTitle"
-            "reviewTextarea reviewTextarea"
-            "rateFeedback feedbackStars"
-            "reviewInfo reviewButton"
+            'reviewInputName reviewInputName'
+            'reviewInputTitle reviewInputTitle'
+            'reviewTextarea reviewTextarea'
+            'rateFeedback feedbackStars'
+            'reviewInfo reviewButton';
     }
 }
 
 .submitted {
-    border-radius: 10px;
     position: relative;
-    background-color: var(--green-light);
+
     overflow: hidden;
+
     max-height: 0;
     padding: 0;
+
     border: none;
+    border-radius: 10px;
+    background-color: var(--green-light);
 }
 
-[data-theme="dark"] .submitted {
+[data-theme='dark'] .submitted {
     border: transparent;
     background: transparent;
 }
 
 .submittedVisible {
-    padding: 10px;
-    margin-top: 20px;
     max-height: fit-content;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .submitedTitle {
-    font-weight: 500;
     color: var(--green);
+
+    font-weight: 500;
 }
 
 .submittedText {
@@ -168,18 +176,20 @@
     position: absolute;
     top: 10px;
     right: 10px;
+
     cursor: pointer;
+
     border: none;
     background: transparent;
 }
 
-[data-theme="dark"] .submittedVisible {
-    background-color: transparent;
+[data-theme='dark'] .submittedVisible {
     border: 1px solid var(--green-light);
+    background-color: transparent;
 }
 
-[data-theme="dark"] .reviewInputName,
-[data-theme="dark"] .reviewInputTitle,
-[data-theme="dark"] .reviewTextarea {
+[data-theme='dark'] .reviewInputName,
+[data-theme='dark'] .reviewInputTitle,
+[data-theme='dark'] .reviewTextarea {
     background: transparent;
 }

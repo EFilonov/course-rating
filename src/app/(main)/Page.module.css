@@ -7,7 +7,6 @@
     grid-template-columns: 1fr auto;
 }
 
-
 .heroDivider {
     margin: 20px 0;
 }
@@ -16,11 +15,11 @@
     overflow: hidden;
 }
 
-
 .mainFilterTitle {
-    font-weight: 500;
     font-size: 20px;
+    font-weight: 500;
     line-height: 24px;
+
     /* color: var(--black); */
 }
 
@@ -29,15 +28,14 @@
 }
 
 .mainFilterList {
+    display: grid;
+    place-items: center center;
+
+    margin-top: 15px;
 
     list-style: none;
-    margin-top: 15px;
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0 10px;
-    align-items: center;
-    justify-items: center;
-
 }
 
 .mainFilterButton {
@@ -50,24 +48,29 @@
 }
 
 .prductHdrItem {
+    width: 100%;
+
+    cursor: pointer;
+    text-align: left;
+
     border: none;
     background: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
 }
 
 .mouseTooltip {
     position: fixed;
-    pointer-events: none;
-    opacity: 0;
-    display: 'none';
     z-index: 9999;
-    pointer-events: 'none';
-    background: transparent;
-    border: 1px solid #ccc;
+
+    display: none;
+
     padding: 4px 8px;
+
+    pointer-events: none;
+
+    opacity: 0;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    background: transparent;
     backdrop-filter: blur(40px);
 }
 
@@ -75,9 +78,8 @@
     margin-top: 28px;
 }
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
     .mainThemeButton {
         display: none;
     }
-
 }

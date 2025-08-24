@@ -1,38 +1,42 @@
 .button {
     display: inline-block;
+
     box-sizing: border-box;
     padding: 10px;
+
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     text-align: center;
+
     border: 1px solid transparent;
     border-radius: 5px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+
     font-family: inherit;
     font-size: clamp(10px, 2.5vw, 14px);
     font-weight: 400;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .blue {
     cursor: pointer;
-    color: var(--white);
-    background-color: var(--primary);
-}
 
-.blue:hover,
-.gray:hover {
-    background-color: #4e29e0;
+    color: var(--white);
+
+    background-color: var(--primary);
 }
 
 .gray {
     text-decoration: #ddd;
+
     border: 1px solid var(--gray-light);
     background: transparent;
+
     font-weight: 400;
 }
 
 .arrow {
     display: inline-block;
+
     margin-left: 10px;
 }
 
@@ -43,4 +47,10 @@
 
 .button:has(.down) {
     background-color: var(--primary);
+}
+
+/* Hover состояния после базовых селекторов */
+.blue:hover,
+.gray:hover {
+    background-color: #4e29e0;
 }

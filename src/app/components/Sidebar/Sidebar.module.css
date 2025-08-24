@@ -1,16 +1,17 @@
 .nav {
-    padding: 0 5px;
-    margin-top: 32px;
     display: grid;
-    grid-area: sidebar;
-    max-height: 90vh;
     overflow-y: auto;
-    scrollbar-width: none;
     align-items: start;
+
+    max-height: 90vh;
+    margin-top: 32px;
+    padding: 0 5px;
+    grid-area: sidebar;
+    scrollbar-width: none;
     grid-template-rows: auto auto 1fr;
 }
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
     .nav {
         display: none;
     }
@@ -18,6 +19,7 @@
 
 .logoImage {
     display: block;
+
     width: 100%;
     height: 100%;
 }
@@ -26,5 +28,6 @@
     cursor: pointer;
     user-select: none;
     filter: hue-rotate(350deg) brightness(97%);
+
     transition: filter 0.2s ease-in-out;
 }

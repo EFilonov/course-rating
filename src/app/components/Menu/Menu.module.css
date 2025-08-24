@@ -2,6 +2,14 @@
     list-style: none;
 }
 
+.firstLevel {
+    display: block;
+
+    margin-top: 20px;
+
+    user-select: none;
+}
+
 .firstLevel:first-child {
     margin-top: 30px;
 }
@@ -11,79 +19,76 @@
     height: 24px;
 }
 
-.secondLevelItemText:hover,
-.thirdLevelItemText:hover,
-.firstLevelItem:hover,
-.firstLevelItem:hover img,
-.firstLevelItem:hover .firstLevelItemText {
-    user-select: none;
-    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%) contrast(101%);
-    color: var(--primary-hover);
-
-}
-
-.firstLevel {
-    user-select: none;
-    margin-top: 20px;
-    display: block;
-}
-
 .firstLevelItem {
     display: grid;
     grid-template-columns: 24px 1fr;
+
     align-items: center;
+
     transition: filter 0.2s;
 }
 
 .firstLevelItemText {
     padding-left: 20px;
-    font-weight: 400;
+
     font-size: 18px;
+    font-weight: 400;
     line-height: 24px;
 }
 
 .secondLevel {
-    user-select: none;
     display: block;
-    margin: 0 12px 0;
-    border-left: 1px solid var(--black);
+
+    margin: 0 12px;
     padding-left: 32px;
+
+    user-select: none;
+
+    border-left: 1px solid var(--black);
 }
 
 .secondLevelItem {
-    user-select: none;
-    list-style: none;
-    cursor: pointer;
     margin: 5px 0;
+
+    list-style: none;
+
+    cursor: pointer;
+    user-select: none;
 }
 
 .secondLevelItemText {
     user-select: none;
     text-transform: uppercase;
-    font-weight: 400;
+
     font-size: 12px;
+    font-weight: 400;
     line-height: 16px;
 }
 
 .thirdLevel {
-    user-select: none;
     display: block;
+
     margin: 10px 0;
     padding-left: 10px;
+
+    user-select: none;
 }
 
 .thirdLevelItem {
-    list-style: none;
     margin: 2px 0;
+
+    list-style: none;
 }
 
 .thirdLevelItemText {
     user-select: none;
-    font-style: normal;
-    font-weight: 400;
+
     font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
 }
 
+/* Active состояния перед hover */
 .firstLevelItemActive,
 .secondLevelItemActive,
 .thirdLevelItemActive {
@@ -91,5 +96,19 @@
 }
 
 .firstLevelItemActive img {
-    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%)
+        contrast(101%);
+}
+
+/* Hover состояния после active */
+.secondLevelItemText:hover,
+.thirdLevelItemText:hover,
+.firstLevelItem:hover,
+.firstLevelItem:hover img,
+.firstLevelItem:hover .firstLevelItemText {
+    user-select: none;
+    filter: brightness(0) saturate(100%) invert(38%) sepia(83%) saturate(747%) hue-rotate(227deg) brightness(97%)
+        contrast(101%);
+
+    color: var(--primary-hover);
 }

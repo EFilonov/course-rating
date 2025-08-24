@@ -8,8 +8,8 @@
 
 .advantageTitle {
     font-size: clamp(16px, 3vw, 22px);
-    line-height: 1.25;
     font-weight: 600;
+    line-height: 1.25;
 }
 
 .advIcon {
@@ -22,7 +22,9 @@
     margin-top: 24px;
     margin-left: 16px;
     padding-left: 60px;
+
+    border-left: 1px solid #ddd;
+
     font-size: clamp(14px, 2.5vw, 18px);
     line-height: 1.5;
-    border-left: 1px solid #ddd;
 }

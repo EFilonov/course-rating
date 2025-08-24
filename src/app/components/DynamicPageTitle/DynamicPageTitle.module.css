@@ -1,10 +1,8 @@
 .title {
     display: grid;
     grid-template-columns: auto 1fr 116px auto;
-    align-items: center;
-    justify-items: left;
+    place-items: flex-start left;
     gap: 0 20px;
-    align-items: flex-start;
 }
 
 .sortBlock {
@@ -16,31 +14,37 @@
 
 .sortItem {
     display: block;
-    cursor: pointer;
-    font-size: clamp(14px, 1.5vw, 16px);
-    white-space: nowrap;
-    justify-self: left;
+
     padding-left: 24px;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+    font-size: clamp(14px, 1.5vw, 16px);
+    justify-self: left;
 }
 
 .active {
-    color: var(--primary);
-    padding-left: 0
+    padding-left: 0;
+
+    color: var(--primary)
 }
 
 .active::before {
-
-    content: "";
     display: inline-block;
-    background: url("/icons/Sort/Sort.svg") no-repeat left center;
+
     width: 24px;
     height: 20px;
-    background-size: 20px 20px;
+
+    content: "";
     vertical-align: middle;
+
+    background: url("/icons/Sort/Sort.svg") no-repeat left center;
+    background-size: 20px 20px;
 }
 
 
-@media (max-width: 785px) {
+@media (width <= 785px) {
     .title {
         gap: 0 10px;
     }
@@ -51,7 +55,7 @@
     }
 }
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
     .title {
         grid-template-columns: auto 1fr 116px;
     }

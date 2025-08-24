@@ -1,52 +1,64 @@
 .themeToggleBtn {
     --bg: var(--primary);
-    --fg: #ffffff;
-    background-color: var(--bg);
-    border-radius: 3px;
+    --fg: #fff;
     --dimensions: 28px;
-    width: var(--dimensions);
-    height: var(--dimensions);
-    border: none;
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: var(--dimensions);
+    height: var(--dimensions);
     margin: 0;
     padding: 0;
+
     cursor: pointer;
-    position: relative;
+
+    border: none;
+    border-radius: 3px;
+    background-color: var(--bg);
 }
 
 .themeToggleBtn .maincircle {
     --dimensions: 12px;
+    position: absolute;
+
     width: var(--dimensions);
     height: var(--dimensions);
-    background-color: var(--fg);
-    border-radius: 50%;
-    position: absolute;
+
     transition: transform 0.4s ease 0.2s;
+
+    border-radius: 50%;
+    background-color: var(--fg);
 }
 
 .themeToggleBtn .maincircleInner {
-    background-color: var(--bg);
-    border-radius: 50%;
     --dimensions: 10px;
-    width: var(--dimensions);
-    height: var(--dimensions);
     position: absolute;
     top: 1px;
     right: -1px;
-    transform-origin: right top;
-    transform: scale(0);
-    transition: transform 0.4s ease 0.2s;
+
+    width: var(--dimensions);
+    height: var(--dimensions);
+
     content: "";
+    transition: transform 0.4s ease 0.2s;
+    transform: scale(0);
+    transform-origin: right top;
     pointer-events: none;
+
+    border-radius: 50%;
+    background-color: var(--bg);
 }
 
 .themeToggleBtn .sunrays {
-    display: grid;
-    place-items: center;
-    transition: transform 0.4s ease 0.2s;
     position: absolute;
+
+    display: grid;
+
+    transition: transform 0.4s ease 0.2s;
+    place-items: center;
 }
 
 .themeToggleBtn .sunrays,
@@ -54,10 +66,12 @@
 .themeToggleBtn .sunraysBefore {
     --width: 1px;
     --height: 2px;
+    position: absolute;
+
     width: var(--width);
     height: var(--height);
+
     background-color: var(--fg);
-    position: absolute;
     box-shadow: 0 10px 0 var(--fg), 0 -10px 0 var(--fg);
 }
 
@@ -87,6 +101,7 @@
 .themeToggleBtn:hover {
     user-select: none;
     filter: hue-rotate(350deg) brightness(97%);
+
     transition: filter 0.2s ease-in-out;
 }
 

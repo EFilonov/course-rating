@@ -1,26 +1,33 @@
 .hamburger {
+    position: relative;
+
     display: grid;
-    align-items: center;
-    justify-items: center;
     display: inline-block;
+    place-items: center center;
+
     width: 28px;
     height: 28px;
-    position: relative;
+    padding: 0;
+
+    cursor: pointer;
+
     border: none;
     background: transparent;
-    cursor: pointer;
-    padding: 0;
 }
 
 .hamburger span {
-    display: block;
-    height: 4px;
-    width: 100%;
-    background: #7351F5;
-    border-radius: 2px;
     position: absolute;
     left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 4px;
+
     transition: 0.3s;
+
+    border-radius: 2px;
+    background: #7351F5;
 }
 
 .hamburger span:nth-child(1) {
@@ -50,5 +57,6 @@
 .hamburger:hover {
     user-select: none;
     filter: hue-rotate(350deg) brightness(97%);
+
     transition: filter 0.2s ease-in-out;
 }

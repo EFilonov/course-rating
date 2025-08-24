@@ -3,33 +3,40 @@
 }
 
 .hhtitle {
-    margin-top: 32px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
     align-items: center;
+    align-items: flex-start;
+
+    margin-top: 32px;
+    grid-template-columns: auto 1fr auto;
     justify-items: left;
     gap: 0 20px;
-    align-items: flex-start;
 
 }
 
 .seoText {
     margin-top: 32px;
+
     font-size: clamp(14px, 2.5vw, 18px);
+
     /* как .advantageText */
     line-height: 22px;
 }
 
 .seoText h2 {
     margin-top: 14px;
+
     font-size: clamp(16px, 3vw, 22px);
+
     /* как .advantageTitle */
     line-height: 36px;
 }
 
 .seoText h3 {
     margin-top: 10px;
+
     font-size: clamp(16px, 3vw, 20px);
+
     /* как .advantageTitle */
     line-height: 24px;
 }
@@ -37,27 +44,34 @@
 .seoText ul li,
 .seoText ol li {
     padding-left: 10px;
+
     list-style: none
 }
 
 .seoText ol>li::before {
-    content: "";
     display: inline-block;
-    background: url("/icons/listMark/listMarkOl.svg") no-repeat left center;
+
     width: 24px;
     height: 20px;
-    background-size: 20px 20px;
+
+    content: "";
     vertical-align: middle;
+
+    background: url("/icons/listMark/listMarkOl.svg") no-repeat left center;
+    background-size: 20px 20px;
 }
 
 .seoText ul>li::before {
-    content: "";
     display: inline-block;
-    background: url("/icons/listMark/listMarkUl.svg") no-repeat left center;
+
     width: 24px;
     height: 20px;
-    background-size: 20px 20px;
+
+    content: "";
     vertical-align: middle;
+
+    background: url("/icons/listMark/listMarkUl.svg") no-repeat left center;
+    background-size: 20px 20px;
 }
 
 .tags {
@@ -72,7 +86,7 @@
     margin-top: 5px;
 }
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
     .pageWrapper {
         margin-top: 15px;
     }

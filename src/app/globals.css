@@ -24,7 +24,9 @@
 html,
 body {
     overflow-x: hidden;
+
     max-width: 100vw;
+
     background-color: var(--background);
     scroll-behavior: smooth;
 }
@@ -37,14 +39,17 @@ body {
 }
 
 body {
+    display: grid;
+
+    min-height: 100vh;
+
     color: var(--foreground);
     background-color: var(--background);
+
     font-family: var(--font-roboto), Arial, sans-serif;
-    display: grid;
     gap: 0 30px;
     grid-template-columns: auto 280px minmax(320px, 1200px) auto;
     grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
     grid-template-areas:
         ". header header ."
         ". sidebar main ."
@@ -53,6 +58,7 @@ body {
 
 header {
     grid-area: header;
+
     display: none;
 }
 
@@ -80,7 +86,7 @@ a {
 
 
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
     body {
         padding: 0 10px;
         grid-template-columns: minmax(320px, 1fr);

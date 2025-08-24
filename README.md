@@ -1,145 +1,227 @@
-# Next.js 15 Starter (core) [[LIVE DEMO](https://nextjs-15-starter-core.vercel.app/)]
+# Course Rating App 🌟
 
- ![MIT License](https://img.shields.io/badge/license-MIT-blue) [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org) ![ESLint](https://img.shields.io/badge/code%20style-eslint-brightgreen) ![GitHub stars](https://img.shields.io/github/stars/siddharthamaity/nextjs-15-starter-core?style=social) ![GitHub forks](https://img.shields.io/github/forks/siddharthamaity/nextjs-15-starter-core?style=social) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/siddharthamaity)
+## Overview
 
-*This is the core version for Next.js 15 Starter, you may be interested in other templates too -*
-- [**Next.js 15 Starter with Tailwind CSS**](https://github.com/siddharthamaity/nextjs-15-starter-tailwind)
-- [**Next.js 15 Starter with Shadcn UI**](https://github.com/siddharthamaity/nextjs-15-starter-shadcn)
+Course Rating App is a full-stack Next.js application for rating and reviewing online courses. Originally designed as a learning project to explore the latest server-side rendering and static site generation capabilities, it evolved into a comprehensive full-stack application due to unexpected challenges.
 
-Welcome to the **Next.js 15 Starter** repository! This starter template is built with Next.js 15, React 19, TypeScript 5 and comes packed with several powerful tools and configurations to accelerate your project setup and streamline development workflows using VS Code.
+## 📖 Project Story
 
-![Next.js 15 Starter](public/images/screenshot.png)
+This project was initially developed to explore Next.js 14+ features, particularly:
 
-## 🚀 What's Included
+- Server-side rendering (SSR)
+- Static site generation (SSG)
+- App Router architecture
+- Modern React patterns
 
-- **Next.js 15**
-- **React 19**
-- **TypeScript 5**
-- **ESLint 9**
-- **Prettier 3**
-- **App Directory**
-- **System, Light & Dark Mode**
-- **Next.js Bundle Analyzer**
-- **Dockerfile** with Node.js 22.15.1 (Alpine)
-- **Dockerfile.bun** with Bun 1.2.13 (Alpine)
+However, during development, we discovered that the original API we planned to use was located in a territory that became inaccessible from Ukraine due to geopolitical reasons. This challenge led us to develop our own "kindest" data migration tools and database infrastructure, ironically transforming what started as a frontend exploration into a full-featured full-stack application! 😄
 
-### 🛠️ ESLint Plugins
+## ✨ Features
 
-- [**@eslint/js**](https://www.npmjs.com/package/@eslint/js)
-- [**typescript-eslint**](https://github.com/typescript-eslint/typescript-eslint)
-- [**eslint-plugin-react**](https://github.com/jsx-eslint/eslint-plugin-react)
-- [**@next/eslint-plugin-next**](https://github.com/vercel/next.js)
-- [**eslint-config-prettier**](eslint-config-prettier)
-- [**eslint-plugin-import**](https://github.com/import-js/eslint-plugin-import)
-- [**eslint-plugin-promise**](https://github.com/eslint-community/eslint-plugin-promise)
+- 📚 Browse courses by categories (Programming, Design, Marketing, etc.)
+- ⭐ Rate courses with 1-5 star system
+- 💬 Submit and read detailed reviews
+- 🔍 Filter courses by popularity, price, and reviews
+- 📱 Responsive design with mobile support
+- 🌙 Theme switching support
+- 🖼️ Automatic course image management
+- 📊 Course statistics and ratings
+- 🗄️ Full data migration toolkit
 
-### ✨ Prettier Plugins
+## 🛠️ Tech Stack
 
-- [**@trivago/prettier-plugin-sort-imports**](https://github.com/trivago/prettier-plugin-sort-imports)
+### Frontend
+- **Framework**: Next.js 14+ (App Router)
+- **Language**: TypeScript
+- **Styling**: CSS Modules
+- **State Management**: Zustand
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form
+- **Date Handling**: date-fns
+- **Image Optimization**: Next.js Image component
 
-### 💻 VS Code Extensions (Recommended)
+### Backend
+- **Database**: MongoDB with Mongoose
+- **API**: Next.js API Routes
+- **Data Migration**: Custom migration tools
+- **Image Processing**: Custom download utilities
 
-To enhance development experience, install the following VS Code extensions:
+## 📁 Project Structure
 
-- [**Auto Close Tag**](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
-- [**Better Comments**](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
-- [**DotENV**](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
-- [**EditorConfig for VS Code**](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
-- [**ESLint**](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [**formate: CSS/LESS/SCSS formatter**](https://marketplace.visualstudio.com/items?itemName=MikeBovenlander.formate)
-- [**Git History**](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
-- [**Import Cost**](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
-- [**JavaScript Booster**](https://marketplace.visualstudio.com/items?itemName=sburg.vscode-javascript-booster)
-- [**npm Intellisense**](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
-- [**Prettier - Code formatter**](https://marketplace.visualstudio.com/items?itemName=esbenp)
-- [**Todo Tree**](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
-- [**Turbo Console Log**](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
-- [**Package Json Upgrade**](https://marketplace.visualstudio.com/items?itemName=codeandstuff.package-json-upgrade)
-- [**Visual Studio Code Commitizen Support**](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
-- [**Markdown All in One**](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+```
+src/
+├── app/
+│   ├── api/                    # API routes
+│   │   ├── form/              # Review submission
+│   │   ├── getImages/         # Image download utility
+│   │   ├── menu/              # Menu data management
+│   │   └── products/          # Product data management
+│   ├── components/            # React components
+│   │   ├── Advantages/        # Course advantages display
+│   │   ├── Button/            # Reusable UI buttons
+│   │   ├── Menu/              # Multi-level navigation
+│   │   ├── Product/           # Product cards
+│   │   ├── Review/            # Review display
+│   │   ├── ReviewForm/        # Review submission form
+│   │   └── ...               # Other UI components
+│   ├── dbSchemas/             # MongoDB schemas
+│   ├── helpers/               # Utility functions
+│   ├── interfaces/            # TypeScript interfaces
+│   ├── services/              # External services
+│   ├── store/                 # Zustand state management
+│   └── utils/                 # Data migration utilities
+└── public/                    # Static assets
+    ├── Images/                # Course images
+    └── icons/                 # UI icons
+```
 
-
-## 🏁 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-
-- **Bun**: Version 1.2.13 or higher OR
-- **Node.js**: Version 20.18.0 or higher
-- **Docker**: For containerized deployment (optional but recommended)
+- Node.js 18+
+- MongoDB instance
+- npm or yarn
 
 ### Installation
 
-1. **Clone the Repository**:
-    ```bash
-    git clone https://github.com/siddharthamaity/nextjs-15-starter-core.git
-    cd nextjs-15-starter-core
-    ```
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd course-rating
+   ```
 
-2. **Install Dependencies**:
-    ```bash
-    npm install
-    # or with Yarn
-    yarn install
-    # or with pnpm
-    pnpm install
-    # or with Bun
-    bun install
-    ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. **Run Development Server**:
-    ```bash
-    npm run dev
-    # or with Yarn
-    yarn dev
-    # or with pnpm
-    pnpm dev
-    # or with Bun
-    bun dev
-    ```
+3. **Set up environment variables:**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   MONGO_URI=mongodb://your-mongodb-connection-string
+   NEXT_PUBLIC_DOMAIN_LOCAL=http://localhost:3000
+   ```
 
-4. **Build for Production**:
-    ```bash
-    npm run build
-    # or with Yarn
-    yarn build
-    # or with pnpm
-    pnpm build
-    # or with Bun
-    bun run build
-    ```
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-### 🐳 Docker Setup
+5. **Open your browser:**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-To use Docker, make sure Docker is installed on your machine. Then, build and run the Docker container:
+## 🐳 Docker Deployment
 
+### Local Docker Setup
 ```bash
-docker build . -t nextjs-starter-core
-# or if using Bun
-docker build . -t nextjs-starter-core -f Dockerfile.bun
+# Build the image
+docker build -t course-rating-app .
 
-docker run -p 3000:3000 nextjs-starter-core
+# Run the container
+docker run -p 3000:3000 course-rating-app
 ```
 
-### ☁ Try it in the Cloud
+### Production Build
+```bash
+npm run build
+npm start
+```
 
-[![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://vscode.dev/github/siddharthamaity/nextjs-15-starter-core)
+## 🔧 API Endpoints
 
-[![Open in GitHub Codespaces](https://img.shields.io/badge/Open%20in-GitHub%20Codespaces-blue?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=siddharthamaity/nextjs-15-starter-core)
+### Products Management
+- `GET /api/products?category=<category>` - Retrieve products by category
+- `POST /api/products` - Create/update products for category
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/siddharthamaity/nextjs-15-starter-core)
+### Menu Management
+- `GET /api/menu?category=<category>` - Retrieve menu by category
+- `POST /api/menu` - Create/update menu for category
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/siddharthamaity/nextjs-15-starter-core)
+### Reviews System
+- `POST /api/form` - Submit new review
+- `GET /api/form?id=<productId>` - Get reviews for product
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/siddharthamaity/nextjs-15-starter-core)
+### Data Migration
+- `GET /api/getImages` - Download and migrate course images
 
-[![Open in Repl.it](https://replit.com/badge/github/siddharthamaity/nextjs-15-starter-core)](https://replit.com/github/siddharthamaity/nextjs-15-starter-core)
 
-[![Open in Glitch](https://img.shields.io/badge/Open%20in-Glitch-blue?logo=glitch)](https://glitch.com/edit/#!/import/github/siddharthamaity/nextjs-15-starter-core)
+## 🎯 Key Features Implementation
 
-### License
+### 🔄 State Management
+- Zustand for global state management
+- SessionStorage caching for performance
+- Optimistic UI updates
+- Error handling and loading states
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### 🖼️ Image Management
+- Automatic image downloading from external sources
+- Local storage in `public/Images/products`
+- Duplicate prevention and optimization
+- Fallback image handling
+
+### ⭐ Review System
+- Real-time review submission
+- Star rating with accessibility support
+- Form validation with React Hook Form
+- Automatic list updates after submission
+
+### 🧭 Navigation
+- Multi-level menu system (categories → subcategories → courses)
+- Breadcrumb navigation
+- Active state management
+- Smooth animations with Framer Motion
+
+### ⚡ Performance Optimizations
+- Component memoization with `React.memo`
+- Callback memoization with `useCallback`
+- Next.js Image optimization
+- Data caching strategies
+- Server-side rendering for SEO
+
+## 🔧 Data Migration Tools
+
+Due to the original API accessibility issues, we developed comprehensive migration tools:
+
+- **Menu Migration**: Transfers hierarchical menu structures
+- **Product Migration**: Migrates course data with reviews
+- **Image Migration**: Downloads and optimizes course images
+- **Data Validation**: Ensures data integrity during migration
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Development Notes
+
+### Code Quality
+- TypeScript for type safety
+- ESLint and Prettier for code formatting
+- CSS Modules for component styling
+- Accessibility considerations throughout
+
+### Testing
+- Component testing setup ready
+- API endpoint validation
+- Error boundary implementation
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- Next.js team for the amazing framework
+- MongoDB for reliable database solutions
+- The open-source community for inspiration
+- And a special thanks to geopolitical circumstances for making this a more interesting project than originally planned! 😅
 
 ---
 
-<p style="text-align: center;"> With ❤️ from 🇮🇳 </p>
+**Built with ❤️ in Ukraine 🇺🇦**
+
+*Sometimes the best projects come from unexpected challenges!*
