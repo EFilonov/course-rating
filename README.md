@@ -13,7 +13,7 @@ This project was initially developed to explore Next.js 14+ features, particular
 - App Router architecture
 - Modern React patterns
 
-However, during development, we discovered that the original API we planned to use was located in a territory that became inaccessible from Ukraine due to geopolitical reasons. This challenge led us to develop our own "kindest" data migration tools and database infrastructure, ironically transforming what started as a frontend exploration into a full-featured full-stack application! 😄
+However, during development, i discovered that the original API we planned to use was located in a territory that became inaccessible from Ukraine due to "geopolitical reasons". This challenge me to develop own "kindest" data migration tools and database infrastructure, ironically transforming what started as a frontend exploration into a full-featured full-stack application! 😄
 
 ## ✨ Features
 
